@@ -11,6 +11,6 @@
 #include "Bootloader/Bootloader.h"
 #include "Common/Button.h"
 #include "Timer/SystemTick.h"
-#include "USB/USB_CDC.h"
+#include "USB/USB_CDC_Debug.h"
 
 #endif

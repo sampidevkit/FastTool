@@ -10,7 +10,12 @@ int main(void)
     {
         Bootloader_Tasks();
         Application_Tasks();
-        USB_CDC_Tasks();
+        
+#if defined(USB_CDC_DEBUG_H)
+        USB_CDC_Debug_Tasks();
+#elif defined(USB_CDC_UART_H)
+        USB_CDC_UART_Tasks();
+#endif
     }
 
     return 1;

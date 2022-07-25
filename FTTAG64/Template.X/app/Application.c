@@ -22,4 +22,12 @@ void Application_Tasks(void)
             __db("\nHello");
         }
     }
+    
+    while(USB_CDC_Debug_Is_RxReady())
+    {
+        if(USB_CDC_Debug_Is_TxReady())
+            USB_CDC_Debug_Write(USB_CDC_Debug_Read());
+        else
+            break;
+    }
 }

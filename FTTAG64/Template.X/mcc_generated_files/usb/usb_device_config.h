@@ -174,6 +174,11 @@ please contact mla_licensing@microchip.com
 #define USB_CDC_SUPPORT_DTR_SIGNALING 1
 #define USB_CDC_DTR_ACTIVE_LEVEL 1
 /** DEFINITIONS ****************************************************/
+extern void *CDCDataOutHandle;
+extern void *CDCDataInHandle;
+extern volatile unsigned char cdc_data_tx[CDC_DATA_IN_EP_SIZE];
+extern volatile unsigned char cdc_data_rx[CDC_DATA_OUT_EP_SIZE];
+
 extern char UART_DTR;
 void mInitDTRPin(void);
 void USB_CDC_SetLineCodingHandler(void);

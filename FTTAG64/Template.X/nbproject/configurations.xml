@@ -24,7 +24,7 @@
           <itemPath>../../Library/Timer/SystemTick.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="USB" projectFiles="true">
-          <itemPath>../../Library/USB/USB_CDC.h</itemPath>
+          <itemPath>../../Library/USB/USB_CDC_Debug.h</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
@@ -76,7 +76,7 @@
           <itemPath>../../Library/Timer/SystemTick.c</itemPath>
         </logicalFolder>
         <logicalFolder name="f4" displayName="USB" projectFiles="true">
-          <itemPath>../../Library/USB/USB_CDC.c</itemPath>
+          <itemPath>../../Library/USB/USB_CDC_Debug.c</itemPath>
         </logicalFolder>
       </logicalFolder>
       <logicalFolder name="MCC Generated Files"
