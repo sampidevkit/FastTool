@@ -15,7 +15,6 @@ static struct
     uint8_t head;
     uint8_t tail;
     uint8_t count;
-    tick_t tick;
     uint8_t data[CDC_DATA_IN_EP_SIZE];
 } rxBuf;
 
@@ -24,7 +23,6 @@ static struct
     uint8_t head;
     uint8_t tail;
     uint8_t remain;
-    tick_t tick;
     uint8_t data[CDC_DATA_OUT_EP_SIZE];
 } txBuf;
 
@@ -53,6 +51,8 @@ static inline bool USB_CDC_Debug_Is_Ready(void) // <editor-fold defaultstate="co
         if(Is_Init==1)
         {
             Is_Init=0;
+            rxBuf.count=0;
+            txBuf.remain=0;
             RX_LED_SetLow();
             TX_LED_SetLow();
             DTR_LED_SetLow();
@@ -62,10 +62,8 @@ static inline bool USB_CDC_Debug_Is_Ready(void) // <editor-fold defaultstate="co
     {
         Is_Init=1;
         rxBuf.head=rxBuf.tail=rxBuf.count=0;
-        rxBuf.tick.Over=1;
         txBuf.head=txBuf.tail=0;
         txBuf.remain=CDC_DATA_OUT_EP_SIZE;
-        txBuf.tick.Over=1;
         DTR_LED_SetHigh();
     }
 
@@ -74,17 +72,13 @@ static inline bool USB_CDC_Debug_Is_Ready(void) // <editor-fold defaultstate="co
 
 static inline void USB_CDC_Debug_Rx_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Rx tasks">
 {
-    cdc_rx_len=0;
-
     if(!USBHandleBusy(CDCDataOutHandle))
     {
-        __len=USBHandleGetLength(CDCDataOutHandle);
+        RX_LED_SetHigh();
+        __len=CDC_DATA_IN_EP_SIZE;
 
-        if(__len>0)
-        {
-            rxBuf.tick.Over=1;
-            RX_LED_SetHigh();
-        }
+        if(__len>USBHandleGetLength(CDCDataOutHandle))
+            __len=USBHandleGetLength(CDCDataOutHandle);
 
         for(cdc_rx_len=0; cdc_rx_len<__len; cdc_rx_len++)
         {
@@ -93,10 +87,8 @@ static inline void USB_CDC_Debug_Rx_Tasks(void) // <editor-fold defaultstate="co
             if(CDC_DATA_IN_EP_SIZE<=rxBuf.head)
                 rxBuf.head=0;
 
-            if(CDC_DATA_IN_EP_SIZE<rxBuf.count)
+            if(CDC_DATA_IN_EP_SIZE>rxBuf.count)
                 rxBuf.count++;
-            else
-                rxBuf.head=rxBuf.tail=rxBuf.count=0;
         }
 
         CDCDataOutHandle=USBRxOnePacket(CDC_DATA_EP, (uint8_t*)&cdc_data_rx, sizeof (cdc_data_rx));
@@ -132,23 +124,17 @@ static inline void USB_CDC_Debug_Tx_Tasks(void) // <editor-fold defaultstate="co
 
 void USB_CDC_Debug_Tasks(void) // <editor-fold defaultstate="collapsed" desc="USB CDC Tx tasks">
 {
-    if(!USB_CDC_Debug_Is_Ready())
-        return;
-
-    USB_CDC_Debug_Rx_Tasks();
-    USB_CDC_Debug_Tx_Tasks();
-
-    if(RX_LED_GetValue())
+    if(USB_CDC_Debug_Is_Ready())
     {
-        if(Tick_Is_Over(&rxBuf.tick, 10))
-            RX_LED_SetLow();
+        USB_CDC_Debug_Rx_Tasks();
+        USB_CDC_Debug_Tx_Tasks();
     }
 
-    if(TX_LED_GetValue())
-    {
-        if(Tick_Is_Over(&txBuf.tick, 10))
-            TX_LED_SetLow();
-    }
+    if(RX_LED_GetValue()&&(rxBuf.count==0))
+        RX_LED_SetLow();
+
+    if(TX_LED_GetValue()&&(txBuf.remain>=CDC_DATA_OUT_EP_SIZE))
+        TX_LED_SetLow();
 } // </editor-fold>
 
 void _mon_putc(char c) // <editor-fold defaultstate="collapsed" desc="SDTIO stream function">
