@@ -1,14 +1,29 @@
-#include "USB_CDC_Debug.h"
+#include "USB_CDC_UART.h"
 #include "libcomp.h"
 
-#define DTR_LED_SetHigh()   //(LATBSET=(1<<13))
-#define DTR_LED_SetLow()    //(LATBCLR=(1<<13))
+#ifndef DTR_LED_SetHigh
+#define DTR_LED_SetHigh()
+#endif
 
-//#undef RX_LED_SetHigh
-//#define RX_LED_SetHigh()
-//
-//#undef RX_LED_SetLow
-//#define RX_LED_SetLow()
+#ifndef DTR_LED_SetLow
+#define DTR_LED_SetLow()
+#endif
+
+#ifndef RX_LED_SetHigh
+#define RX_LED_SetHigh()
+#endif
+
+#ifndef RX_LED_SetLow
+#define RX_LED_SetLow()
+#endif
+
+#ifndef TX_LED_SetHigh
+#define TX_LED_SetHigh()
+#endif
+
+#ifndef TX_LED_SetLow
+#define TX_LED_SetLow()
+#endif
 
 static struct
 {
@@ -42,7 +57,7 @@ void USB_CDC_SetLineCodingHandler(void) // <editor-fold defaultstate="collapsed"
 
 } // </editor-fold>
 
-static inline bool USB_CDC_Debug_Is_Ready(void) // <editor-fold defaultstate="collapsed" desc="Get USB CDC state">
+static inline bool USB_CDC_UART_Is_Ready(void) // <editor-fold defaultstate="collapsed" desc="Get USB CDC state">
 {
     static bool Is_Init=0;
 
@@ -70,7 +85,7 @@ static inline bool USB_CDC_Debug_Is_Ready(void) // <editor-fold defaultstate="co
     return Is_Init;
 } // </editor-fold>
 
-static inline void USB_CDC_Debug_Rx_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Rx tasks">
+static inline void USB_CDC_UART_Rx_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Rx tasks">
 {
     if(!USBHandleBusy(CDCDataOutHandle))
     {
@@ -95,7 +110,7 @@ static inline void USB_CDC_Debug_Rx_Tasks(void) // <editor-fold defaultstate="co
     }
 } // </editor-fold>
 
-static inline void USB_CDC_Debug_Tx_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Tx tasks">
+static inline void USB_CDC_UART_Tx_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Tx tasks">
 {
     __len=0;
 
@@ -122,12 +137,12 @@ static inline void USB_CDC_Debug_Tx_Tasks(void) // <editor-fold defaultstate="co
         CDCTxService();
 } // </editor-fold>
 
-void USB_CDC_Debug_Tasks(void) // <editor-fold defaultstate="collapsed" desc="USB CDC Tx tasks">
+void USB_CDC_UART_Tasks(void) // <editor-fold defaultstate="collapsed" desc="USB CDC Tx tasks">
 {
-    if(USB_CDC_Debug_Is_Ready())
+    if(USB_CDC_UART_Is_Ready())
     {
-        USB_CDC_Debug_Rx_Tasks();
-        USB_CDC_Debug_Tx_Tasks();
+        USB_CDC_UART_Rx_Tasks();
+        USB_CDC_UART_Tx_Tasks();
     }
 
     if(RX_LED_GetValue()&&(rxBuf.count==0))
@@ -135,67 +150,4 @@ void USB_CDC_Debug_Tasks(void) // <editor-fold defaultstate="collapsed" desc="US
 
     if(TX_LED_GetValue()&&(txBuf.remain>=CDC_DATA_OUT_EP_SIZE))
         TX_LED_SetLow();
-} // </editor-fold>
-
-void _mon_putc(char c) // <editor-fold defaultstate="collapsed" desc="SDTIO stream function">
-{
-    if(txBuf.remain==0)
-    {
-        if(!USB_CDC_Debug_Is_Ready())
-            return;
-
-        USB_CDC_Debug_Tx_Tasks();
-    }
-
-    TX_LED_SetHigh();
-    txBuf.data[txBuf.head++]=c;
-
-    if(CDC_DATA_OUT_EP_SIZE<=txBuf.head)
-        txBuf.head=0;
-
-    if(txBuf.remain>0)
-        txBuf.remain--;
-} // </editor-fold>
-
-bool USB_CDC_Debug_Is_RxReady(void) // <editor-fold defaultstate="collapsed" desc="Check RX buffer">
-{
-    return (rxBuf.count>0?1:0);
-} // </editor-fold>
-
-bool USB_CDC_Debug_Is_TxReady(void) // <editor-fold defaultstate="collapsed" desc="Check TX buffer">
-{
-    return (txBuf.remain>0?1:0);
-} // </editor-fold>
-
-bool USB_CDC_Debug_Is_TxDone(void) // <editor-fold defaultstate="collapsed" desc="Check TX process">
-{
-    return (txBuf.remain==CDC_DATA_OUT_EP_SIZE?1:0);
-} // </editor-fold>
-
-void USB_CDC_Debug_Write(uint8_t c) // <editor-fold defaultstate="collapsed" desc="Write 1 byte">
-{
-    if(txBuf.remain==0)
-        return;
-
-    TX_LED_SetHigh();
-    txBuf.data[txBuf.head++]=c;
-
-    if(CDC_DATA_OUT_EP_SIZE<=txBuf.head)
-        txBuf.head=0;
-
-    if(txBuf.remain>0)
-        txBuf.remain--;
-} // </editor-fold>
-
-uint8_t USB_CDC_Debug_Read(void) // <editor-fold defaultstate="collapsed" desc="Read 1 byte">
-{
-    uint8_t readValue=rxBuf.data[rxBuf.tail++];
-
-    if(CDC_DATA_IN_EP_SIZE<=rxBuf.tail)
-        rxBuf.tail=0;
-
-    if(rxBuf.count>0)
-        rxBuf.count--;
-
-    return readValue;
 } // </editor-fold>
