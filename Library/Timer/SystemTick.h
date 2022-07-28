@@ -16,6 +16,9 @@ typedef struct {
 
 void __delay_us(uint32_t t);
 void __delay_ms(uint32_t t);
-bool Tick_Is_Over(tick_t *pTick, uint32_t ms);
+bool Tick_Is_Over(tick_t *pTick, uint32_t us);
+
+#define Tick_Is_Over_Us(pTick, us) Tick_Is_Over(pTick, us)
+#define Tick_Is_Over_Ms(pTick, ms) Tick_Is_Over(pTick, 1000*(ms))
 
 #endif

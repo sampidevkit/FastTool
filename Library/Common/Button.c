@@ -1,7 +1,7 @@
 #include "Button.h"
 #include "libcomp.h"
 
-bool BUTTON_Is_Pressed(void) // <editor-fold defaultstate="collapsed" desc="Button UP">
+bt_stt_t BUTTON_GetState(void) // <editor-fold defaultstate="collapsed" desc="Button UP">
 {
     static bool prv=1;
     static tick_t tk={1, 0, 0};
@@ -10,7 +10,7 @@ bool BUTTON_Is_Pressed(void) // <editor-fold defaultstate="collapsed" desc="Butt
     {
         if(prv==1)
         {
-            if(Tick_Is_Over(&tk, 100)) // check in 100ms
+            if(Tick_Is_Over_Ms(&tk, 3000)) // check in 3s
             {
                 prv=0;
                 return 1;

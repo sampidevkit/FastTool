@@ -1,12 +1,12 @@
 #include "SystemTick.h"
 #include "libcomp.h"
 
-bool Tick_Is_Over(tick_t *pTick, uint32_t ms) // <editor-fold defaultstate="collapsed" desc="Check timeout">
+bool Tick_Is_Over(tick_t *pTick, uint32_t us) // <editor-fold defaultstate="collapsed" desc="Check timeout">
 {
     if(pTick->Over==1)
     {
         pTick->Begin=_CP0_GET_COUNT();
-        pTick->End=ms*TICK_PER_MS;
+        pTick->End=us*TICK_PER_US;
         pTick->Over=0;
     }
 
@@ -16,7 +16,7 @@ bool Tick_Is_Over(tick_t *pTick, uint32_t ms) // <editor-fold defaultstate="coll
     return pTick->Over;
 } // </editor-fold>
 
-void __delay_ms(uint32_t t)
+void __delay_ms(uint32_t t) // <editor-fold defaultstate="collapsed" desc="delay ms">
 {
     tick_t Tick;
 
@@ -24,9 +24,9 @@ void __delay_ms(uint32_t t)
     Tick.End=t*TICK_PER_MS;
 
     while((_CP0_GET_COUNT()-Tick.Begin)<Tick.End);
-}
+} // </editor-fold>
 
-void __delay_us(uint32_t t)
+void __delay_us(uint32_t t) // <editor-fold defaultstate="collapsed" desc="delay us">
 {
     tick_t Tick;
 
@@ -34,4 +34,4 @@ void __delay_us(uint32_t t)
     Tick.End=t*TICK_PER_US;
 
     while((_CP0_GET_COUNT()-Tick.Begin)<Tick.End);
-}
+} // </editor-fold>

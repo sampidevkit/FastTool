@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/Git/SAMPI/FastTool/TAG/Library/USB/USB_CDC_UART.h</file>
-            <file>file:/F:/Git/SAMPI/FastTool/TAG/Library/USB/USB_CDC_UART.c</file>
+            <file>file:/F:/Git/SAMPI/FastTool/TAG/FTTAG64/USB_CDC_UART.X/mcc_generated_files/exceptions.c</file>
+            <file>file:/F:/Git/SAMPI/FastTool/TAG/Library/Bootloader/Bootloader.c</file>
+            <file>file:/F:/Git/SAMPI/FastTool/TAG/FTTAG64/USB_CDC_UART.X/app/Application.c</file>
+            <file>file:/F:/Git/SAMPI/FastTool/TAG/Library/Common/Button.c</file>
+            <file>file:/F:/Git/SAMPI/FastTool/TAG/Library/Common/Button.h</file>
         </group>
     </open-files>
 </project-private>

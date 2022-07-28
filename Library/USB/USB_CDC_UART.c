@@ -25,22 +25,6 @@
 #define TX_LED_SetLow()
 #endif
 
-static struct
-{
-    uint8_t head;
-    uint8_t tail;
-    uint8_t count;
-    uint8_t data[CDC_DATA_IN_EP_SIZE];
-} rxBuf;
-
-static struct
-{
-    uint8_t head;
-    uint8_t tail;
-    uint8_t remain;
-    uint8_t data[CDC_DATA_OUT_EP_SIZE];
-} txBuf;
-
 static uint8_t __len;
 static uint8_t __data[CDC_DATA_OUT_EP_SIZE];
 
@@ -54,7 +38,25 @@ void mInitDTRPin(void) // <editor-fold defaultstate="collapsed" desc="DTR initia
 
 void USB_CDC_SetLineCodingHandler(void) // <editor-fold defaultstate="collapsed" desc="Baudrate configure, defined in usb_device_config.h">
 {
+    //Update the baud rate info in the CDC driver
+    CDCSetBaudRate(cdc_notice.GetLineCoding.dwDTERate);
+    UART2_Initialize();
+    U2MODECLR=_U2MODE_ON_MASK;
+    U2STACLR=_U2STA_UTXEN_MASK;
+    U2STACLR=_U2STA_URXEN_MASK;
+    IEC1bits.U2TXIE=0;
+    IEC1bits.U2RXIE=0;
 
+    if(U2MODEbits.BRGH)
+        U2BRG=(_XTAL_FREQ/(4*line_coding.dwDTERate))-1;
+    else
+        U2BRG=(_XTAL_FREQ/(16*line_coding.dwDTERate))-1;
+
+    IEC1bits.U2TXIE=0;
+    IEC1bits.U2RXIE=1;
+    U2STASET=_U2STA_UTXEN_MASK;
+    U2STASET=_U2STA_URXEN_MASK;
+    U2MODESET=_U2MODE_ON_MASK;
 } // </editor-fold>
 
 static inline bool USB_CDC_UART_Is_Ready(void) // <editor-fold defaultstate="collapsed" desc="Get USB CDC state">
@@ -66,8 +68,11 @@ static inline bool USB_CDC_UART_Is_Ready(void) // <editor-fold defaultstate="col
         if(Is_Init==1)
         {
             Is_Init=0;
-            rxBuf.count=0;
-            txBuf.remain=0;
+            U2MODECLR=_U2MODE_ON_MASK;
+            U2STACLR=_U2STA_UTXEN_MASK;
+            U2STACLR=_U2STA_URXEN_MASK;
+            IEC1bits.U2TXIE=0;
+            IEC1bits.U2RXIE=0;
             RX_LED_SetLow();
             TX_LED_SetLow();
             DTR_LED_SetLow();
@@ -76,9 +81,11 @@ static inline bool USB_CDC_UART_Is_Ready(void) // <editor-fold defaultstate="col
     else if(Is_Init==0)
     {
         Is_Init=1;
-        rxBuf.head=rxBuf.tail=rxBuf.count=0;
-        txBuf.head=txBuf.tail=0;
-        txBuf.remain=CDC_DATA_OUT_EP_SIZE;
+        IEC1bits.U2TXIE=0;
+        IEC1bits.U2RXIE=1;
+        U2STASET=_U2STA_UTXEN_MASK;
+        U2STASET=_U2STA_URXEN_MASK;
+        U2MODESET=_U2MODE_ON_MASK;
         DTR_LED_SetHigh();
     }
 
@@ -97,13 +104,8 @@ static inline void USB_CDC_UART_Rx_Tasks(void) // <editor-fold defaultstate="col
 
         for(cdc_rx_len=0; cdc_rx_len<__len; cdc_rx_len++)
         {
-            rxBuf.data[rxBuf.head++]=cdc_data_rx[cdc_rx_len];
-
-            if(CDC_DATA_IN_EP_SIZE<=rxBuf.head)
-                rxBuf.head=0;
-
-            if(CDC_DATA_IN_EP_SIZE>rxBuf.count)
-                rxBuf.count++;
+            while(!UART2_IsTxReady());
+            UART2_Write(cdc_data_rx[cdc_rx_len]);
         }
 
         CDCDataOutHandle=USBRxOnePacket(CDC_DATA_EP, (uint8_t*)&cdc_data_rx, sizeof (cdc_data_rx));
@@ -114,14 +116,13 @@ static inline void USB_CDC_UART_Tx_Tasks(void) // <editor-fold defaultstate="col
 {
     __len=0;
 
-    while(CDC_DATA_OUT_EP_SIZE>txBuf.remain)
+    while(UART2_IsRxReady())
     {
-        __data[__len++]=txBuf.data[txBuf.tail++];
-
-        if(CDC_DATA_OUT_EP_SIZE<=txBuf.tail)
-            txBuf.tail=0;
-
-        txBuf.remain++;
+        TX_LED_SetHigh();
+        __data[__len++]=UART2_Read();
+        
+        if(__len==CDC_DATA_OUT_EP_SIZE)
+            break;
     }
 
     USBMaskInterrupts();
@@ -145,9 +146,9 @@ void USB_CDC_UART_Tasks(void) // <editor-fold defaultstate="collapsed" desc="USB
         USB_CDC_UART_Tx_Tasks();
     }
 
-    if(RX_LED_GetValue()&&(rxBuf.count==0))
+    if(RX_LED_GetValue()&&(!UART2_IsRxReady()))
         RX_LED_SetLow();
 
-    if(TX_LED_GetValue()&&(txBuf.remain>=CDC_DATA_OUT_EP_SIZE))
+    if(TX_LED_GetValue()&&USBUSARTIsTxTrfReady())
         TX_LED_SetLow();
 } // </editor-fold>
