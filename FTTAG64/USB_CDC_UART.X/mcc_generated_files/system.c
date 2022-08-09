@@ -84,16 +84,16 @@
 #include "clock.h"
 #include "system.h"
 #include "usb/usb.h"
-#include "coretimer.h"
+#include "uart2.h"
 #include "interrupt_manager.h"
 #include "exceptions.h"
-#include "uart2.h"
+#include "coretimer.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    CLOCK_Initialize();
     INTERRUPT_Initialize();
+    CLOCK_Initialize();
     CORETIMER_Initialize();
     USBDeviceInit();
     USBDeviceAttach();

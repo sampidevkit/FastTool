@@ -1,14 +1,29 @@
 #include "USB_CDC_Debug.h"
 #include "libcomp.h"
 
-#define DTR_LED_SetHigh()   //(LATBSET=(1<<13))
-#define DTR_LED_SetLow()    //(LATBCLR=(1<<13))
+#ifndef DTR_LED_SetHigh
+#define DTR_LED_SetHigh()
+#endif
 
-//#undef RX_LED_SetHigh
-//#define RX_LED_SetHigh()
-//
-//#undef RX_LED_SetLow
-//#define RX_LED_SetLow()
+#ifndef DTR_LED_SetLow
+#define DTR_LED_SetLow()
+#endif
+
+#ifndef RX_LED_SetHigh
+#define RX_LED_SetHigh()
+#endif
+
+#ifndef RX_LED_SetLow
+#define RX_LED_SetLow()
+#endif
+
+#ifndef TX_LED_SetHigh
+#define TX_LED_SetHigh()
+#endif
+
+#ifndef TX_LED_SetLow
+#define TX_LED_SetLow()
+#endif
 
 static struct
 {
@@ -26,6 +41,7 @@ static struct
     uint8_t data[CDC_DATA_OUT_EP_SIZE];
 } txBuf;
 
+static bool __init=0;
 static uint8_t __len;
 static uint8_t __data[CDC_DATA_OUT_EP_SIZE];
 
@@ -119,11 +135,22 @@ static inline void USB_CDC_Debug_Tx_Tasks(void) // <editor-fold defaultstate="co
     USBUnmaskInterrupts();
 
     while(!USBUSARTIsTxTrfReady())
+    {
         CDCTxService();
+
+        if(!USB_CDC_Debug_Is_Ready())
+            break;
+    }
 } // </editor-fold>
 
 void USB_CDC_Debug_Tasks(void) // <editor-fold defaultstate="collapsed" desc="USB CDC Tx tasks">
 {
+    if(__init==0)
+    {
+        __init=1;
+        USB_Device_LoadUDID();
+    }
+
     if(USB_CDC_Debug_Is_Ready())
     {
         USB_CDC_Debug_Rx_Tasks();
@@ -139,13 +166,11 @@ void USB_CDC_Debug_Tasks(void) // <editor-fold defaultstate="collapsed" desc="US
 
 void _mon_putc(char c) // <editor-fold defaultstate="collapsed" desc="SDTIO stream function">
 {
-    if(txBuf.remain==0)
-    {
-        if(!USB_CDC_Debug_Is_Ready())
-            return;
+    if(!USB_CDC_Debug_Is_Ready())
+        return;
 
+    if(txBuf.remain==0)
         USB_CDC_Debug_Tx_Tasks();
-    }
 
     TX_LED_SetHigh();
     txBuf.data[txBuf.head++]=c;

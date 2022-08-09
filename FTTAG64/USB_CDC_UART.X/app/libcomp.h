@@ -11,6 +11,7 @@
 #include "pin_manager.h"
 #include "Bootloader/Bootloader.h"
 #include "Common/Button.h"
+#include "Common/Util.h"
 #include "Timer/SystemTick.h"
 #include "USB/USB_CDC_UART.h"
 

@@ -19,6 +19,7 @@
         </logicalFolder>
         <logicalFolder name="f2" displayName="Common" projectFiles="true">
           <itemPath>../../Library/Common/Button.h</itemPath>
+          <itemPath>../../Library/Common/Util.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="Timer" projectFiles="true">
           <itemPath>../../Library/Timer/SystemTick.h</itemPath>
@@ -71,6 +72,7 @@
         </logicalFolder>
         <logicalFolder name="f2" displayName="Common" projectFiles="true">
           <itemPath>../../Library/Common/Button.c</itemPath>
+          <itemPath>../../Library/Common/Util.c</itemPath>
         </logicalFolder>
         <logicalFolder name="f3" displayName="Timer" projectFiles="true">
           <itemPath>../../Library/Timer/SystemTick.c</itemPath>
@@ -83,6 +85,9 @@
                      displayName="MCC Generated Files"
                      projectFiles="true">
         <logicalFolder name="usb" displayName="usb" projectFiles="true">
+          <logicalFolder name="utilities" displayName="utilities" projectFiles="true">
+            <itemPath>mcc_generated_files/usb/utilities/mchpcdc_template.inf</itemPath>
+          </logicalFolder>
           <itemPath>mcc_generated_files/usb/usb_descriptors.c</itemPath>
           <itemPath>mcc_generated_files/usb/usb_device_events.c</itemPath>
           <itemPath>mcc_generated_files/usb/usb_device.c</itemPath>

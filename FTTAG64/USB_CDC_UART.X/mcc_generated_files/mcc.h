@@ -51,12 +51,12 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "watchdog.h"
 #include "usb/usb.h"
-#include "coretimer.h"
+#include "uart2.h"
 #include "interrupt_manager.h"
 #include "exceptions.h"
-#include "uart2.h"
+#include "watchdog.h"
+#include "coretimer.h"
 
 #warning "This file will be removed in future MCC releases. Use system.h instead."
 

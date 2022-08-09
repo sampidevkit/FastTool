@@ -29,7 +29,7 @@ please contact mla_licensing@microchip.com
 
 
 /** DEFINITIONS ****************************************************/
-#define USB_EP0_BUFF_SIZE		8	// Valid Options: 8, 16, 32, or 64 bytes.
+#define USB_EP0_BUFF_SIZE		64	// Valid Options: 8, 16, 32, or 64 bytes.
 								// Using larger options take more SRAM, but
 								// does not provide much advantage in most types
 								// of applications.  Exceptions to this, are applications
@@ -134,7 +134,7 @@ please contact mla_licensing@microchip.com
 
 #define USB_SUPPORT_DEVICE
 
-#define USB_NUM_STRING_DESCRIPTORS 3  //Set this number to match the total number of string descriptors that are implemented in the usb_descriptors.c file
+#define USB_NUM_STRING_DESCRIPTORS 4  //Set this number to match the total number of string descriptors that are implemented in the usb_descriptors.c file
 
 /*******************************************************************
  * Event disable options                                           
@@ -182,5 +182,6 @@ extern volatile unsigned char cdc_data_rx[CDC_DATA_OUT_EP_SIZE];
 extern char UART_DTR;
 void mInitDTRPin(void);
 void USB_CDC_SetLineCodingHandler(void);
+void USB_Device_LoadUDID(void);
 
 #endif //USBCFG_H

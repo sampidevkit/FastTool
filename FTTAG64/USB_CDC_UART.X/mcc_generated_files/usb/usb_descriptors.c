@@ -1,6 +1,6 @@
 
 
- 
+
 /*******************************************************************************
 Copyright 2016 Microchip Technology Inc. (www.microchip.com)
 
@@ -145,6 +145,7 @@ state according to the definition in the USB specification.
 /** INCLUDES *******************************************************/
 #include "usb.h"
 #include "usb_device_cdc.h"
+#include "libcomp.h"
 
 /** CONSTANTS ******************************************************/
 #if defined(__18CXX)
@@ -161,12 +162,12 @@ const USB_DEVICE_DESCRIPTOR device_dsc=
     0x00,                   // Subclass code
     0x00,                   // Protocol code
     USB_EP0_BUFF_SIZE,      // Max packet size for EP0, see usb_device_config.h
-    0x04D8,                 // Vendor ID
-    0x000A,                 // Product ID
+    0x0C00,                 // Vendor ID
+    0x0123,                 // Product ID
     0x0100,                 // Device release number in BCD format
     0x01,                   // Manufacturer string index
     0x02,                   // Product string index
-    0x00,                   // Device serial number string index
+    0x03,                   // Device serial number string index
     0x01                    // Number of possible configurations
 };
 
@@ -268,8 +269,42 @@ sizeof(sd001),USB_DESCRIPTOR_STRING,
 //Product string descriptor
 const struct{uint8_t bLength;uint8_t bDscType;uint16_t string[12];}sd002={
 sizeof(sd002),USB_DESCRIPTOR_STRING,
-{'P','r','o','d','u','c','t',' ','N','a','m','e'}
+{'S','A','M','M','-','F','T','T','A','G','6','4'}
 };
+
+//Serial number string descriptor.  If a serial number string is implemented, 
+//it should be unique for every single device coming off the production assembly 
+//line.  Plugging two devices with the same serial number into a computer 
+//simultaneously will cause problems (in extreme cases BSOD).
+//Note: Common OSes put restrictions on the possible values that are allowed.
+//For best OS compatibility, the serial number string should only consist
+//of UNICODE encoded numbers 0 through 9 and capital letters A through F.
+struct{uint8_t bLength;uint8_t bDscType;uint16_t string[12];}sd003={
+sizeof(sd003),USB_DESCRIPTOR_STRING,
+{'0','1','2','3','4','5','6','7','8','9','A','B'}
+};
+
+void USB_Device_LoadUDID(void) // <editor-fold defaultstate="collapsed" desc="Load UDID">
+{
+    uint32_t udID;
+    uint8_t i;
+
+    udID=UDID1;
+
+    for(i=0; i<8; i++)
+    {
+        sd003.string[i]=(uint16_t)Bcd2Hex((uint8_t) (udID&0xF));
+        udID>>=4;
+    }
+
+    udID=UDID2;
+
+    for(i=0; i<4; i++)
+    {
+        sd003.string[8+i]=(uint16_t)Bcd2Hex((uint8_t) (udID&0xF));
+        udID>>=4;
+    }
+} // </editor-fold>
 
 //Array of configuration descriptors
 const uint8_t *const USB_CD_Ptr[]=
@@ -282,7 +317,8 @@ const uint8_t *const USB_SD_Ptr[USB_NUM_STRING_DESCRIPTORS]=
 {
     (const uint8_t *const)&sd000,
     (const uint8_t *const)&sd001,
-    (const uint8_t *const)&sd002
+    (const uint8_t *const)&sd002,
+    (const uint8_t *const)&sd003
 };
 
 #if defined(__18CXX)

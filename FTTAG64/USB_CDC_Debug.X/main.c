@@ -8,7 +8,7 @@ int main(void)
 
     while(1)
     {
-        Bootloader_Tasks();
+        Bootloader_Tasks(NULL);
         Application_Tasks();
         
 #if defined(USB_CDC_DEBUG_H)
