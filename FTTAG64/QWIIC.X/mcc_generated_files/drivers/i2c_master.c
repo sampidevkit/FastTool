@@ -85,6 +85,15 @@ static i2c_operations_t returnReset(void *p);
 
 void i2c_poller(void);
 
+void i2c_reset(void)
+{
+    i2c_status.busy=0;
+    i2c_status.inUse = 0;
+    // close it down
+    i2c_status.address = 0xff; // 8-bit address is invalid so this is FREE
+    i2c2_clearIRQ();
+    i2c2_disableIRQ();
+}
 
 void i2c_setDataCompleteCallback(i2c_callback cb, void *p)
 {
@@ -397,8 +406,8 @@ static i2c_fsm_states_t do_I2C_TX_EMPTY(void)
     }
 }
 
-typedef i2c_fsm_states_t (stateHandlerFunction)(void);
-const stateHandlerFunction *fsmStateTable[] = {
+typedef i2c_fsm_states_t (*stateHandlerFunction)(void);
+const stateHandlerFunction fsmStateTable[] = {
     do_I2C_IDLE,                //I2C_IDLE
     do_I2C_SEND_ADR_READ,       //I2C_SEND_ADR_READ
     do_I2C_SEND_ADR_WRITE,      //I2C_SEND_ADR_WRITE

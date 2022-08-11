@@ -60,7 +60,7 @@
 #include "drivers/i2c_master.h"
 #include "i2c2_driver.h"
 
-#warning "This file will be removed in future MCC releases. Use system.h instead."
+//#warning "This file will be removed in future MCC releases. Use system.h instead."
 
 #endif	/* MCC_H */
 /**

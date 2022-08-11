@@ -29,7 +29,7 @@
 #include "i2c_types.h"
 
 // These functions are the I2C API
-
+void i2c_reset(void);
 i2c_error_t i2c_open(i2c_address_t address);
 void        i2c_setAddress(i2c_address_t address);
 i2c_error_t i2c_close(void);

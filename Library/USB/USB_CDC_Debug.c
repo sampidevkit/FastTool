@@ -1,6 +1,14 @@
 #include "USB_CDC_Debug.h"
 #include "libcomp.h"
 
+#ifdef USB_CDC_DISABLE_LED
+#undef RX_LED_SetHigh
+#undef RX_LED_SetLow
+#undef TX_LED_SetHigh
+#undef TX_LED_SetLow
+#warning "USB CDC disable LED indicator"
+#endif
+
 #ifndef DTR_LED_SetHigh
 #define DTR_LED_SetHigh()
 #endif

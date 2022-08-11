@@ -13,5 +13,6 @@
 #include "Common/Util.h"
 #include "Timer/SystemTick.h"
 #include "USB/USB_CDC_Debug.h"
+#include "drivers/i2c_master.h"
 
 #endif
