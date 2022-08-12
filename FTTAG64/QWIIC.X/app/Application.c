@@ -10,7 +10,7 @@ typedef enum
 
 static tick_t Tick;
 static uint8_t DoNext;
-static uint8_t Buff[8];
+static uint8_t Buff[16];
 static sensor_sel_t SenSel;
 
 static void I2C_Master_writeNBytes(uint8_t slvaddr, void* data, size_t len) // <editor-fold defaultstate="collapsed" desc="I2C master write">
@@ -175,9 +175,36 @@ static void IQS624_Process(void) // <editor-fold defaultstate="collapsed" desc="
     }
 } // </editor-fold>
 
+static bool ALS31313_CfgCmp(const uint8_t *pD1, const uint8_t *pD2) // <editor-fold defaultstate="collapsed" desc="Compare 2 configures">
+{
+    uint32_t *data1=(uint32_t*) pD1;
+    uint32_t *data2=(uint32_t*) pD2;
+
+    if((*data1)==(*data2))
+        return 1;
+
+    return 0;
+} // </editor-fold>
+
 static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc="ALS31313 process">
 {
-#define ALS31313_I2C_ADDRESS 96
+#define ALS31313_I2C_ADDRESS    96
+#define ALS31313_SENSITIVITY    500.0
+#define ALS31313_SCALE          4.0
+#define ALS31313_Get_mTesla(x)  ((float)x/(ALS31313_SCALE*10.0))
+#define ALS31313_Get_Temp(x)    ((((float)x-1708.0)*151.0)/2048.0)
+
+    static const uint8_t ALS31313_EEPROM_Image[8]={
+        /*0-REG 02 - byte 0*/ 0b00000000,
+        /*1-REG 02 - byte 1*/ 0b00000000,
+        /*2-REG 02 - byte 2*/ 0b00000011, // I2C support 1V8, enable channel Z
+        /*3-REG 02 - byte 3*/ 0b11000000, // enable channel X, Y
+
+        /*4-REG 03 - byte 0*/ 0b00000000,
+        /*5-REG 03 - byte 1*/ 0b00000000,
+        /*6-REG 03 - byte 2*/ 0b00000000,
+        /*7-REG 03 - byte 3*/ 0b00000000,
+    };
 
     if(TX_LED_GetValue()==0)
     {
@@ -189,6 +216,36 @@ static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc
     switch(DoNext)
     {
         case 0:
+            Buff[0]=0x02;
+            I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 1);
+            I2C_Master_readNBytes(ALS31313_I2C_ADDRESS, Buff, 4);
+
+            if(!ALS31313_CfgCmp(Buff, &ALS31313_EEPROM_Image[0]))
+            {
+                Buff[0]=0x02;
+                memcpy(&Buff[1], &ALS31313_EEPROM_Image[0], 4);
+                I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 5);
+                __db("\nLoad default configure 0x02");
+            }
+
+            Buff[0]=0x03;
+            I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 1);
+            I2C_Master_readNBytes(ALS31313_I2C_ADDRESS, Buff, 4);
+
+            if(!ALS31313_CfgCmp(Buff, &ALS31313_EEPROM_Image[4]))
+            {
+                Buff[0]=0x03;
+                memcpy(&Buff[1], &ALS31313_EEPROM_Image[4], 4);
+                I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 5);
+                __db("\nLoad default configure 0x03");
+            }
+
+            Buff[0]=0x27;
+            //cfg.sleep=0; // Low-Power Duty Cycle Mode
+            //cfg.low_pwr_count=0; // LPDCM Inactive Time 100ms
+            //cfg.i2c_loop_mode=0; // No Looping
+            memset(&Buff[1], 0x00, 4);
+            I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 5);
             DoNext++;
             __db("\nIQS624 initialized\n");
             break;
@@ -196,8 +253,9 @@ static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc
         case 1:
             if(Tick_Is_Over_Ms(&Tick, 500))
             {
-                uint16_t Dg, x, y, z, t;
+                uint16_t x, y, z, t;
                 uint32_t Tk, dt;
+                float mT, mTx, mTy, mTz, Temp;
 
                 ST_LED_SetHigh();
                 Tk=Tick_Get();
@@ -223,8 +281,15 @@ static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc
                         z-=0x1000;
                 }
 
+                mTx=ALS31313_Get_mTesla(x);
+                mTx=ALS31313_Get_mTesla(y);
+                mTx=ALS31313_Get_mTesla(z);
+                Temp=ALS31313_Get_Temp(t);
+                mT=mTx*mTx+mTy*mTy+mTz*mTz;
+                mT=sqrt(mT);
+                
                 __db("\nProcess time: %d ms", dt);
-                __db("\nX=%d, Y=%d, Z=%d, T=%d", x, y, z, t);
+                __db("\nMag: %.3f mT, Temp: %.3f", mT, Temp);
                 ST_LED_SetLow();
             }
             break;

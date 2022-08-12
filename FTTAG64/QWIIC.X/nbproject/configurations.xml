@@ -4,6 +4,7 @@
     <logicalFolder name="f1" displayName="Documents" projectFiles="true">
       <itemPath>../../Docs/FTTAG_v1.0.pdf</itemPath>
       <itemPath>../../Docs/IQS624.pdf</itemPath>
+      <itemPath>../../Docs/ALS31313.pdf</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"

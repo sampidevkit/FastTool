@@ -1,6 +1,7 @@
 #ifndef LIBCOMP_H
 #define LIBCOMP_H
 
+#include <math.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
