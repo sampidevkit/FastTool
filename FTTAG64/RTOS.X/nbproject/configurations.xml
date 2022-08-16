@@ -40,19 +40,27 @@
       </logicalFolder>
       <logicalFolder name="RTOS" displayName="RTOS" projectFiles="true">
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
-          <itemPath>../../RTOS/Core/croutine.h</itemPath>
-          <itemPath>../../RTOS/Core/FreeRTOS.h</itemPath>
-          <itemPath>../../RTOS/Core/list.h</itemPath>
-          <itemPath>../../RTOS/Core/portable.h</itemPath>
-          <itemPath>../../RTOS/Core/projdefs.h</itemPath>
-          <itemPath>../../RTOS/Core/queue.h</itemPath>
-          <itemPath>../../RTOS/Core/semphr.h</itemPath>
-          <itemPath>../../RTOS/Core/task.h</itemPath>
-          <itemPath>../../RTOS/Core/timers.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/croutine.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/deprecated_definitions.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/event_groups.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/FreeRTOS.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/list.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/message_buffer.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/mpu_prototypes.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/mpu_wrappers.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/portable.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/projdefs.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/queue.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/semphr.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/StackMacros.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/stack_macros.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/stream_buffer.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/task.h</itemPath>
+          <itemPath>../../Library/RTOS/Core/timers.h</itemPath>
         </logicalFolder>
         <logicalFolder name="PIC32MM" displayName="PIC32MM" projectFiles="true">
-          <itemPath>../../RTOS/PIC32MM/ISR_Support.h</itemPath>
-          <itemPath>../../RTOS/PIC32MM/portmacro.h</itemPath>
+          <itemPath>../../Library/RTOS/PIC32MM/ISR_Support.h</itemPath>
+          <itemPath>../../Library/RTOS/PIC32MM/portmacro.h</itemPath>
         </logicalFolder>
       </logicalFolder>
     </logicalFolder>
@@ -97,15 +105,18 @@
       </logicalFolder>
       <logicalFolder name="RTOS" displayName="RTOS" projectFiles="true">
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
-          <itemPath>../../RTOS/Core/heap_4.c</itemPath>
-          <itemPath>../../RTOS/Core/list.c</itemPath>
-          <itemPath>../../RTOS/Core/queue.c</itemPath>
-          <itemPath>../../RTOS/Core/tasks.c</itemPath>
-          <itemPath>../../RTOS/Core/timers.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/croutine.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/event_groups.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/heap_4.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/list.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/queue.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/stream_buffer.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/tasks.c</itemPath>
+          <itemPath>../../Library/RTOS/Core/timers.c</itemPath>
         </logicalFolder>
         <logicalFolder name="PIC32MM" displayName="PIC32MM" projectFiles="true">
-          <itemPath>../../RTOS/PIC32MM/port.c</itemPath>
-          <itemPath>../../RTOS/PIC32MM/port_asm.S</itemPath>
+          <itemPath>../../Library/RTOS/PIC32MM/port.c</itemPath>
+          <itemPath>../../Library/RTOS/PIC32MM/port_asm.S</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>main.c</itemPath>
@@ -152,7 +163,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../../Library/Bootloader/fttag64_bld.hex</loadableFile>
+          <loadableFile>../../Loadables/fttag64_bld.hex</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
@@ -173,22 +184,6 @@
       <item path="../../Library/Bootloader/fttag64_app.ld"
             ex="false"
             overriding="false">
-        <C32>
-        </C32>
-        <C32-AR>
-        </C32-AR>
-        <C32-AS>
-        </C32-AS>
-        <C32-CO>
-        </C32-CO>
-        <C32-LD>
-        </C32-LD>
-        <C32CPP>
-        </C32CPP>
-        <C32Global>
-        </C32Global>
-      </item>
-      <item path="../../RTOS/Core/heap_4.c" ex="false" overriding="false">
         <C32>
         </C32>
         <C32-AR>
@@ -329,7 +324,7 @@
       </C32CPP>
       <C32Global>
         <property key="common-include-directories"
-                  value="app;cfg;mcc_generated_files;..\..\Library;..\..\RTOS\Core;..\..\RTOS\PIC32MM"/>
+                  value="app;cfg;mcc_generated_files;..\..\Library;..\..\Library\RTOS\Core;..\..\Library\RTOS\PIC32MM"/>
         <property key="gp-relative-option" value=""/>
         <property key="legacy-libc" value="true"/>
         <property key="mdtcm" value=""/>

@@ -143,7 +143,7 @@
         <archiverTool>
         </archiverTool>
         <loading>
-          <loadableFile>../../Library/Bootloader/fttag64_bld.hex</loadableFile>
+          <loadableFile>../../Loadables/fttag64_bld.hex</loadableFile>
           <useAlternateLoadableFile>false</useAlternateLoadableFile>
           <parseOnProdLoad>false</parseOnProdLoad>
           <alternateLoadableFile></alternateLoadableFile>
