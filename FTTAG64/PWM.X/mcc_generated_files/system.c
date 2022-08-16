@@ -84,23 +84,23 @@
 #include "clock.h"
 #include "system.h"
 #include "sccp5_compare.h"
-#include "usb/usb.h"
 #include "sccp6_compare.h"
-#include "sccp4_compare.h"
+#include "coretimer.h"
 #include "interrupt_manager.h"
 #include "exceptions.h"
-#include "coretimer.h"
+#include "usb/usb.h"
+#include "sccp4_compare.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
+    INTERRUPT_Initialize();
     CORETIMER_Initialize();
     SCCP4_COMPARE_Initialize();
     SCCP5_COMPARE_Initialize();
-    USBDeviceInit();
     SCCP6_COMPARE_Initialize();
+    USBDeviceInit();
     USBDeviceAttach();
     INTERRUPT_GlobalEnable();
 }

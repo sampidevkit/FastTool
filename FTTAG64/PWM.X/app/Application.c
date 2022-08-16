@@ -1,22 +1,34 @@
 #include "libcomp.h"
 #include "Application.h"
 
+static struct
+{
+    uint8_t red;
+    uint8_t green;
+    uint8_t blue;
+    uint8_t phase;
+} Rgb;
+
 static tick_t Tick;
-uint16_t Duty1, Duty2, Duty3;
 
 static void Duty_Reset(void)
 {
-    __db("\nPresent duty: %d, %d, %d", Duty1, Duty2, Duty3);
+    __db("\nPresent duty: %d, %d, %d", Rgb.red, Rgb.green, Rgb.blue);
     __db("\nDuty reset");
-    Duty1=0;
-    Duty2=0;
-    Duty3=0;
+    Rgb.red=255;
+    Rgb.green=255;
+    Rgb.blue=1;
+    Rgb.phase=0;
     Tick_Reset(Tick);
 }
 
 void Application_Init(void)
 {
-    Duty_Reset();
+    Rgb.red=255;
+    Rgb.green=255;
+    Rgb.blue=1;
+    Rgb.phase=0;
+    Tick_Reset(Tick);
     MOD_Button_SetSinglePress_Event(Duty_Reset);
 }
 
@@ -24,21 +36,54 @@ void Application_Tasks(void)
 {
     if(Tick_Is_Over_Ms(&Tick, 50))
     {
-        CCP4RA=Duty1;
-        CCP5RA=Duty2;
-        CCP6RA=Duty3;
+        switch(Rgb.phase)
+        {
+            default:
+            case 0: // R max,       G decrease, B increase
+                if(Rgb.green>1)
+                {
+                    Rgb.green--;
+                    Rgb.blue++;
+                }
+                else
+                {
+                    Rgb.phase=1;
+                    __db("\nDuty: %d, %d, %d", Rgb.red, Rgb.green, Rgb.blue);
+                    __db("\nNew phase: %d", Rgb.phase);
+                }
+                break;
 
-        Duty1+=3;
-        Duty2+=5;
-        Duty3+=7;
+            case 1: // R decrease,  G increase,      B max
+                if(Rgb.red>1)
+                {
+                    Rgb.red--;
+                    Rgb.green++;
+                }
+                else
+                {
+                    Rgb.phase=2;
+                    __db("\nDuty: %d, %d, %d", Rgb.red, Rgb.green, Rgb.blue);
+                    __db("\nNew phase: %d", Rgb.phase);
+                }
+                break;
 
-        if(CCP4PR>0)
-            Duty1%=CCP4PR;
+            case 2: // R increase,  G max, B decrese
+                if(Rgb.blue>1)
+                {
+                    Rgb.blue--;
+                    Rgb.red++;
+                }
+                else
+                {
+                    Rgb.phase=0;
+                    __db("\nDuty: %d, %d, %d", Rgb.red, Rgb.green, Rgb.blue);
+                    __db("\nNew phase: %d", Rgb.phase);
+                }
+                break;
+        }
 
-        if(CCP5PR>0)
-            Duty2%=CCP5PR;
-
-        if(CCP6PR>0)
-            Duty3%=CCP6PR;
+        CCP4RA=Rgb.red;
+        CCP5RA=Rgb.green;
+        CCP6RA=Rgb.blue;
     }
 }

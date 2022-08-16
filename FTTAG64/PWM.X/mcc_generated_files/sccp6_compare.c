@@ -67,8 +67,8 @@ static uint16_t         gSCCP6Mode;
 
 void SCCP6_COMPARE_Initialize (void)
 {
-    // ON enabled; MOD Dual Edge Compare; ALTSYNC disabled; SIDL disabled; OPS Each Time Base Period Match; CCPSLP disabled; TMRSYNC disabled; RTRGEN disabled; CCSEL disabled; ONESHOT disabled; TRIGEN disabled; T32 16 Bit; SYNC None; OPSSRC Timer Interrupt Event; TMRPS 1:1; CLKSEL SYSCLK; 
-    CCP6CON1 = (0x8004 & 0xFFFF7FFF); //Disabling CCPON bit
+    // ON enabled; MOD Dual Edge Compare; ALTSYNC disabled; SIDL disabled; OPS Each Time Base Period Match; CCPSLP disabled; TMRSYNC disabled; RTRGEN disabled; CCSEL disabled; ONESHOT disabled; TRIGEN disabled; T32 16 Bit; SYNC None; OPSSRC Timer Interrupt Event; TMRPS 1:64; CLKSEL SYSCLK; 
+    CCP6CON1 = (0x80C4 & 0xFFFF7FFF); //Disabling CCPON bit
     //ASDGM disabled; ICGSM Level-Sensitive mode; ICS ICM6; SSDG disabled; AUXOUT Disabled; ASDG 0; PWMRSEN disabled; OCAEN enabled; OENSYNC disabled; 
     CCP6CON2 = 0x1000000;
     //OETRIG disabled; OSCNT None; POLACE disabled; PSSACE Tri-state; 
@@ -77,8 +77,8 @@ void SCCP6_COMPARE_Initialize (void)
     CCP6STAT = 0x00;
     //TMRL 0; TMRH 0; 
     CCP6TMR = 0x00;
-    //PRH 0; PRL 1024; 
-    CCP6PR = 0x400;
+    //PRH 0; PRL 256; 
+    CCP6PR = 0x100;
     //CMPA 0; 
     CCP6RA = 0x00;
     //CMPB 0; 

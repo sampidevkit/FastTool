@@ -2065,15 +2065,15 @@
          <value/>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ICM4R%aux2"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ICM4R%aux1"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ICM5R%aux1"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ICM5R%aux0"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ICM6R%aux0"/>
+         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="Pin Module" name="ICM6R%aux2"/>
          <value>%DESELECT%</value>
       </entry>
       <entry>
@@ -5622,7 +5622,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="SCCP4" name="prlkey"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="SCCP4" name="sccpFreq"/>
@@ -6294,7 +6294,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP4" registerAlias="CCPCON1"/>
-         <value>32772</value>
+         <value>32964</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP4" registerAlias="CCPCON2"/>
@@ -6306,7 +6306,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP4" registerAlias="CCPPR"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP4" registerAlias="CCPRA"/>
@@ -6386,7 +6386,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP4" registerAlias="CCPCON1" settingAlias="TMRPS"/>
-         <value>1:1</value>
+         <value>1:64</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP4" registerAlias="CCPCON1" settingAlias="TMRSYNC"/>
@@ -6474,7 +6474,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP4" registerAlias="CCPPR" settingAlias="PRL"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP4" registerAlias="CCPRA" settingAlias="CMPA"/>
@@ -6610,7 +6610,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="SCCP5" name="prlkey"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="SCCP5" name="sccpFreq"/>
@@ -7282,7 +7282,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP5" registerAlias="CCPCON1"/>
-         <value>32772</value>
+         <value>32964</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP5" registerAlias="CCPCON2"/>
@@ -7294,7 +7294,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP5" registerAlias="CCPPR"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP5" registerAlias="CCPRA"/>
@@ -7374,7 +7374,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP5" registerAlias="CCPCON1" settingAlias="TMRPS"/>
-         <value>1:1</value>
+         <value>1:64</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP5" registerAlias="CCPCON1" settingAlias="TMRSYNC"/>
@@ -7462,7 +7462,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP5" registerAlias="CCPPR" settingAlias="PRL"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP5" registerAlias="CCPRA" settingAlias="CMPA"/>
@@ -7598,7 +7598,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="SCCP6" name="prlkey"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="SCCP6" name="sccpFreq"/>
@@ -8270,7 +8270,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP6" registerAlias="CCPCON1"/>
-         <value>32772</value>
+         <value>32964</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP6" registerAlias="CCPCON2"/>
@@ -8282,7 +8282,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP6" registerAlias="CCPPR"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="SCCP6" registerAlias="CCPRA"/>
@@ -8362,7 +8362,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP6" registerAlias="CCPCON1" settingAlias="TMRPS"/>
-         <value>1:1</value>
+         <value>1:64</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP6" registerAlias="CCPCON1" settingAlias="TMRSYNC"/>
@@ -8450,7 +8450,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP6" registerAlias="CCPPR" settingAlias="PRL"/>
-         <value>1024</value>
+         <value>256</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="SCCP6" registerAlias="CCPRA" settingAlias="CMPA"/>
@@ -11320,7 +11320,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\sccp6_compare.c</file>
-         <hash>1605bf1238d3ac12834b15d50a7ba181e0c68d5d6f7464de74aa9c6865352195</hash>
+         <hash>e00e9ad72fe95c2f97a230129ae217ad6d93f5814fcce66fb20de161786762fa</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\usb\usb_hal_pic32mm.h</file>
@@ -11340,7 +11340,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\sccp4_compare.c</file>
-         <hash>2d5039d773f6b3b9a281440fa3bcad995fef9279efbb3d39bdf37a829ac0e5e6</hash>
+         <hash>72fefb6e34ce4202bd856df35fa1a1202efbe352cff7a38642629bdab67108e0</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\system.h</file>
@@ -11348,7 +11348,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\system.c</file>
-         <hash>eedbf8d9a8127c00cf266338552587b1a9d47938be44bdf1a7a16a3250a96b3e</hash>
+         <hash>868acc37559ed68f061b9af62c706163ded4bd5bc8fde82870914494c486ad2d</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\sccp4_compare.h</file>
@@ -11363,16 +11363,16 @@
          <hash>877fda1280b71432a62bab318abfdf04f437325bceae1afacf884297dfdf0f4f</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\usb\usb_descriptors.c</file>
-         <hash>217fa6619a55f9f912f1900dd362b806c93b8df2290d2032a1bceffdca3dabc7</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\sccp6_compare.h</file>
          <hash>dd2a195d974db952257be1b4d32be911e5e6a2a3d620b2e9d5a51675aec6891f</hash>
       </entry>
       <entry>
+         <file>mcc_generated_files\usb\usb_descriptors.c</file>
+         <hash>217fa6619a55f9f912f1900dd362b806c93b8df2290d2032a1bceffdca3dabc7</hash>
+      </entry>
+      <entry>
          <file>mcc_generated_files\mcc.h</file>
-         <hash>15bf36b060e37367488e25d6edc14b347163c6a59db27b1ce28702235a5a2b78</hash>
+         <hash>d4edd9bb19e786f6d8330e689560a4d16594d2c7c2c490e28d1d60bae5d54c82</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\exceptions.h</file>
@@ -11392,7 +11392,7 @@
       </entry>
       <entry>
          <file>mcc_generated_files\sccp5_compare.c</file>
-         <hash>e50e21f0d967c5bca2fd4ab012415a8a103c4014a8c184f3af2c16428ee42ef1</hash>
+         <hash>93bba06d49d461b420b324b95cbb3b75ac47fcd6dc953e11a4ff4a792b3e3caf</hash>
       </entry>
       <entry>
          <file>main.c</file>
@@ -11424,19 +11424,19 @@
       </entry>
       <entry>
          <file>mcc_generated_files\pin_manager.c</file>
-         <hash>8953269c0a690b8e0caca9e64acaf95d9f310e6d3943d70089979e4c579cd7da</hash>
+         <hash>2aacf12c8b114108bedf55c36b6a66fa445797e0412a46121012ec3f96aed165</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\coretimer.c</file>
          <hash>c0e95da743d04cf0dd3d5805b1a8c8ba4ffc95d4f1da625215eabc9eb8ceb385</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\usb\utilities\mchpcdc_template.inf</file>
-         <hash>b340126fd944cb3b6434acaf6027a565548c7bd7c8cf8bc3c3e05b98b9fa26c4</hash>
-      </entry>
-      <entry>
          <file>mcc_generated_files\coretimer.h</file>
          <hash>00edfa4b50b3764c3afaa793a76db7185703a8a6ccabf23ef43772794ee5fbe6</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\utilities\mchpcdc_template.inf</file>
+         <hash>6304a453b357f90ed6cb6246a2bcb08d38d1337679fca2faf63c2c63af1c6096</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\sccp5_compare.h</file>
