@@ -18,6 +18,7 @@
                 <sourceRootElem>cfg</sourceRootElem>
                 <sourceRootElem>../../RTOS</sourceRootElem>
                 <sourceRootElem>mcc_generated_files</sourceRootElem>
+                <sourceRootElem>../../Loadables</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

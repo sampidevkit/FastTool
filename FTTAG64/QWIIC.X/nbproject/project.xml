@@ -18,6 +18,7 @@
                 <sourceRootElem>app</sourceRootElem>
                 <sourceRootElem>cfg</sourceRootElem>
                 <sourceRootElem>../../Docs</sourceRootElem>
+                <sourceRootElem>../../Loadables</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

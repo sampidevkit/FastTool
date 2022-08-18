@@ -58,7 +58,7 @@
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
                    projectFiles="true">
-      <itemPath>../../Library/Bootloader/fttag64_app.ld</itemPath>
+      <itemPath>../../Loadables/fttag64_app.ld</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -122,6 +122,7 @@
     <Elem>../../Library</Elem>
     <Elem>app</Elem>
     <Elem>cfg</Elem>
+    <Elem>../../Loadables</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

@@ -16,6 +16,7 @@
                 <sourceRootElem>../../Library</sourceRootElem>
                 <sourceRootElem>app</sourceRootElem>
                 <sourceRootElem>cfg</sourceRootElem>
+                <sourceRootElem>../../Loadables</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
