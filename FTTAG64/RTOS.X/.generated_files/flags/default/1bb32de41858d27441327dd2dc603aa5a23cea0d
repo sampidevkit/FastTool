@@ -1,1 +1,0 @@
-$(MP_EXTRA_AS_PRE)  -c -mprocessor=$(MP_PROCESSOR_OPTION) -DXPRJ_default=$(CND_CONF)    -Wa,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_AS_POST),--gdwarf-2,-I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -I"../../Library/RTOS/Core" -I"../../Library/RTOS/PIC32MM" -mdfp="${DFP_DIR}"C:\Users\sampi\OneDrive\Documents\Working\Git\FastTool\TAG\Library\RTOS\PIC32MM\port_asm.S

@@ -88,7 +88,7 @@ FIXDEPS=fixDeps
 _/_=\\
 ShExtension=.bat
 Device=PIC32MM0064GPM028
-ProjectDir="C:\Users\sampi\OneDrive\Documents\Working\Git\FastTool\TAG\FTTAG64\QWIIC.X"
+ProjectDir="F:\Git\FastTool\TAG\FTTAG64\QWIIC.X"
 ProjectName=QWIIC
 ConfName=default
 ImagePath="${DISTDIR}\QWIIC.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
@@ -127,278 +127,278 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/app/libcomp.o: app/libcomp.c  .generated_files/flags/default/ee811ae9068652c9cf28e4a0d8f04fb937512773 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/app/libcomp.o: app/libcomp.c  .generated_files/flags/default/d5673660c252be21a28d5da7384a3dcc2a9f1dba .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/app" 
 	@${RM} ${OBJECTDIR}/app/libcomp.o.d 
 	@${RM} ${OBJECTDIR}/app/libcomp.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/app/libcomp.o.d" -o ${OBJECTDIR}/app/libcomp.o app/libcomp.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/app/Application.o: app/Application.c  .generated_files/flags/default/e70c15875546bf2267b14af49633788282d816 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/app/Application.o: app/Application.c  .generated_files/flags/default/503aa41280f3e285220907bb5c41cdf9ff4a6af2 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/app" 
 	@${RM} ${OBJECTDIR}/app/Application.o.d 
 	@${RM} ${OBJECTDIR}/app/Application.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/app/Application.o.d" -o ${OBJECTDIR}/app/Application.o app/Application.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1919251143/Bootloader.o: ../../Library/Bootloader/Bootloader.c  .generated_files/flags/default/b2e57fe4372a2b186b5bc0591757ae2258332c32 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/1919251143/Bootloader.o: ../../Library/Bootloader/Bootloader.c  .generated_files/flags/default/252233cd1f858d2d0ab55721665561da031a0ff7 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/1919251143" 
 	@${RM} ${OBJECTDIR}/_ext/1919251143/Bootloader.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1919251143/Bootloader.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/1919251143/Bootloader.o.d" -o ${OBJECTDIR}/_ext/1919251143/Bootloader.o ../../Library/Bootloader/Bootloader.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/814859167/Button.o: ../../Library/Common/Button.c  .generated_files/flags/default/3b1120ad723ec3907c4f2ded5ae7e7597fd07606 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/814859167/Button.o: ../../Library/Common/Button.c  .generated_files/flags/default/4f810fc11624858d9a7848198e0106eb4e26a252 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/814859167" 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Button.o.d 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Button.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/814859167/Button.o.d" -o ${OBJECTDIR}/_ext/814859167/Button.o ../../Library/Common/Button.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/814859167/Util.o: ../../Library/Common/Util.c  .generated_files/flags/default/6bbb01c0a864aec78c68a7923a7bc13337e190aa .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/814859167/Util.o: ../../Library/Common/Util.c  .generated_files/flags/default/2f15032b88fafe0a65251fce360759e58eeed113 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/814859167" 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Util.o.d 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Util.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/814859167/Util.o.d" -o ${OBJECTDIR}/_ext/814859167/Util.o ../../Library/Common/Util.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1066572015/SystemTick.o: ../../Library/Timer/SystemTick.c  .generated_files/flags/default/95beed0b58569cd7a9ff9917e0e4b84869add3d2 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/1066572015/SystemTick.o: ../../Library/Timer/SystemTick.c  .generated_files/flags/default/b71a434728bb37f5bf25947da970d426c0f16e42 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/1066572015" 
 	@${RM} ${OBJECTDIR}/_ext/1066572015/SystemTick.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1066572015/SystemTick.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/1066572015/SystemTick.o.d" -o ${OBJECTDIR}/_ext/1066572015/SystemTick.o ../../Library/Timer/SystemTick.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o: ../../Library/USB/USB_CDC_Debug.c  .generated_files/flags/default/9bf2c3e81743ac2bcfdca8d7fe761821b969de10 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o: ../../Library/USB/USB_CDC_Debug.c  .generated_files/flags/default/5982608bce93b318f0106be1e3601a6af4804e73 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/1610046384" 
 	@${RM} ${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o.d" -o ${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o ../../Library/USB/USB_CDC_Debug.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o: mcc_generated_files/drivers/i2c_simple_master.c  .generated_files/flags/default/cfe7de05c00c035b7bbbcc34aeaa61f6c6c99e23 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o: mcc_generated_files/drivers/i2c_simple_master.c  .generated_files/flags/default/df9f0065a7421d2b6756337831df15220e5b85ce .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/drivers" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o.d" -o ${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o mcc_generated_files/drivers/i2c_simple_master.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o: mcc_generated_files/drivers/i2c_master.c  .generated_files/flags/default/2bc424b3445adadae80d833fe17428b7079ddf78 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o: mcc_generated_files/drivers/i2c_master.c  .generated_files/flags/default/9ff228527d49456e34e6053b5a2d251c2fe2c707 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/drivers" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o.d" -o ${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o mcc_generated_files/drivers/i2c_master.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o: mcc_generated_files/drivers/i2c_types.c  .generated_files/flags/default/d367cfec22819ed43c30c4bb98cf625754007678 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o: mcc_generated_files/drivers/i2c_types.c  .generated_files/flags/default/9feb6f19c8b49feb7e737df5df60748982eb71a4 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/drivers" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o.d" -o ${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o mcc_generated_files/drivers/i2c_types.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o: mcc_generated_files/usb/usb_descriptors.c  .generated_files/flags/default/1c602c6e774f656e176fd32f8c1734f6a228a18c .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o: mcc_generated_files/usb/usb_descriptors.c  .generated_files/flags/default/90d5377c450233a913c4c561be6fd2cfc6f15c88 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o mcc_generated_files/usb/usb_descriptors.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o: mcc_generated_files/usb/usb_device_events.c  .generated_files/flags/default/31af06119625c400708a281cabbd75f43a36d125 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o: mcc_generated_files/usb/usb_device_events.c  .generated_files/flags/default/d37d33b030d2a2e458e5b442459e4f78c3dda79d .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o mcc_generated_files/usb/usb_device_events.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_device.o: mcc_generated_files/usb/usb_device.c  .generated_files/flags/default/f1123844c2aa48a9646d1bae2cc0f20faa87be21 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_device.o: mcc_generated_files/usb/usb_device.c  .generated_files/flags/default/a0d51f289243b7bc10534fcaff88dd38fdf64b9b .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_device.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_device.o mcc_generated_files/usb/usb_device.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o: mcc_generated_files/usb/usb_device_cdc.c  .generated_files/flags/default/50f3b50ddc043a4c13f6adbb5ffa0c1a2b307cd8 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o: mcc_generated_files/usb/usb_device_cdc.c  .generated_files/flags/default/e833c906a941f93266e658d89daa621f5d146c01 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o mcc_generated_files/usb/usb_device_cdc.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/exceptions.o: mcc_generated_files/exceptions.c  .generated_files/flags/default/432669a422c52fcaa98be0b5e0ec62ca045e793 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/exceptions.o: mcc_generated_files/exceptions.c  .generated_files/flags/default/c5c2dd7352f8cdc1698580afc2c2cf9250e573d7 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/exceptions.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/exceptions.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/exceptions.o.d" -o ${OBJECTDIR}/mcc_generated_files/exceptions.o mcc_generated_files/exceptions.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/clock.o: mcc_generated_files/clock.c  .generated_files/flags/default/b8142273c565dbdb7288379c1c378fe54a0808f9 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/clock.o: mcc_generated_files/clock.c  .generated_files/flags/default/cffe89734079244b4edba1574e5ae36f9113cad0 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/clock.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/clock.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/clock.o.d" -o ${OBJECTDIR}/mcc_generated_files/clock.o mcc_generated_files/clock.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/pin_manager.o: mcc_generated_files/pin_manager.c  .generated_files/flags/default/999a00bf8093bedbc08efb45b46c25178e7287f4 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/pin_manager.o: mcc_generated_files/pin_manager.c  .generated_files/flags/default/41194f1757de7b051265f7133a3874e2c0b1babb .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/pin_manager.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/pin_manager.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/pin_manager.o.d" -o ${OBJECTDIR}/mcc_generated_files/pin_manager.o mcc_generated_files/pin_manager.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/mcc.o: mcc_generated_files/mcc.c  .generated_files/flags/default/1d1e33e95f33c3508c9982616c46ab36a04ea1ed .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/mcc.o: mcc_generated_files/mcc.c  .generated_files/flags/default/392039ced54d529882ca578a131861620b42bf2 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/mcc.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/mcc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/mcc.o.d" -o ${OBJECTDIR}/mcc_generated_files/mcc.o mcc_generated_files/mcc.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/system.o: mcc_generated_files/system.c  .generated_files/flags/default/524ade32964212db52df30edf58f2bfccff269e5 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/system.o: mcc_generated_files/system.c  .generated_files/flags/default/93ae542f47c5a1e90bfcde5ed76d5e7ce7a40556 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/system.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/system.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/system.o.d" -o ${OBJECTDIR}/mcc_generated_files/system.o mcc_generated_files/system.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/interrupt_manager.o: mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/1f9d776a06d6a3cbe48a24ed1a8b94cdc7fdc2bf .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/interrupt_manager.o: mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/82c8b7b91213f835670ceed4fd811d50872f1190 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/interrupt_manager.o.d" -o ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o mcc_generated_files/interrupt_manager.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/coretimer.o: mcc_generated_files/coretimer.c  .generated_files/flags/default/8824124da0a2def49d25cf6cf34f831fc1e0b40d .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/coretimer.o: mcc_generated_files/coretimer.c  .generated_files/flags/default/763b9762f16e1e10b3c4c3a3ee26a7fa6ee07dad .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/coretimer.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/coretimer.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/coretimer.o.d" -o ${OBJECTDIR}/mcc_generated_files/coretimer.o mcc_generated_files/coretimer.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/i2c2_driver.o: mcc_generated_files/i2c2_driver.c  .generated_files/flags/default/ae047cdbc4dcac453a5552e0c978f65a636b68a9 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/i2c2_driver.o: mcc_generated_files/i2c2_driver.c  .generated_files/flags/default/ec763e895f968d0c82e3446cf110cc86524a8586 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/i2c2_driver.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/i2c2_driver.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/i2c2_driver.o.d" -o ${OBJECTDIR}/mcc_generated_files/i2c2_driver.o mcc_generated_files/i2c2_driver.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/85e52f6351c8e6aa7562516ee19f002baf8fc9c3 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/98181ddd2f839e8176032d451c3459c23c4fa929 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG   -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 else
-${OBJECTDIR}/app/libcomp.o: app/libcomp.c  .generated_files/flags/default/780593c4f1f414e5ebaad2b02117382b49cd1102 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/app/libcomp.o: app/libcomp.c  .generated_files/flags/default/aea92c00fe2123e12af4ae8a5eb30aec9cade1fb .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/app" 
 	@${RM} ${OBJECTDIR}/app/libcomp.o.d 
 	@${RM} ${OBJECTDIR}/app/libcomp.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/app/libcomp.o.d" -o ${OBJECTDIR}/app/libcomp.o app/libcomp.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/app/Application.o: app/Application.c  .generated_files/flags/default/8f1b9aac3183c3498a7e88b9220c74fbe334d98d .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/app/Application.o: app/Application.c  .generated_files/flags/default/41bce5645b924ee01b206ecd27fb0be33433ac7f .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/app" 
 	@${RM} ${OBJECTDIR}/app/Application.o.d 
 	@${RM} ${OBJECTDIR}/app/Application.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/app/Application.o.d" -o ${OBJECTDIR}/app/Application.o app/Application.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1919251143/Bootloader.o: ../../Library/Bootloader/Bootloader.c  .generated_files/flags/default/276ecd2c1fd238ce057b222128bf24a39410e1df .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/1919251143/Bootloader.o: ../../Library/Bootloader/Bootloader.c  .generated_files/flags/default/2079717032be375b1aff4818b19d7e7c6d3fc9e1 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/1919251143" 
 	@${RM} ${OBJECTDIR}/_ext/1919251143/Bootloader.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1919251143/Bootloader.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/1919251143/Bootloader.o.d" -o ${OBJECTDIR}/_ext/1919251143/Bootloader.o ../../Library/Bootloader/Bootloader.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/814859167/Button.o: ../../Library/Common/Button.c  .generated_files/flags/default/e91f13a28666d29b124070bbfc7c9c9f54674fa7 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/814859167/Button.o: ../../Library/Common/Button.c  .generated_files/flags/default/6ce1d29a864ab7974d801107f617caa9112a4552 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/814859167" 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Button.o.d 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Button.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/814859167/Button.o.d" -o ${OBJECTDIR}/_ext/814859167/Button.o ../../Library/Common/Button.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/814859167/Util.o: ../../Library/Common/Util.c  .generated_files/flags/default/eae1439046547e81a94e9ef641e4128f164cab86 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/814859167/Util.o: ../../Library/Common/Util.c  .generated_files/flags/default/b75f57ff2b2eddb5160c82423a8b5bf6730626cd .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/814859167" 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Util.o.d 
 	@${RM} ${OBJECTDIR}/_ext/814859167/Util.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/814859167/Util.o.d" -o ${OBJECTDIR}/_ext/814859167/Util.o ../../Library/Common/Util.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1066572015/SystemTick.o: ../../Library/Timer/SystemTick.c  .generated_files/flags/default/3f3004da347d404baf5fa2e1f12dd68b56c54888 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/1066572015/SystemTick.o: ../../Library/Timer/SystemTick.c  .generated_files/flags/default/9f75433affec4f56fc38e2ebe97fd5347d43b9ac .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/1066572015" 
 	@${RM} ${OBJECTDIR}/_ext/1066572015/SystemTick.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1066572015/SystemTick.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/1066572015/SystemTick.o.d" -o ${OBJECTDIR}/_ext/1066572015/SystemTick.o ../../Library/Timer/SystemTick.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o: ../../Library/USB/USB_CDC_Debug.c  .generated_files/flags/default/f522ef6a8425fb53cd54fc7e613a4d0c2c3ed692 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o: ../../Library/USB/USB_CDC_Debug.c  .generated_files/flags/default/87e4128a62dcad5efb3615386f7dbf11b9887950 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/_ext/1610046384" 
 	@${RM} ${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o.d" -o ${OBJECTDIR}/_ext/1610046384/USB_CDC_Debug.o ../../Library/USB/USB_CDC_Debug.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o: mcc_generated_files/drivers/i2c_simple_master.c  .generated_files/flags/default/398868972da02cfbc593822c4271f36914a80274 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o: mcc_generated_files/drivers/i2c_simple_master.c  .generated_files/flags/default/5c2c2e2acb882eabcfee4ff7b500dc0348a9b8c .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/drivers" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o.d" -o ${OBJECTDIR}/mcc_generated_files/drivers/i2c_simple_master.o mcc_generated_files/drivers/i2c_simple_master.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o: mcc_generated_files/drivers/i2c_master.c  .generated_files/flags/default/3c5079b37ca86e2ae465257a403629b27c96f250 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o: mcc_generated_files/drivers/i2c_master.c  .generated_files/flags/default/a351c5447e3c68ee50cd426182ea46ccf733ab47 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/drivers" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o.d" -o ${OBJECTDIR}/mcc_generated_files/drivers/i2c_master.o mcc_generated_files/drivers/i2c_master.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o: mcc_generated_files/drivers/i2c_types.c  .generated_files/flags/default/e48e09a89a9cbd1864353e65fa99819d21bd2ee7 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o: mcc_generated_files/drivers/i2c_types.c  .generated_files/flags/default/d4f94b284a4104306872556196e2f52a3549a93c .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/drivers" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o.d" -o ${OBJECTDIR}/mcc_generated_files/drivers/i2c_types.o mcc_generated_files/drivers/i2c_types.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o: mcc_generated_files/usb/usb_descriptors.c  .generated_files/flags/default/9d80c080655ad980a854c2e5c2a51ac41d9b09aa .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o: mcc_generated_files/usb/usb_descriptors.c  .generated_files/flags/default/5721e1650fe945149e04e55b53255d528e9f9931 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_descriptors.o mcc_generated_files/usb/usb_descriptors.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o: mcc_generated_files/usb/usb_device_events.c  .generated_files/flags/default/2d4b6d99de106e6a75b7b4bf6eec449640fafebe .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o: mcc_generated_files/usb/usb_device_events.c  .generated_files/flags/default/8712fe76933618f774f75410161e7e25b717af58 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_device_events.o mcc_generated_files/usb/usb_device_events.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_device.o: mcc_generated_files/usb/usb_device.c  .generated_files/flags/default/4b827fdd9271019bc5f993b33c1774b8bb6b749b .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_device.o: mcc_generated_files/usb/usb_device.c  .generated_files/flags/default/73e607a83e87d04ecaf0b527a5ee0abd814ce160 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_device.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_device.o mcc_generated_files/usb/usb_device.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o: mcc_generated_files/usb/usb_device_cdc.c  .generated_files/flags/default/bc3482e024de8e6a71cd0e7aed13735a622033f8 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o: mcc_generated_files/usb/usb_device_cdc.c  .generated_files/flags/default/cc4036d8138c202f27c15913b98083d9a3e06c3c .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files/usb" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o.d" -o ${OBJECTDIR}/mcc_generated_files/usb/usb_device_cdc.o mcc_generated_files/usb/usb_device_cdc.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/exceptions.o: mcc_generated_files/exceptions.c  .generated_files/flags/default/9e0b69818199edc3a8c6b4bf3ef822c0e02031ea .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/exceptions.o: mcc_generated_files/exceptions.c  .generated_files/flags/default/6da66490cfa3170d2feeeadda9468018f2277eb5 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/exceptions.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/exceptions.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/exceptions.o.d" -o ${OBJECTDIR}/mcc_generated_files/exceptions.o mcc_generated_files/exceptions.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/clock.o: mcc_generated_files/clock.c  .generated_files/flags/default/b166b1ca8ece232551f257a15a47913c12ab46da .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/clock.o: mcc_generated_files/clock.c  .generated_files/flags/default/e3d284190413d2657bc68862e08bd67986b4e40b .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/clock.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/clock.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/clock.o.d" -o ${OBJECTDIR}/mcc_generated_files/clock.o mcc_generated_files/clock.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/pin_manager.o: mcc_generated_files/pin_manager.c  .generated_files/flags/default/443da803e3bcc3a6b2864aab44441c54ffbc40a9 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/pin_manager.o: mcc_generated_files/pin_manager.c  .generated_files/flags/default/6ec1839dea8b44989fb35272e231b4e5633477b1 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/pin_manager.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/pin_manager.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/pin_manager.o.d" -o ${OBJECTDIR}/mcc_generated_files/pin_manager.o mcc_generated_files/pin_manager.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/mcc.o: mcc_generated_files/mcc.c  .generated_files/flags/default/674c2306da4175214d2f241268eed8d8af2b438a .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/mcc.o: mcc_generated_files/mcc.c  .generated_files/flags/default/853ac632a2b780479aa06d0e8f8f42c905d14c0c .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/mcc.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/mcc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/mcc.o.d" -o ${OBJECTDIR}/mcc_generated_files/mcc.o mcc_generated_files/mcc.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/system.o: mcc_generated_files/system.c  .generated_files/flags/default/54757c628838a7c13d4ccb560b0b0e425d23782e .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/system.o: mcc_generated_files/system.c  .generated_files/flags/default/c996f94e2ac4e2be71c49eef612a568baff0fa4b .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/system.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/system.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/system.o.d" -o ${OBJECTDIR}/mcc_generated_files/system.o mcc_generated_files/system.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/interrupt_manager.o: mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/7006556800860c7c9e12790f9191daf23e044864 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/interrupt_manager.o: mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/ec89895f2e1da975e7b828bd73ff6000e98f3aa2 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/interrupt_manager.o.d" -o ${OBJECTDIR}/mcc_generated_files/interrupt_manager.o mcc_generated_files/interrupt_manager.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/coretimer.o: mcc_generated_files/coretimer.c  .generated_files/flags/default/156f06d28504cb9a55f69841c1e454c60c1a8567 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/coretimer.o: mcc_generated_files/coretimer.c  .generated_files/flags/default/dc6c04a67bba8fa74e4e3e75e183133f70960846 .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/coretimer.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/coretimer.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/coretimer.o.d" -o ${OBJECTDIR}/mcc_generated_files/coretimer.o mcc_generated_files/coretimer.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/mcc_generated_files/i2c2_driver.o: mcc_generated_files/i2c2_driver.c  .generated_files/flags/default/4257d044ef088784a48acf7aab87a82e9ee99aca .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/mcc_generated_files/i2c2_driver.o: mcc_generated_files/i2c2_driver.c  .generated_files/flags/default/2733926d7e43c9ece549f574f8a50590f156cf8c .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/i2c2_driver.o.d 
 	@${RM} ${OBJECTDIR}/mcc_generated_files/i2c2_driver.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"app" -I"cfg" -I"mcc_generated_files" -I"../../Library" -ffunction-sections -fdata-sections -O2 -fno-common -DUSB_CDC_DISABLE_LED -MP -MMD -MF "${OBJECTDIR}/mcc_generated_files/i2c2_driver.o.d" -o ${OBJECTDIR}/mcc_generated_files/i2c2_driver.o mcc_generated_files/i2c2_driver.c    -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/979a497a39c68b3a9c364d34b59297f1ef0e7bcf .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/2e98e6f5b7a4c0f471fcf43fb1f6f925a452a09b .generated_files/flags/default/88d83c7a69442caf92c0f7f6fbd64c23df277cf
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 

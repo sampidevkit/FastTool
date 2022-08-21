@@ -100,8 +100,6 @@
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/tmr2.c</itemPath>
         <itemPath>mcc_generated_files/tmr3.c</itemPath>
-        <itemPath>mcc_generated_files/tmr2_isr.S</itemPath>
-        <itemPath>mcc_generated_files/tmr3_isr.S</itemPath>
       </logicalFolder>
       <logicalFolder name="RTOS" displayName="RTOS" projectFiles="true">
         <logicalFolder name="Core" displayName="Core" projectFiles="true">
@@ -117,6 +115,8 @@
         <logicalFolder name="PIC32MM" displayName="PIC32MM" projectFiles="true">
           <itemPath>../../Library/RTOS/PIC32MM/port.c</itemPath>
           <itemPath>../../Library/RTOS/PIC32MM/port_asm.S</itemPath>
+          <itemPath>../../Library/RTOS/PIC32MM/tmr2_isr.S</itemPath>
+          <itemPath>../../Library/RTOS/PIC32MM/tmr3_isr.S</itemPath>
         </logicalFolder>
       </logicalFolder>
       <itemPath>main.c</itemPath>

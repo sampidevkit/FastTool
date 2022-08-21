@@ -112,7 +112,7 @@ void TMR3_Initialize (void)
 void __attribute__ ((vector(_TIMER_3_VECTOR), interrupt(IPL3SOFT))) TMR3_ISR()
 #ifdef USE_RTOS
 ;
-void TMR3_ISR_HANDLER(void)
+void TMR3_ISR_Handler(void)
 #endif
 {
     /* Check if the Timer Interrupt/Status is set */

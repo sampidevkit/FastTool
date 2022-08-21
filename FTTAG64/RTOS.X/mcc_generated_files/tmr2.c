@@ -112,7 +112,7 @@ void TMR2_Initialize (void)
 void __attribute__ ((vector(_TIMER_2_VECTOR), interrupt(IPL2SOFT))) TMR2_ISR()
 #ifdef USE_RTOS
 ;
-void TMR2_ISR_HANDLER(void)
+void TMR2_ISR_Handler(void)
 #endif
 {
     /* Check if the Timer Interrupt/Status is set */
