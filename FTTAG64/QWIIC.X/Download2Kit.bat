@@ -1,5 +1,5 @@
 @echo off
 
-copy lastbuild.hex G:
+copy lastbuild.hex E:
 
 echo Done.

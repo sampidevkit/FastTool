@@ -12,15 +12,116 @@ static tick_t Tick;
 static uint8_t DoNext;
 static uint8_t Buff[16];
 static sensor_sel_t SenSel;
+static bool i2c_error=1;
+
+#define RTChart_Putc(x) do{while(!USB_CDC_Debug_Is_TxReady());USB_CDC_Debug_Write(x);}while(0)
+
+static void RTChart2(int16_t Data1, int16_t Data2) // <editor-fold defaultstate="collapsed" desc="Plot integer data">
+{
+    uint8_t c;
+    uint32_t i, j;
+    int16_t tmp;
+
+    RTChart_Putc(0xFE);
+
+    for(i=0; i<2; i++)
+    {
+        switch(i)
+        {
+            case 0:
+                tmp=Data1;
+                break;
+
+            case 1:
+                tmp=Data2;
+                break;
+
+            default:
+                return;
+        }
+
+        for(j=0; j<2; j++)
+        {
+            c=((uint8_t *) (&tmp))[j];
+
+            switch(c)
+            {
+                case 0xFC:
+                case 0xFD:
+                case 0xFE:
+                    RTChart_Putc(0xFD);
+                    RTChart_Putc(c^0x20);
+                    break;
+
+                default:
+                    RTChart_Putc(c);
+                    break;
+            }
+        }
+    }
+
+    RTChart_Putc(0xFC);
+} // </editor-fold>
+
+void RTChart2f(float Data1, float Data2) // <editor-fold defaultstate="collapsed" desc="Plot float data">
+{
+    uint8_t c;
+    uint32_t i, j;
+    float tmp;
+
+    RTChart_Putc(0xFE);
+
+    for(i=0; i<2; i++)
+    {
+        switch(i)
+        {
+            case 0:
+                tmp=Data1;
+                break;
+
+            case 1:
+                tmp=Data2;
+                break;
+
+            default:
+                return;
+        }
+
+        for(j=0; j<4; j++)
+        {
+            c=((uint8_t *) (&tmp))[j];
+
+            switch(c)
+            {
+                case 0xFC:
+                case 0xFD:
+                case 0xFE:
+                    RTChart_Putc(0xFD);
+                    RTChart_Putc(c^0x20);
+                    break;
+
+                default:
+                    RTChart_Putc(c);
+                    break;
+            }
+        }
+    }
+
+    RTChart_Putc(0xFC);
+} // </editor-fold>
 
 static void I2C_Master_writeNBytes(uint8_t slvaddr, void* data, size_t len) // <editor-fold defaultstate="collapsed" desc="I2C master write">
 {
+    i2c_error=0;
+
     uint32_t Tk=Tick_Get();
 
     while(!i2c_open(slvaddr)) // sit here until we get the bus..
     {
         if(Tick_Dif_Ms(Tick_Get(), Tk)>100)
         {
+            i2c_reset();
+            i2c_error=1;
             __db("\nI2C Write: Get bus error");
             return;
         }
@@ -36,6 +137,7 @@ static void I2C_Master_writeNBytes(uint8_t slvaddr, void* data, size_t len) // <
         if(Tick_Dif_Ms(Tick_Get(), Tk)>100)
         {
             i2c_reset();
+            i2c_error=1;
             __db("\nI2C Write: Close bus error");
             return;
         }
@@ -44,12 +146,17 @@ static void I2C_Master_writeNBytes(uint8_t slvaddr, void* data, size_t len) // <
 
 static void I2C_Master_readNBytes(uint8_t slvaddr, void *data, size_t len) // <editor-fold defaultstate="collapsed" desc="I2C master read">
 {
+    if(i2c_error==1)
+        return;
+
     uint32_t Tk=Tick_Get();
 
     while(!i2c_open(slvaddr)) // sit here until we get the bus..
     {
         if(Tick_Dif_Ms(Tick_Get(), Tk)>100)
         {
+            i2c_reset();
+            i2c_error=1;
             __db("\nI2C Read: Get bus error");
             return;
         }
@@ -64,6 +171,7 @@ static void I2C_Master_readNBytes(uint8_t slvaddr, void *data, size_t len) // <e
         if(Tick_Dif_Ms(Tick_Get(), Tk)>100)
         {
             i2c_reset();
+            i2c_error=1;
             __db("\nI2C Read: Close bus error");
             return;
         }
@@ -159,11 +267,20 @@ static void IQS624_Process(void) // <editor-fold defaultstate="collapsed" desc="
                 I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 1);
                 I2C_Master_readNBytes(IQS624_I2C_ADDRESS, Buff, 2);
                 dt=Tick_Dif_Ms(Tick_Get(), Tk);
+
+                if(i2c_error==1)
+                {
+                    DoNext=255;
+                    __db("\nALS31313 not found\n");
+                    break;
+                }
+
                 Dg=Buff[1];
                 Dg<<=8;
                 Dg|=Buff[0];
-                __db("\nProcess time: %d ms", dt);
-                __db("\nDegree position: %d\n", Dg);
+                // __db("\nProcess time: %d ms", dt);
+                // __db("\nDegree position: %d\n", Dg);
+                RTChart2(Dg, 0);
                 ST_LED_SetLow();
             }
             break;
@@ -220,6 +337,13 @@ static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc
             I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 1);
             I2C_Master_readNBytes(ALS31313_I2C_ADDRESS, Buff, 4);
 
+            if(i2c_error==1)
+            {
+                DoNext=255;
+                __db("\nALS31313 not found\n");
+                break;
+            }
+
             if(!ALS31313_CfgCmp(Buff, &ALS31313_EEPROM_Image[0]))
             {
                 Buff[0]=0x02;
@@ -247,11 +371,11 @@ static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc
             memset(&Buff[1], 0x00, 4);
             I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 5);
             DoNext++;
-            __db("\nIQS624 initialized\n");
+            __db("\nALS31313 initialized\n");
             break;
 
         case 1:
-            if(Tick_Is_Over_Ms(&Tick, 500))
+            if(Tick_Is_Over_Ms(&Tick, 300))
             {
                 uint16_t x, y, z, t;
                 uint32_t Tk, dt;
@@ -263,6 +387,13 @@ static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc
                 I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 1);
                 I2C_Master_readNBytes(ALS31313_I2C_ADDRESS, Buff, 8);
                 dt=Tick_Dif_Ms(Tick_Get(), Tk);
+
+                if(i2c_error==1)
+                {
+                    DoNext=255;
+                    __db("\nALS31313 not found\n");
+                    break;
+                }
 
                 if(Buff[3]&0x80) // new data
                 {
@@ -287,14 +418,17 @@ static void ALS31313_Process(void) // <editor-fold defaultstate="collapsed" desc
                 Temp=ALS31313_Get_Temp(t);
                 mT=mTx*mTx+mTy*mTy+mTz*mTz;
                 mT=sqrt(mT);
-                
-                __db("\nProcess time: %d ms", dt);
-                __db("\nMag: %.3f mT, Temp: %.3f", mT, Temp);
+
+                //__db("\nProcess time: %d ms", dt);
+                //__db("\nMag: %.3f mT, Temp: %.3f", mT, Temp);
+                RTChart2f(mT, Temp);
                 ST_LED_SetLow();
             }
             break;
 
         default:
+            if(Tick_Is_Over_Ms(&Tick, 1000))
+                DoNext=0;
             break;
     }
 } // </editor-fold>
