@@ -150,70 +150,55 @@ static void I2C_Master_readNBytes(uint8_t slvaddr, void *data, size_t len) // <e
 static int16_t IQS624_Process(void) // <editor-fold defaultstate="collapsed" desc="IQS624 process">
 {
 #define IQS624_I2C_ADDRESS              0x44
-#define IQS624_PRODUCT_NR               67
-#define IQS624_VERSION_INFO             0x00
-#define IQS624_SYSTEM_FLAGS             0x10
-#define IQS624_DEV_SETTINGS 		    0xD0
-#define IQS624_HALL_SIN                 0x79
-#define IQS624_HALL_COS                 0x7A
-#define IQS624_FILTERED_DEGREE_OUTPUT   0x16
-    //                                    _________NP segment all
-    //                                    |________Enable ULP mode
-    //                                    ||_______Disable auto modes
-    //                                    |||______Power mode
-    //                                    |||||
-    //                                    |||||____NP segment rate
-    //                                    ||||||||
-    //                                    ||||||||
-#define IQS624_PMU_SETTINGS_STARTUP     0b00100011
 #define IQS624_HALL_SIN_STARTUP         0x63 // sin(degrees/180*pi)*255
 #define IQS624_HALL_COS_STARTUP         0xEB // cos(degrees/180*pi)*255
 
     static uint8_t DoNext=0;
     int16_t rslt=(-1);
 
-    ST_LED_SetHigh();
-
     switch(DoNext)
     {
         case 0:
-            Buff[0]=IQS624_VERSION_INFO;
+            Buff[0]=0x00;
             I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 1);
             I2C_Master_readNBytes(IQS624_I2C_ADDRESS, Buff, 1);
 
-            if(Buff[0]!=IQS624_PRODUCT_NR)
+            if((Buff[0]!=0x43)||(i2c_error==1))
             {
                 __db("\nIQS624 not found\n");
                 break;
             }
 
             // Fill buffer with first settings
-            Buff[0]=IQS624_DEV_SETTINGS;
-            Buff[1]=0x48|0x02;
-            I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 2);
+            Buff[0]=0xD0;
+            Buff[1]=0b01001010;
+            Buff[2]=0b00111100;
+            Buff[3]=0b00101011;
+            Buff[4]=10;
+            Buff[5]=75;
+            Buff[6]=128;
+            I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 7);
 
-            Buff[0]=IQS624_DEV_SETTINGS+2;
-            Buff[1]=IQS624_PMU_SETTINGS_STARTUP;
-            Buff[2]=0x0E; // 15ms Comms report rate
-            I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 3);
-
-            Buff[0]=IQS624_HALL_SIN;
+            Buff[0]=0x79;
             Buff[1]=IQS624_HALL_SIN_STARTUP;
-            I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 2);
-
-            Buff[0]=IQS624_HALL_COS;
-            Buff[1]=IQS624_HALL_COS_STARTUP;
-            I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 2);
+            Buff[2]=IQS624_HALL_COS_STARTUP;
+            I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 3);
 
             DoNext++;
             break;
 
         case 1:
-            Buff[0]=IQS624_SYSTEM_FLAGS;
+            Buff[0]=0x10;
             I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 1);
             I2C_Master_readNBytes(IQS624_I2C_ADDRESS, Buff, 1);
 
-            if((Buff[0]&(1<<2))==0) // ATI Busy Indicator Bit
+            if(i2c_error==1)
+            {
+                DoNext=0;
+                break;
+            }
+
+            if((Buff[0]&0b00000100)==0) // ATI Busy Indicator Bit
                 break;
 
             DoNext++;
@@ -221,27 +206,38 @@ static int16_t IQS624_Process(void) // <editor-fold defaultstate="collapsed" des
             break;
 
         case 2:
-            Buff[0]=IQS624_FILTERED_DEGREE_OUTPUT;
+            Buff[0]=0x10;
+            I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 1);
+            I2C_Master_readNBytes(IQS624_I2C_ADDRESS, Buff, 1);
+
+            if(i2c_error==1)
+            {
+                DoNext=0;
+                break;
+            }
+
+            Buff[0]=0x16;
             I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 1);
             I2C_Master_readNBytes(IQS624_I2C_ADDRESS, Buff, 2);
 
             if(i2c_error==1)
             {
                 DoNext=0;
-                __db("\nALS31313 not found\n");
                 break;
             }
 
             rslt=Buff[1];
             rslt<<=8;
             rslt|=Buff[0];
+
+            if((rslt<0)||(rslt>359))
+                rslt=(-1);
             break;
 
         default:
             break;
     }
 
-    ST_LED_SetLow();
     return rslt;
 } // </editor-fold>
 
@@ -258,11 +254,13 @@ static int16_t Reader_MotionCounter(int16_t preAngle) // <editor-fold defaultsta
     delta=preAngle-prvAngle;
     prvAngle=preAngle;
 
-    if((-360<delta)&&(delta<=-225)) // FORWARD
+    if((-360<delta)&&(delta<=-180)) // FORWARD
         return 100;
 
-    if((225<=delta)&&(delta<360)) // REVERSE
+    if((180<=delta)&&(delta<360)) // REVERSE
         return -100;
+
+    return 0;
 } // </editor-fold>
 
 static bool ALS31313_CfgCmp(const uint8_t *pD1, const uint8_t *pD2) // <editor-fold defaultstate="collapsed" desc="Compare 2 configures">
@@ -301,8 +299,6 @@ static int16_t ALS31313_Process(void) // <editor-fold defaultstate="collapsed" d
     float mT, mTx, mTy, mTz, Temp;
     uint16_t x, y, z, t;
     int16_t rslt=(-1);
-
-    TX_LED_SetHigh();
 
     switch(DoNext)
     {
@@ -355,7 +351,6 @@ static int16_t ALS31313_Process(void) // <editor-fold defaultstate="collapsed" d
             if(i2c_error==1)
             {
                 DoNext=0;
-                __db("\nALS31313 not found\n");
                 break;
             }
 
@@ -388,8 +383,6 @@ static int16_t ALS31313_Process(void) // <editor-fold defaultstate="collapsed" d
             break;
     }
 
-    TX_LED_SetLow();
-
     return rslt;
 } // </editor-fold>
 
@@ -420,7 +413,7 @@ static int16_t AT30TS74_Process(uint8_t SlvAddr) // <editor-fold defaultstate="c
 
             if(i2c_error==1)
             {
-                __db("\nAT30TS74 not found");
+                __db("\nAT30TS74: %02X not found\n", SlvAddr);
                 break;
             }
 
@@ -455,6 +448,7 @@ static int16_t AT30TS74_Process(uint8_t SlvAddr) // <editor-fold defaultstate="c
             }
 
             *DoNext=*DoNext+1;
+            __db("\nAT30TS74: %02X initialized\n", SlvAddr);
             break;
 
         case 3:
@@ -488,21 +482,81 @@ static int16_t AT30TS74_Process(uint8_t SlvAddr) // <editor-fold defaultstate="c
     return rslt;
 } // </editor-fold>
 
+static void ButtonCallback(void) // <editor-fold defaultstate="collapsed" desc="Button callback function">
+{
+    __db("\nSystem reset\n");
+    SYSTEM_RegUnlock();
+    RSWRSTSET=1;
+    unsigned int dummy=RSWRST;
+    while(1);
+} // </editor-fold>
+
 void Application_Init(void) // <editor-fold defaultstate="collapsed" desc="Application initialize">
 {
-
+    MOD_Button_SetSinglePress_Event(ButtonCallback);
 } // </editor-fold>
 
 void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Application task">
 {
+    static uint8_t DoNext=0;
     static tick_t Tick={1, 0, 0};
 
-    if(Tick_Is_Over_Ms(&Tick, 300))
+    switch(DoNext)
     {
-        Data[0]=IQS624_Process();
-        Data[1]=Reader_MotionCounter(Data[0]);
-        Data[2]=AT30TS74_Process(0x4B);
-        Data[3]=AT30TS74_Process(0x4F);
-        RTChart(Data, 4);
+        case 0:
+        default:
+            if(Tick_Is_Over_Ms(&Tick, 100))
+            {
+                DoNext++;
+                ST_LED_Toggle();
+                TX_LED_Toggle();
+                RX_LED_Toggle();
+            }
+            break;
+
+        case 30:
+            DoNext++;
+            __db("\nRUNNING\n");
+        case 31:
+            if(Tick_Is_Over_Ms(&Tick, 300))
+            {
+                ST_LED_SetHigh();
+                TX_LED_SetHigh();
+                RX_LED_SetHigh();
+                Data[0]=IQS624_Process();
+
+                if(Data[0]!=(-1))
+                {
+                    Data[1]=Reader_MotionCounter(Data[0]);
+                    ST_LED_SetLow();
+                }
+                else
+                    Data[1]=0;
+
+                Data[2]=AT30TS74_Process(0x4B);
+
+                if(Data[2]!=(-1))
+                    TX_LED_SetLow();
+
+                Data[3]=AT30TS74_Process(0x4F);
+
+                if(Data[3]!=(-1))
+                    RX_LED_SetLow();
+
+                if(Data[0]==(-1))
+                    break;
+
+                if(Data[1]==(-1))
+                    break;
+
+                if(Data[2]==(-1))
+                    break;
+
+                if(Data[3]==(-1))
+                    break;
+
+                RTChart(Data, 4);
+            }
+            break;
     }
 } // </editor-fold>
