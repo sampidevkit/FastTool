@@ -93,6 +93,7 @@ void i2c_reset(void)
     i2c_status.address = 0xff; // 8-bit address is invalid so this is FREE
     i2c2_clearIRQ();
     i2c2_disableIRQ();
+    i2c2_driver_close();
 }
 
 void i2c_setDataCompleteCallback(i2c_callback cb, void *p)

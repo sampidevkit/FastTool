@@ -51,14 +51,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "coretimer.h"
-#include "drivers/i2c_simple_master.h"
-#include "watchdog.h"
 #include "usb/usb.h"
+#include "drivers/i2c_master.h"
+#include "drivers/i2c_simple_master.h"
+#include "coretimer.h"
 #include "interrupt_manager.h"
 #include "exceptions.h"
-#include "drivers/i2c_master.h"
 #include "i2c2_driver.h"
+#include "watchdog.h"
 
 //#warning "This file will be removed in future MCC releases. Use system.h instead."
 

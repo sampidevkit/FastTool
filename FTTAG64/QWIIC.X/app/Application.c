@@ -179,10 +179,16 @@ static int16_t IQS624_Process(void) // <editor-fold defaultstate="collapsed" des
             Buff[6]=128;
             I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 7);
 
+            if(i2c_error==1)
+                break;
+
             Buff[0]=0x79;
             Buff[1]=IQS624_HALL_SIN_STARTUP;
             Buff[2]=IQS624_HALL_COS_STARTUP;
             I2C_Master_writeNBytes(IQS624_I2C_ADDRESS, Buff, 3);
+
+            if(i2c_error==1)
+                break;
 
             DoNext++;
             break;
@@ -325,6 +331,9 @@ static int16_t ALS31313_Process(void) // <editor-fold defaultstate="collapsed" d
             I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 1);
             I2C_Master_readNBytes(ALS31313_I2C_ADDRESS, Buff, 4);
 
+            if(i2c_error==1)
+                break;
+
             if(!ALS31313_CfgCmp(Buff, &ALS31313_EEPROM_Image[4]))
             {
                 Buff[0]=0x03;
@@ -339,6 +348,10 @@ static int16_t ALS31313_Process(void) // <editor-fold defaultstate="collapsed" d
             //cfg.i2c_loop_mode=0; // No Looping
             memset(&Buff[1], 0x00, 4);
             I2C_Master_writeNBytes(ALS31313_I2C_ADDRESS, Buff, 5);
+
+            if(i2c_error==1)
+                break;
+
             DoNext++;
             __db("\nALS31313 initialized\n");
             break;
@@ -484,10 +497,8 @@ static int16_t AT30TS74_Process(uint8_t SlvAddr) // <editor-fold defaultstate="c
 
 static void ButtonCallback(void) // <editor-fold defaultstate="collapsed" desc="Button callback function">
 {
-    __db("\nSystem reset\n");
-    SYSTEM_RegUnlock();
-    RSWRSTSET=1;
-    unsigned int dummy=RSWRST;
+    i2c_reset();
+    USBDeviceDetach();
     while(1);
 } // </editor-fold>
 
@@ -503,7 +514,9 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
 
     switch(DoNext)
     {
-        case 0:
+        case 20:
+            DoNext++;
+            USBDeviceAttach();
         default:
             if(Tick_Is_Over_Ms(&Tick, 100))
             {
@@ -543,17 +556,17 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
                 if(Data[3]!=(-1))
                     RX_LED_SetLow();
 
-                if(Data[0]==(-1))
-                    break;
-
-                if(Data[1]==(-1))
-                    break;
-
-                if(Data[2]==(-1))
-                    break;
-
-                if(Data[3]==(-1))
-                    break;
+                //if(Data[0]==(-1))
+                //    break;
+                //
+                //if(Data[1]==(-1))
+                //    break;
+                //
+                //if(Data[2]==(-1))
+                //    break;
+                //
+                //if(Data[3]==(-1))
+                //    break;
 
                 RTChart(Data, 4);
             }
