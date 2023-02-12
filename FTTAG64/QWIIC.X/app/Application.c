@@ -206,6 +206,58 @@ static bool AT30TS74_Process(uint8_t SlvAddr, int16_t *pRslt) // <editor-fold de
     return 0;
 } // </editor-fold>
 
+static bool ALS31313_Process(float *pRslt) // <editor-fold defaultstate="collapsed" desc="ALS31313 process">
+{
+    static uint8_t DoNext=0, Buff[16];
+
+    switch(DoNext)
+    {
+        default:
+        case 0:
+            Buff[0]=0x02; // Configure register
+            I2C_Master_writeNBytes(0x60, Buff, 1);
+            I2C_Master_readNBytes(0x60, &Buff[1], 4);
+
+            if(i2c_error==0)
+            {
+                DoNext=1;
+                __db("\nALS31313 initialized\n");
+            }
+            else
+                __db("\nALS31313 not found\n");
+            break;
+
+        case 1:
+            Buff[0]=0x28; // Data register
+            I2C_Master_writeNBytes(0x60, Buff, 1);
+            I2C_Master_readNBytes(0x60, &Buff[1], 8);
+
+            if(i2c_error==1)
+            {
+                DoNext=0;
+                __db("\nALS31313 not found\n");
+            }
+            else
+            {
+                int32_t temp=Buff[4]&0b00111111;
+
+                temp<<=6;
+                temp|=(Buff[8]&0b00111111);
+                temp-=1708;
+                
+                float tmp=temp*302;
+                
+                tmp/=4096.0;
+                *pRslt=tmp;
+
+                return 1;
+            }
+            break;
+    }
+
+    return 0;
+} // </editor-fold>
+
 static void ButtonCallback(void) // <editor-fold defaultstate="collapsed" desc="Button callback function">
 {
     i2c_reset();
@@ -242,12 +294,13 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
             DoNext++;
             __db("\nRUNNING\n");
         case 31:
-            if(Tick_Is_Over_Ms(&Tick, 300))
+            if(Tick_Is_Over_Ms(&Tick, 1000))
             {
                 ST_LED_Toggle();
                 TX_LED_SetHigh();
                 RX_LED_SetHigh();
 
+#ifdef USE_AT30TS74
                 if(AT30TS74_Process(0x4B, &Data[0])==1)
                 {
                     TX_LED_SetLow();
@@ -258,6 +311,17 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
                         RTChart(Data, 2);
                     }
                 }
+#elif defined(USE_ALS31313)
+                float TempVal;
+                
+                if(ALS31313_Process(&TempVal)==1)
+                {
+                    __db("\nT=%.1f", TempVal);
+                    TX_LED_SetLow();
+                }
+#else
+#warning "There is no any sensor is implemented"
+#endif
             }
             break;
     }

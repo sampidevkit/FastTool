@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=QWIIC.X
 
 # Active Configuration
-DEFAULTCONF=default
+DEFAULTCONF=ALS31313
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default 
+ALLCONFS=AT30TS74 ALS31313 
 
 
 # build
@@ -45,13 +45,15 @@ ALLCONFS=default
 
 # clobber
 .clobber-impl: .clobber-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=AT30TS74 clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=ALS31313 clean
 
 
 
 # all
 .all-impl: .all-pre .depcheck-impl
-	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=AT30TS74 build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=ALS31313 build
 
 
 
