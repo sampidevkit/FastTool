@@ -11,14 +11,13 @@
       <logicalFolder name="f1" displayName="Application" projectFiles="true">
         <itemPath>app/libcomp.h</itemPath>
         <itemPath>app/Application.h</itemPath>
-        <itemPath>app/AtCmd.h</itemPath>
-        <itemPath>app/Indicator.h</itemPath>
-        <itemPath>app/crc32.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Configuration" projectFiles="true">
         <itemPath>cfg/Indicator_Cfg.h</itemPath>
         <itemPath>cfg/Wdt_Cfg.h</itemPath>
         <itemPath>cfg/crc_cfg.h</itemPath>
+        <itemPath>cfg/debug_cfg.h</itemPath>
+        <itemPath>cfg/AtCmd_Cfg.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Library" projectFiles="true">
         <logicalFolder name="f1" displayName="Bootloader" projectFiles="true">
@@ -28,6 +27,10 @@
           <itemPath>../../Library/Common/Button.h</itemPath>
           <itemPath>../../Library/Common/Util.h</itemPath>
           <itemPath>../../Library/Common/LibDef.h</itemPath>
+          <itemPath>../../Library/Common/AtCmd.h</itemPath>
+          <itemPath>../../Library/Common/crc32.h</itemPath>
+          <itemPath>../../Library/Common/debug.h</itemPath>
+          <itemPath>../../Library/Common/Indicator.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f5" displayName="Tasks" projectFiles="true">
           <itemPath>../../Library/Tasks/TaskManager.h</itemPath>
@@ -80,9 +83,6 @@
       <logicalFolder name="f1" displayName="Application" projectFiles="true">
         <itemPath>app/libcomp.c</itemPath>
         <itemPath>app/Application.c</itemPath>
-        <itemPath>app/AtCmd.c</itemPath>
-        <itemPath>app/Indicator.c</itemPath>
-        <itemPath>app/crc32.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Configuration" projectFiles="true">
       </logicalFolder>
@@ -93,6 +93,10 @@
         <logicalFolder name="f2" displayName="Common" projectFiles="true">
           <itemPath>../../Library/Common/Button.c</itemPath>
           <itemPath>../../Library/Common/Util.c</itemPath>
+          <itemPath>../../Library/Common/AtCmd.c</itemPath>
+          <itemPath>../../Library/Common/Indicator.c</itemPath>
+          <itemPath>../../Library/Common/crc32.c</itemPath>
+          <itemPath>../../Library/Common/debug.c</itemPath>
         </logicalFolder>
         <logicalFolder name="f5" displayName="Tasks" projectFiles="true">
           <itemPath>../../Library/Tasks/TaskManager.c</itemPath>

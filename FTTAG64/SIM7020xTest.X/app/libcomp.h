@@ -15,13 +15,15 @@
 #include "Common/Button.h"
 #include "Common/Util.h"
 #include "Common/LibDef.h"
+#include "Common/AtCmd.h"
+#include "Common/Indicator.h"
+#include "Common/crc32.h"
+#include "Common/debug.h"
 #include "Tasks/TaskManager.h"
 #include "Timer/Wdt.h"
 #include "Timer/SystemTick.h"
 #include "USB/USB_CDC_Debug.h"
 
 #define USB_CDC_DISABLE_LED
-//#undef __db
-//#define __db(...)
 
 #endif

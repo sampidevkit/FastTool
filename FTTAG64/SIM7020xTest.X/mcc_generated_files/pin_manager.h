@@ -238,6 +238,188 @@ inline static void BT_N_SetValue(bool value)
 #define BT_N_SetDigitalOutput()   ( TRISACLR = (1 << 1) )
 /**
   @Summary
+    Sets the GPIO pin, RA2, high using LATA2.
+
+  @Description
+    Sets the GPIO pin, RA2, high using LATA2.
+
+  @Preconditions
+    The RA2 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA2 high (1)
+    TG_MCLR_N_SetHigh();
+    </code>
+
+*/
+#define TG_MCLR_N_SetHigh()          ( LATASET = (1 << 2) )
+/**
+  @Summary
+    Sets the GPIO pin, RA2, low using LATA2.
+
+  @Description
+    Sets the GPIO pin, RA2, low using LATA2.
+
+  @Preconditions
+    The RA2 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RA2 low (0)
+    TG_MCLR_N_SetLow();
+    </code>
+
+*/
+#define TG_MCLR_N_SetLow()           ( LATACLR = (1 << 2) )
+
+/**
+  @Summary
+    Sets a value to the GPIO pin.
+
+  @Description
+    Sets or Resets the GPIO pin, RA2, low or high using LATA2.
+
+  @Preconditions
+    The RA2 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    bool value; : value to be set to the GPIO pin.
+
+  @Example
+    <code>
+    // Set RA2 to low.
+    TG_MCLR_N_SetValue(false);
+    </code>
+
+*/
+inline static void TG_MCLR_N_SetValue(bool value)
+{
+  if(value)
+  {
+    TG_MCLR_N_SetHigh();
+  }
+  else
+  {
+    TG_MCLR_N_SetLow();
+  }
+}
+
+/**
+  @Summary
+    Toggles the GPIO pin, RA2, using LATA2.
+
+  @Description
+    Toggles the GPIO pin, RA2, using LATA2.
+
+  @Preconditions
+    The RA2 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RA2
+    TG_MCLR_N_Toggle();
+    </code>
+
+*/
+#define TG_MCLR_N_Toggle()           ( LATAINV = (1 << 2) )
+/**
+  @Summary
+    Reads the value of the GPIO pin, RA2.
+
+  @Description
+    Reads the value of the GPIO pin, RA2.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RA2
+    postValue = TG_MCLR_N_GetValue();
+    </code>
+
+*/
+#define TG_MCLR_N_GetValue()         PORTAbits.RA2
+/**
+  @Summary
+    Configures the GPIO pin, RA2, as an input.
+
+  @Description
+    Configures the GPIO pin, RA2, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA2 as an input
+    TG_MCLR_N_SetDigitalInput();
+    </code>
+
+*/
+#define TG_MCLR_N_SetDigitalInput()   ( TRISASET = (1 << 2) )
+/**
+  @Summary
+    Configures the GPIO pin, RA2, as an output.
+
+  @Description
+    Configures the GPIO pin, RA2, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RA2 as an output
+    TG_MCLR_N_SetDigitalOutput();
+    </code>
+
+*/
+#define TG_MCLR_N_SetDigitalOutput()   ( TRISACLR = (1 << 2) )
+/**
+  @Summary
     Sets the GPIO pin, RA3, high using LATA3.
 
   @Description
@@ -418,370 +600,6 @@ inline static void TX_LED_SetValue(bool value)
 
 */
 #define TX_LED_SetDigitalOutput()   ( TRISACLR = (1 << 3) )
-/**
-  @Summary
-    Sets the GPIO pin, RB0, high using LATB0.
-
-  @Description
-    Sets the GPIO pin, RB0, high using LATB0.
-
-  @Preconditions
-    The RB0 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RB0 high (1)
-    CELL_PWRMON_SetHigh();
-    </code>
-
-*/
-#define CELL_PWRMON_SetHigh()          ( LATBSET = (1 << 0) )
-/**
-  @Summary
-    Sets the GPIO pin, RB0, low using LATB0.
-
-  @Description
-    Sets the GPIO pin, RB0, low using LATB0.
-
-  @Preconditions
-    The RB0 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RB0 low (0)
-    CELL_PWRMON_SetLow();
-    </code>
-
-*/
-#define CELL_PWRMON_SetLow()           ( LATBCLR = (1 << 0) )
-
-/**
-  @Summary
-    Sets a value to the GPIO pin.
-
-  @Description
-    Sets or Resets the GPIO pin, RB0, low or high using LATB0.
-
-  @Preconditions
-    The RB0 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    bool value; : value to be set to the GPIO pin.
-
-  @Example
-    <code>
-    // Set RB0 to low.
-    CELL_PWRMON_SetValue(false);
-    </code>
-
-*/
-inline static void CELL_PWRMON_SetValue(bool value)
-{
-  if(value)
-  {
-    CELL_PWRMON_SetHigh();
-  }
-  else
-  {
-    CELL_PWRMON_SetLow();
-  }
-}
-
-/**
-  @Summary
-    Toggles the GPIO pin, RB0, using LATB0.
-
-  @Description
-    Toggles the GPIO pin, RB0, using LATB0.
-
-  @Preconditions
-    The RB0 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Toggle RB0
-    CELL_PWRMON_Toggle();
-    </code>
-
-*/
-#define CELL_PWRMON_Toggle()           ( LATBINV = (1 << 0) )
-/**
-  @Summary
-    Reads the value of the GPIO pin, RB0.
-
-  @Description
-    Reads the value of the GPIO pin, RB0.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    uint16_t portValue;
-
-    // Read RB0
-    postValue = CELL_PWRMON_GetValue();
-    </code>
-
-*/
-#define CELL_PWRMON_GetValue()         PORTBbits.RB0
-/**
-  @Summary
-    Configures the GPIO pin, RB0, as an input.
-
-  @Description
-    Configures the GPIO pin, RB0, as an input.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RB0 as an input
-    CELL_PWRMON_SetDigitalInput();
-    </code>
-
-*/
-#define CELL_PWRMON_SetDigitalInput()   ( TRISBSET = (1 << 0) )
-/**
-  @Summary
-    Configures the GPIO pin, RB0, as an output.
-
-  @Description
-    Configures the GPIO pin, RB0, as an output.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RB0 as an output
-    CELL_PWRMON_SetDigitalOutput();
-    </code>
-
-*/
-#define CELL_PWRMON_SetDigitalOutput()   ( TRISBCLR = (1 << 0) )
-/**
-  @Summary
-    Sets the GPIO pin, RB1, high using LATB1.
-
-  @Description
-    Sets the GPIO pin, RB1, high using LATB1.
-
-  @Preconditions
-    The RB1 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RB1 high (1)
-    CELL_RESET_SetHigh();
-    </code>
-
-*/
-#define CELL_RESET_SetHigh()          ( LATBSET = (1 << 1) )
-/**
-  @Summary
-    Sets the GPIO pin, RB1, low using LATB1.
-
-  @Description
-    Sets the GPIO pin, RB1, low using LATB1.
-
-  @Preconditions
-    The RB1 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Set RB1 low (0)
-    CELL_RESET_SetLow();
-    </code>
-
-*/
-#define CELL_RESET_SetLow()           ( LATBCLR = (1 << 1) )
-
-/**
-  @Summary
-    Sets a value to the GPIO pin.
-
-  @Description
-    Sets or Resets the GPIO pin, RB1, low or high using LATB1.
-
-  @Preconditions
-    The RB1 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    bool value; : value to be set to the GPIO pin.
-
-  @Example
-    <code>
-    // Set RB1 to low.
-    CELL_RESET_SetValue(false);
-    </code>
-
-*/
-inline static void CELL_RESET_SetValue(bool value)
-{
-  if(value)
-  {
-    CELL_RESET_SetHigh();
-  }
-  else
-  {
-    CELL_RESET_SetLow();
-  }
-}
-
-/**
-  @Summary
-    Toggles the GPIO pin, RB1, using LATB1.
-
-  @Description
-    Toggles the GPIO pin, RB1, using LATB1.
-
-  @Preconditions
-    The RB1 must be set to an output.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Toggle RB1
-    CELL_RESET_Toggle();
-    </code>
-
-*/
-#define CELL_RESET_Toggle()           ( LATBINV = (1 << 1) )
-/**
-  @Summary
-    Reads the value of the GPIO pin, RB1.
-
-  @Description
-    Reads the value of the GPIO pin, RB1.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    uint16_t portValue;
-
-    // Read RB1
-    postValue = CELL_RESET_GetValue();
-    </code>
-
-*/
-#define CELL_RESET_GetValue()         PORTBbits.RB1
-/**
-  @Summary
-    Configures the GPIO pin, RB1, as an input.
-
-  @Description
-    Configures the GPIO pin, RB1, as an input.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RB1 as an input
-    CELL_RESET_SetDigitalInput();
-    </code>
-
-*/
-#define CELL_RESET_SetDigitalInput()   ( TRISBSET = (1 << 1) )
-/**
-  @Summary
-    Configures the GPIO pin, RB1, as an output.
-
-  @Description
-    Configures the GPIO pin, RB1, as an output.
-
-  @Preconditions
-    None.
-
-  @Returns
-    None.
-
-  @Param
-    None.
-
-  @Example
-    <code>
-    // Sets the RB1 as an output
-    CELL_RESET_SetDigitalOutput();
-    </code>
-
-*/
-#define CELL_RESET_SetDigitalOutput()   ( TRISBCLR = (1 << 1) )
 /**
   @Summary
     Sets the GPIO pin, RB13, high using LATB13.
@@ -1146,6 +964,188 @@ inline static void ST_LED_SetValue(bool value)
 
 */
 #define ST_LED_SetDigitalOutput()   ( TRISBCLR = (1 << 4) )
+/**
+  @Summary
+    Sets the GPIO pin, RB8, high using LATB8.
+
+  @Description
+    Sets the GPIO pin, RB8, high using LATB8.
+
+  @Preconditions
+    The RB8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB8 high (1)
+    CELL_ONOFF_SetHigh();
+    </code>
+
+*/
+#define CELL_ONOFF_SetHigh()          ( LATBSET = (1 << 8) )
+/**
+  @Summary
+    Sets the GPIO pin, RB8, low using LATB8.
+
+  @Description
+    Sets the GPIO pin, RB8, low using LATB8.
+
+  @Preconditions
+    The RB8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Set RB8 low (0)
+    CELL_ONOFF_SetLow();
+    </code>
+
+*/
+#define CELL_ONOFF_SetLow()           ( LATBCLR = (1 << 8) )
+
+/**
+  @Summary
+    Sets a value to the GPIO pin.
+
+  @Description
+    Sets or Resets the GPIO pin, RB8, low or high using LATB8.
+
+  @Preconditions
+    The RB8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    bool value; : value to be set to the GPIO pin.
+
+  @Example
+    <code>
+    // Set RB8 to low.
+    CELL_ONOFF_SetValue(false);
+    </code>
+
+*/
+inline static void CELL_ONOFF_SetValue(bool value)
+{
+  if(value)
+  {
+    CELL_ONOFF_SetHigh();
+  }
+  else
+  {
+    CELL_ONOFF_SetLow();
+  }
+}
+
+/**
+  @Summary
+    Toggles the GPIO pin, RB8, using LATB8.
+
+  @Description
+    Toggles the GPIO pin, RB8, using LATB8.
+
+  @Preconditions
+    The RB8 must be set to an output.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Toggle RB8
+    CELL_ONOFF_Toggle();
+    </code>
+
+*/
+#define CELL_ONOFF_Toggle()           ( LATBINV = (1 << 8) )
+/**
+  @Summary
+    Reads the value of the GPIO pin, RB8.
+
+  @Description
+    Reads the value of the GPIO pin, RB8.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    uint16_t portValue;
+
+    // Read RB8
+    postValue = CELL_ONOFF_GetValue();
+    </code>
+
+*/
+#define CELL_ONOFF_GetValue()         PORTBbits.RB8
+/**
+  @Summary
+    Configures the GPIO pin, RB8, as an input.
+
+  @Description
+    Configures the GPIO pin, RB8, as an input.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB8 as an input
+    CELL_ONOFF_SetDigitalInput();
+    </code>
+
+*/
+#define CELL_ONOFF_SetDigitalInput()   ( TRISBSET = (1 << 8) )
+/**
+  @Summary
+    Configures the GPIO pin, RB8, as an output.
+
+  @Description
+    Configures the GPIO pin, RB8, as an output.
+
+  @Preconditions
+    None.
+
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    // Sets the RB8 as an output
+    CELL_ONOFF_SetDigitalOutput();
+    </code>
+
+*/
+#define CELL_ONOFF_SetDigitalOutput()   ( TRISBCLR = (1 << 8) )
 
 /**
     Section: Function Prototypes

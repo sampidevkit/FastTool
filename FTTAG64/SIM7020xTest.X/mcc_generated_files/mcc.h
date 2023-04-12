@@ -51,14 +51,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "memory/flash.h"
-#include "watchdog.h"
-#include "interrupt_manager.h"
-#include "exceptions.h"
 #include "rtcc.h"
+#include "memory/flash.h"
 #include "coretimer.h"
 #include "uart2.h"
 #include "usb/usb.h"
+#include "interrupt_manager.h"
+#include "exceptions.h"
+#include "watchdog.h"
 
 #warning "This file will be removed in future MCC releases. Use system.h instead."
 

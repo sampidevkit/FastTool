@@ -1,14 +1,11 @@
 #include "libcomp.h"
-#include "crc32.h"
-#include "AtCmd.h"
-#include "Indicator.h"
 #include "Application.h"
 
 #define HOST_IP_DEFAULT             "45.79.112.203"
 #define HOST_PORT_DEFAULT           "4242"
 #define NETWORK_APN_DEFAULT         "v-internet"
 #define SECTION_INTERVAL_DEFAULT    1 // ms
-#define APP_DELAY_DEFAULT           60 // s
+#define APP_DELAY_DEFAULT           1 // s
 #define APP_COUNT_DEFAULT           10
 
 #define Next_Task()             do{AppCxt.ToDo=AppCxt.Backup=AppCxt.DoNext; AppCxt.DoNext++; \
@@ -27,20 +24,16 @@ typedef enum
     APP_ECHO_OFF,
     APP_ERR_REPORT,
     APP_NO_FLOW_CTRL,
-    APP_GET_IMEI,
     APP_GET_MODULE_NAME,
+    APP_GET_IMEI,
     APP_GET_CIMI,
     APP_GET_CCID,
     APP_CHECK_NETWORK,
+    APP_ALT_CHECK_NETWORK,
     APP_DEACTIVE_PDP,
     APP_SET_APN,
     APP_ACTIVE_PDP,
-    APP_GET_PDP,
-    ///////////////////////////////////////////////////////////////// ME310 only
-    APP_AUTO_TIMEZONE_UPDATE,
-    APP_NET_ID_TIMEZONE,
-    APP_CLOCK_MODE,
-    ////////////////////////////////////////////////////////////////////////////
+    APP_READ_PDP,
     APP_GET_RTCC,
     APP_CREATE_SOCKET,
     APP_OPEN_SOCKET,
@@ -60,9 +53,8 @@ static struct
     bool Flag;
 } AppCxt;
 
-static uint8_t Buff1[128];
-static uint8_t Buff2[128];
-static uint8_t Buff3[128];
+private uint8_t Buff1[512]; // Tx buffer
+private uint8_t Buff2[64]; // Rx buffer
 
 static struct tm SysRtc={
     .tm_wday=2, // Tuesday
@@ -74,13 +66,14 @@ static struct tm SysRtc={
     .tm_sec=0,
 };
 
-static buff_t TxBuff;
-static buff_t RxBuff;
-static uint32_t AppCount=0;
-static uint8_t AppSerial[24];
-static uint8_t AppCcid[24];
-static uint8_t AppCimi[24];
-static uint8_t AppModuleName[24];
+private buff_t TxBuff;
+private buff_t RxBuff;
+private uint32_t AppCount=0;
+private uint8_t AppSerial[24];
+private uint8_t AppCcid[24];
+private uint8_t AppCimi[24];
+private uint8_t AppModuleName[24];
+private uint8_t AppIp[40];
 
 typedef struct
 {
@@ -125,125 +118,61 @@ static const uint8_t Help[]={
     "\nDisplay helper:          AT\n"
 };
 
-static void DataDisplay(uint8_t *pD, size_t len) // <editor-fold defaultstate="collapsed" desc="Data display">
-{
-    while(len>0)
-    {
-        if((*pD>=' ')&&(*pD<='~'))
-            __db("%c", *pD);
-        else
-            __db("<%02X>", *pD);
-
-        pD++;
-        len--;
-    }
-} // </editor-fold>
-
-static void TaskDisplay(apptask_t taskCode) // <editor-fold defaultstate="collapsed" desc="Error display">
-{
-    switch(taskCode)
-    {
-        case APP_ECHO_OFF:
-            __db("APP_ECHO_OFF");
-            break;
-
-        case APP_ERR_REPORT:
-            __db("APP_ERR_REPORT");
-            break;
-
-        case APP_NO_FLOW_CTRL:
-            __db("APP_NO_FLOW_CTRL");
-            break;
-
-        case APP_CHECK_NETWORK:
-            __db("APP_CHECK_NETWORK");
-            break;
-
-        case APP_DEACTIVE_PDP:
-            __db("APP_DEACTIVE_PDP");
-            break;
-
-        case APP_ACTIVE_PDP:
-            __db("APP_ACTIVE_PDP");
-            break;
-
-        case APP_OPEN_SOCKET:
-            __db("APP_OPEN_SOCKET");
-            break;
-
-        case APP_SEND_DATA:
-            __db("APP_SEND_DATA");
-            break;
-
-        case APP_REBOOT:
-            __db("APP_REBOOT");
-            break;
-
-        default:
-            __db("Unknown: %02X", taskCode);
-            break;
-    }
-} // </editor-fold>
-
 static void ConfigDisplay(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" desc="Config display">
 {
-    __db("\nHost:               %s", pConfig->Ip);
-    __db("\nPort:               %s", pConfig->Port);
-    __db("\nAPN:                %s", pConfig->Apn);
-    __db("\nMessage delay (ms): %d", pConfig->MsgDelay);
-    __db("\nApp delay (sec):    %d", pConfig->AppDelay);
-    __db("\nApp reset count:    %d", pConfig->AppCount);
-    __db("\nCRC32:              %08X\n", pConfig->Crc32);
+    __dbss("\nHost:               ", pConfig->Ip);
+    __dbss("\nPort:               ", pConfig->Port);
+    __dbss("\nAPN:                ", pConfig->Apn);
+    __dbsi("\nMessage delay (ms): ", pConfig->MsgDelay);
+    __dbsi("\nApp delay (sec):    ", pConfig->AppDelay);
+    __dbsi("\nApp reset count:    ", pConfig->AppCount);
+    __dbsh("\nCRC32:              ", pConfig->Crc32);
 } // </editor-fold>
 
 static void RestCodeDisplay(void) // <editor-fold defaultstate="collapsed" desc="Reset code display">
 {
-#ifdef __XC_PIC32M_H
-    __db("\nReset control register: %08X", RCON);
+    __dbsh("\nReset control register: ", RCON);
 
     if(RCONbits.PORIO)
-        __db("\n-->PORIO: A Power-on Reset has occurred due to VDD voltage");
+        __dbs("\n-->PORIO: A Power-on Reset has occurred due to VDD voltage");
 
     if(RCONbits.PORCORE)
-        __db("\n-->PORCORE: A Power-on Reset has occurred due to core voltage");
+        __dbs("\n-->PORCORE: A Power-on Reset has occurred due to core voltage");
 
     if(RCONbits.BCFGERR)
-        __db("\n-->BCFGERR: An error occurred during a read of the Primary Configuration registers");
+        __dbs("\n-->BCFGERR: An error occurred during a read of the Primary Configuration registers");
 
     if(RCONbits.BCFGFAIL)
-        __db("\n-->BCFGFAIL: An error occurred during a read of the Primary and Alternate Configuration registers");
+        __dbs("\n-->BCFGFAIL: An error occurred during a read of the Primary and Alternate Configuration registers");
 
     if(RCONbits.CMR)
-        __db("\n-->CMR: Configuration Mismatch Reset has occurred");
+        __dbs("\n-->CMR: Configuration Mismatch Reset has occurred");
 
     if(RCONbits.EXTR)
-        __db("\n-->EXTR:  Master Clear (pin) Reset has occurred");
+        __dbs("\n-->EXTR:  Master Clear (pin) Reset has occurred");
 
     if(RCONbits.SWR)
-        __db("\n-->SWR: Software Reset was executed");
+        __dbs("\n-->SWR: Software Reset was executed");
 
     if(RCONbits.WDTO)
-        __db("\n-->WDTO: Watchdog Timer Time-out Flag bit");
+        __dbs("\n-->WDTO: Watchdog Timer Time-out Flag bit");
 
     if(RCONbits.SLEEP)
-        __db("\n-->SLEEP: Device was in Sleep mode");
+        __dbs("\n-->SLEEP: Device was in Sleep mode");
 
     if(RCONbits.IDLE)
-        __db("\n-->IDLE: Device was in Idle mode");
+        __dbs("\n-->IDLE: Device was in Idle mode");
 
     if(RCONbits.BOR)
-        __db("\n-->BOR: Brown-out Reset has occurred");
+        __dbs("\n-->BOR: Brown-out Reset has occurred");
 
     if(RCONbits.POR)
-        __db("\n-->POR: Power-on Reset has occurred");
+        __dbs("\n-->POR: Power-on Reset has occurred");
 
     RCON&=0xFFFFFF20; // Clear bit 7,6,4,3,2,1,0
-#else
-#warning "Reset code display doesn't support your device"
-#endif
 } // </editor-fold>
 
-static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" desc="MQTT Application">
+static int8_t CellTasks(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" desc="MQTT Application">
 {
     static uint8_t TryCount=0;
     static uint32_t Start, Stop;
@@ -269,19 +198,19 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nEcho off");
+                //__dbsi("\nEcho off: ", TryCount);
             }
 
-            rslt=ATCMD_SendGetAck("ATE0\r", "OK", 250, 250);
+            rslt=ATCMD_SendGetAck("ATE0\r", "\r\nOK\r\n", 500, 250);
 
-            if(rslt==PROC_DONE)
+            if(rslt==RESULT_DONE)
                 Next_Task();
-            else if(rslt==PROC_ERR)
+            else if(rslt==RESULT_ERR)
             {
                 if(++TryCount>=40)
                 {
                     New_Task(APP_REBOOT);
-                    __db(": Error");
+                    __dbs("\nEcho off error");
                 }
                 else
                     Wait_Task(250, APP_ECHO_OFF);
@@ -292,17 +221,17 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nReport enable");
+                //__dbs("\nEnable error report");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CMEE=2\r", "OK", 250, 250);
+            rslt=ATCMD_SendGetAck("AT+CMEE=2\r", "\r\nOK\r\n", 250, 250);
 
-            if(rslt==PROC_DONE)
+            if(rslt==RESULT_DONE)
                 Next_Task();
-            else if(rslt==PROC_ERR)
+            else if(rslt==RESULT_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs("\nEnable error report error");
             } // </editor-fold>
             break;
 
@@ -310,42 +239,17 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nNo flow control");
+                //__dbs("\nSet no HW flow control");
             }
 
-            rslt=ATCMD_SendGetAck("AT&K0\r", "OK", 250, 250);
+            rslt=ATCMD_SendGetAck("AT&K0\r", "\r\nOK\r\n", 250, 250);
 
-            if(rslt==PROC_DONE)
+            if(rslt==RESULT_DONE)
                 Next_Task();
-            else if(rslt==PROC_ERR)
+            else if(rslt==RESULT_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
-            } // </editor-fold>
-            break;
-
-        case APP_GET_IMEI: // <editor-fold defaultstate="collapsed" desc="Request product serial number identification">
-            if(AppCxt.Flag==0)
-            {
-                AppCxt.Flag=1;
-                __db("\nProduct serial number");
-            }
-
-            rslt=ATCMD_SendGetAck("AT+CGSN\r", "OK", 250, 250);
-
-            if(rslt==PROC_DONE)
-            {
-                //\r\n\r\n359206100023282\r\n\r\nOK\r\n
-                memset(AppSerial, 0, sizeof (AppSerial));
-                Copy_Str2Break(&ATCMD_GetBkBuffer(4), '\r', AppSerial);
-                __db(": %s", AppSerial);
-                //DataDisplay(&ATCMD_GetBkBuffer(0), ATCMD_GetBkBufferSize());
-                Next_Task();
-            }
-            else if(rslt==PROC_ERR)
-            {
-                New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs("\nSet no HW flow control error");
             } // </editor-fold>
             break;
 
@@ -353,24 +257,45 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nProduct name");
+                __dbs("\nProduct");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CGMM\r", "OK", 250, 250);
+            rslt=ATCMD_SendGetAck("AT+CGMM\r", "\r\nOK\r\n", 250, 250);
 
-            if(rslt==PROC_DONE)
+            if(rslt==RESULT_DONE)
             {
                 //\r\nME310G1-WW\r\n\r\nOK\r\n
-                memset(AppModuleName, 0, sizeof (AppModuleName));
-                Copy_Str2Break(&ATCMD_GetBkBuffer(2), '\r', AppModuleName);
-                __db(": %s", AppModuleName);
-                //DataDisplay(&ATCMD_GetBkBuffer(0), ATCMD_GetBkBufferSize());
+                str_sub_between(AppModuleName, &ATCMD_GetRxBuffer(0), '\n', 1, '\r', 1);
+                __dbss(": ", AppModuleName);
                 Next_Task();
             }
-            else if(rslt==PROC_ERR)
+            else if(rslt==RESULT_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs(": error");
+            } // </editor-fold>
+            break;
+
+        case APP_GET_IMEI: // <editor-fold defaultstate="collapsed" desc="Request product serial number identification">
+            if(AppCxt.Flag==0)
+            {
+                AppCxt.Flag=1;
+                __dbs("\nSerial");
+            }
+
+            rslt=ATCMD_SendGetAck("AT+CGSN\r", "\r\nOK\r\n", 250, 250);
+
+            if(rslt==RESULT_DONE)
+            {
+                //\r\n\r\n359206100023282\r\n\r\nOK\r\n
+                str_sub_between(AppSerial, &ATCMD_GetRxBuffer(0), '\n', 2, '\r', 1);
+                __dbss(":  ", AppSerial);
+                Next_Task();
+            }
+            else if(rslt==RESULT_ERR)
+            {
+                New_Task(APP_REBOOT);
+                __dbs(": error");
             } // </editor-fold>
             break;
 
@@ -378,23 +303,22 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nCIMI");
+                __dbs("\nCIMI");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CIMI\r", "OK", 250, 250);
+            rslt=ATCMD_SendGetAck("AT+CIMI\r", "\r\nOK\r\n", 250, 250);
 
-            if(rslt==PROC_DONE)
+            if(rslt==RESULT_DONE)
             {
-                //\r\n\r\n452019173922312\r\n\r\nOK\r\n
-                memset(AppCimi, 0, sizeof (AppCimi));
-                Copy_Str2Break(&ATCMD_GetBkBuffer(4), '\r', AppCimi);
-                __db(": %s", AppCimi);
+                //\r\n452019173922312\r\n\r\nOK\r\n
+                str_sub_between(AppCimi, &ATCMD_GetRxBuffer(0), '\n', 1, '\r', 1);
+                __dbss(":    ", AppCimi);
                 Next_Task();
             }
-            else if(rslt==PROC_ERR)
+            else if(rslt==RESULT_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs(": error");
             } // </editor-fold>
             break;
 
@@ -402,23 +326,22 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nCCID");
+                __dbs("\nCCID");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CCID\r", "OK", 250, 250);
+            rslt=ATCMD_SendGetAck("AT+CCID\r", "\r\nOK\r\n", 250, 250);
 
-            if(rslt==PROC_DONE)
+            if(rslt==RESULT_DONE)
             {
-                //\r\n+CCID: 8984012105502006430\r\n\r\nOK\r\n
-                memset(AppCcid, 0, sizeof (AppCcid));
-                Copy_Str2Break(&ATCMD_GetBkBuffer(11), '\r', AppCcid);
-                __db(": %s", AppCcid);
+                //\r\n\r\n8984012105502006430\r\n\r\nOK\r\n
+                str_sub_between(AppCcid, &ATCMD_GetRxBuffer(0), '\n', 2, '\r', 1);
+                __dbss(":    ", AppCcid);
                 Next_Task();
             }
-            else if(rslt==PROC_ERR)
+            else if(rslt==RESULT_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs(": error");
             } // </editor-fold>
             break;
 
@@ -426,19 +349,42 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nCheck EPS network registration status");
+                //__dbsi("\nNetwork registration: ", TryCount);
             }
 
-            rslt=ATCMD_SendGetAck("AT+CEREG?\r", "0,1", 250, 250);
+            rslt=ATCMD_SendGetAck("AT+CEREG?\r", "+CEREG: 0,1", 1000, 250);
 
-            if(rslt==PROC_DONE)
-                Next_Task();
-            else if(rslt==PROC_ERR)
+            if(rslt==RESULT_DONE)
             {
-                if(++TryCount>=10)
+                New_Task(APP_DEACTIVE_PDP);
+                //__dbs(": Registered");
+            }
+            else if(rslt==RESULT_ERR)
+            {
+                Next_Task();
+            } // </editor-fold>
+            break;
+
+        case APP_ALT_CHECK_NETWORK: // <editor-fold defaultstate="collapsed" desc="Check network registration">
+            if(AppCxt.Flag==0)
+            {
+                AppCxt.Flag=1;
+                //__dbsi("\nNetwork registration: ", TryCount);
+            }
+
+            rslt=ATCMD_SendGetAck("AT+CREG?\r", "+CREG: 0,1", 1000, 250);
+
+            if(rslt==RESULT_DONE)
+            {
+                Next_Task();
+                //__dbs(": Registered");
+            }
+            else if(rslt==RESULT_ERR)
+            {
+                if(++TryCount>=30)
                 {
                     New_Task(APP_REBOOT);
-                    __db(": Error");
+                    __dbs("\nNetwork registration error");
                 }
                 else
                     Wait_Task(1000, APP_CHECK_NETWORK);
@@ -449,126 +395,123 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nPDP context deactivation");
+                //__dbs("\nDe-active PDP");
             }
 
-            Next_Task(); // </editor-fold>
+            rslt=ATCMD_SendGetAck("AT+CFUN=0\r", "\r\n+CPIN: NOT READY\r\n", 3000, 250);
+
+            if(rslt==RESULT_DONE)
+                Next_Task();
+            else if(rslt==RESULT_ERR)
+            {
+                New_Task(APP_REBOOT);
+                __dbs("\nDe-active PDP error");
+            } // </editor-fold>
             break;
 
         case APP_SET_APN: // <editor-fold defaultstate="collapsed" desc="Set APN">
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                sprintf(TxBuff.pData, "AT+CGDCONT=1,\"IP\",\"%s\"\r", pConfig->Apn);
-                __db("\nAPN config");
+                sprintf(TxBuff.pData, "AT*MCGDEFCONT=\"IP\",\"%s\"\r", pConfig->Apn);
+                //__dbs("\nSet APN");
             }
 
-            rslt=ATCMD_SendGetAck(TxBuff.pData, "OK", 1000, 250);
+            rslt=ATCMD_SendGetAck(TxBuff.pData, "\r\nOK\r\n", 1000, 250);
 
-            if(rslt==PROC_DONE)
+            if(rslt==RESULT_DONE)
                 Next_Task();
-            else if(rslt==PROC_ERR)
+            else if(rslt==RESULT_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs("\nSet APN error");
             } // </editor-fold>
             break;
 
-        case APP_ACTIVE_PDP: // <editor-fold defaultstate="collapsed" desc="Actibe PDP">
+        case APP_ACTIVE_PDP: // <editor-fold defaultstate="collapsed" desc="Active PDP">
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nPDP context activation");
+                //__dbs("\nActive PDP");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CGACT?\r", "1,0", 60000, 250);
+            rslt=ATCMD_SendGetAck("AT+CFUN=1\r", "\r\n+CPIN: READY\r\n", 5000, 2000);
 
-            if(rslt==PROC_DONE)
-            {
+            if(rslt==RESULT_DONE)
                 Next_Task();
-                __db(": ");
-                DataDisplay(&ATCMD_GetBkBuffer(0), ATCMD_GetBkBufferSize());
+            else if(rslt==RESULT_ERR)
+            {
+                New_Task(APP_REBOOT);
+                __dbs("\nActive PDP error");
+            } // </editor-fold>
+            break;
+
+        case APP_READ_PDP: // <editor-fold defaultstate="collapsed" desc="Read PDP">
+            if(AppCxt.Flag==0)
+            {
+                AppCxt.Flag=1;
+                //__dbs("\nActive PDP");
             }
-            else if(rslt==PROC_ERR)
+
+            rslt=ATCMD_SendGetAck("AT+CGCONTRDP=1\r", "\r\nOK\r\n", 5000, 2000);
+
+            if(rslt==RESULT_DONE)
+            {
+                if(findSString(&ATCMD_GetRxBuffer(0), ATCMD_GetRxBufferSize(), "+CGCONTRDP:"))
+                {
+                    Next_Task();
+                    //\r\n+CGCONTRDP: 1,5,"m-wap","10.222.81.159.255.255.255.0",,"10.53.120.254","10.51.40.254",,,,,1500\r\n\r\nOK\r\n
+                    str_sub(AppIp, &ATCMD_GetRxBuffer(0), ',', 3, 1, '.', 4, -1);
+                    __dbss("\nIP:      ", AppIp);
+                }
+                else if(++TryCount>=5)
+                {
+                    New_Task(APP_REBOOT);
+                    __dbs("\nActive PDP error");
+                }
+                else
+                    Wait_Task(1000, APP_READ_PDP);
+            }
+            else if(rslt==RESULT_ERR)
             {
                 if(++TryCount>=5)
                 {
                     New_Task(APP_REBOOT);
-                    __db(": Error");
+                    __dbs("\nActive PDP error");
                 }
                 else
                     Wait_Task(1000, APP_ACTIVE_PDP);
             } // </editor-fold>
             break;
 
-        case APP_GET_PDP: // <editor-fold defaultstate="collapsed" desc="Get IP">
-            if(AppCxt.Flag==0)
-            {
-                AppCxt.Flag=1;
-                __db("\nProduct name");
-            }
-
-            Next_Task(); // </editor-fold>
-            break;
-
-        case APP_AUTO_TIMEZONE_UPDATE: // <editor-fold defaultstate="collapsed" desc="Enable automatic time zone update">
-            if(AppCxt.Flag==0)
-            {
-                AppCxt.Flag=1;
-                __db("\nEnable automatic time zone update");
-            }
-
-            Next_Task(); // </editor-fold>
-            break;
-
-        case APP_NET_ID_TIMEZONE: // <editor-fold defaultstate="collapsed" desc="Network Identity and Time Zone">
-            if(AppCxt.Flag==0)
-            {
-                AppCxt.Flag=1;
-                __db("\nNetwork identity and time zone");
-            }
-
-            Next_Task(); // </editor-fold>
-            break;
-
-        case APP_CLOCK_MODE: // <editor-fold defaultstate="collapsed" desc="Clock mode">
-            if(AppCxt.Flag==0)
-            {
-                AppCxt.Flag=1;
-                __db("\nSet clock mode");
-            }
-
-            Next_Task(); // </editor-fold>
-            break;
-
         case APP_GET_RTCC: // <editor-fold defaultstate="collapsed" desc="Get RTC">
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nGet RTCC");
+                __dbs("\nGet RTCC");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CCLK?\r", "OK", 1000, 250);
+            rslt=ATCMD_SendGetAck("AT+CCLK?\r", "\r\nOK\r\n", 1000, 250);
 
             if(rslt==PROC_DONE)
             {
                 //\r\n#CCLK: "22/12/28,09:52:41+28,0"\r\n\r\nOK\r\n
-                __db(": ");
-                DataDisplay(&ATCMD_GetBkBuffer(0), ATCMD_GetBkBufferSize());
+                __dbs(": ");
+                __dbdata(&ATCMD_GetRxBuffer(0), ATCMD_GetRxBufferSize());
 
-                if(strstr(&ATCMD_GetBkBuffer(0), "80/01/06")==NULL)
+                if(strstr(&ATCMD_GetRxBuffer(0), "80/01/06")==NULL)
                 {
-                    int first=1+str_1st_index(&ATCMD_GetBkBuffer(0), '"');
+                    int first=1+str_1st_index(&ATCMD_GetRxBuffer(0), '"');
 
-                    SysRtc.tm_year=Parse2(&ATCMD_GetBkBuffer(first));
-                    SysRtc.tm_mon=Parse2(&ATCMD_GetBkBuffer(first+3));
-                    SysRtc.tm_mday=Parse2(&ATCMD_GetBkBuffer(first+6));
-                    SysRtc.tm_hour=Parse2(&ATCMD_GetBkBuffer(first+9));
-                    SysRtc.tm_min=Parse2(&ATCMD_GetBkBuffer(first+12));
-                    SysRtc.tm_sec=Parse2(&ATCMD_GetBkBuffer(first+15));
+                    SysRtc.tm_year=UIntParse(&ATCMD_GetRxBuffer(first));
+                    SysRtc.tm_mon=UIntParse(&ATCMD_GetRxBuffer(first+3));
+                    SysRtc.tm_mday=UIntParse(&ATCMD_GetRxBuffer(first+6));
+                    SysRtc.tm_hour=UIntParse(&ATCMD_GetRxBuffer(first+9));
+                    SysRtc.tm_min=UIntParse(&ATCMD_GetRxBuffer(first+12));
+                    SysRtc.tm_sec=UIntParse(&ATCMD_GetRxBuffer(first+15));
                     RTCC_TimeSet(&SysRtc);
-                    __db("\nRTCC Set: %02d:%02d:%02d, ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                    __db("%02d/%02d/%02d", SysRtc.tm_mday, SysRtc.tm_mon, SysRtc.tm_year);
+                    __dbstime("\nRTCC Set: ", SysRtc);
+                    __dbsdate(", ", SysRtc);
 
                     Next_Task();
                 }
@@ -578,7 +521,7 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             else if(rslt==PROC_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs(": Error");
             } // </editor-fold>
             break;
 
@@ -586,29 +529,29 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __db("\nCreate socket");
+                __dbs("\nCreate socket");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CSOC=1,1,1\r", "OK", 5000, 250);
+            rslt=ATCMD_SendGetAck("AT+CSOC=1,1,1\r", "\r\nOK\r\n", 5000, 250);
 
             if(rslt==PROC_DONE)
             {
                 Next_Task();
-                __db(": ");
-                DataDisplay(&ATCMD_GetBkBuffer(0), ATCMD_GetBkBufferSize());
+                __dbs(": ");
+                __dbdata(&ATCMD_GetRxBuffer(0), ATCMD_GetRxBufferSize());
             }
             else if(rslt==PROC_ERR)
             {
                 if(++TryCount>=5)
                 {
                     New_Task(APP_REBOOT);
-                    __db(": Error");
+                    __dbs(": Error");
                 }
                 else
                     Wait_Task(1000, APP_CREATE_SOCKET);
             } // </editor-fold>
             break;
-            
+
         case APP_OPEN_SOCKET: // <editor-fold defaultstate="collapsed" desc="Open socket">
             if(AppCxt.Flag==0)
             {
@@ -616,11 +559,12 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                 sprintf(TxBuff.pData, "AT+CSOCON=0,%s,\"%s\"\r", pConfig->Port, pConfig->Ip);
 
                 while(!RTCC_TimeGet(&SysRtc));
-                __db("\n[%02d:%02d:%02d] ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                __db("Open socket: %s:%s", pConfig->Ip, pConfig->Port);
+                __dbstime("\n[", SysRtc);
+                __dbss("] Open socket: ", pConfig->Ip);
+                __dbss(":", pConfig->Port);
             }
 
-            rslt=ATCMD_SendGetAck(TxBuff.pData, "OK", 30000, 250);
+            rslt=ATCMD_SendGetAck(TxBuff.pData, "\r\nOK\r\n", 30000, 250);
 
             if(rslt==PROC_DONE)
             {
@@ -630,7 +574,7 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             else if(rslt==PROC_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs(": Error");
             } // </editor-fold>
             break;
 
@@ -644,9 +588,9 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                 Start=Tick_Timer_Read();
 
                 while(!RTCC_TimeGet(&SysRtc));
-                __db("\n[%02d:%02d:%02d] ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                __db("TX %d (byte): ", TxBuff.Len);
-                DataDisplay(TxBuff.pData, TxBuff.Len);
+                __dbstime("\n[", SysRtc);
+                __dbsi("] TX %d (byte): ", TxBuff.Len);
+                __dbsdata(" (byte): ", TxBuff.pData, TxBuff.Len);
             }
 
             rslt=ATCMD_SendGetAck(TxBuff.pData, RxBuff.pData, 20000, 1000);
@@ -657,9 +601,10 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                 AppCount++;
                 Stop=Tick_Timer_Read();
                 while(!RTCC_TimeGet(&SysRtc));
-                __db("\n[%02d:%02d:%02d] ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                __db("RX: Matched");
-                __db("\n--> %lu (ms)\n", (Stop-Start)/TICK_PER_MS);
+                __dbstime("\n[", SysRtc);
+                __dbs("] RX: Matched");
+                __dbsi("\n--> ", (Stop-Start)/TICK_PER_MS);
+                __dbs("(ms)\n");
 
                 if(AppCount>pConfig->AppCount)
                     New_Task(APP_REBOOT);
@@ -670,31 +615,32 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             {
                 Stop=Tick_Timer_Read();
                 while(!RTCC_TimeGet(&SysRtc));
-                __db("\n[%02d:%02d:%02d] ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                __db("RX: ");
+                __dbstime("\n[", SysRtc);
+                __dbs("] RX: ");
 
-                if(ATCMD_GetBkBufferSize()>0)
+                if(ATCMD_GetRxBufferSize()>0)
                 {
-                    DataDisplay(&ATCMD_GetBkBuffer(0), ATCMD_GetBkBufferSize());
+                    __dbdata(&ATCMD_GetRxBuffer(0), ATCMD_GetRxBufferSize());
 
-                    if(strstr(&ATCMD_GetBkBuffer(0), "NO CARRIER")!=NULL)
+                    if(strstr(&ATCMD_GetRxBuffer(0), "NO CARRIER")!=NULL)
                         Next_Task();
                 }
                 else
-                    __db("<NULL>");
+                    __dbs("<NULL>");
 
                 if(TryCount>=5)
                 {
                     New_Task(APP_CLOSE_SOCKET);
-                    __db("\nError");
+                    __dbs("\nError");
                 }
                 else
                 {
                     Wait_Task(500, APP_SEND_DATA);
-                    __db("\nRetry %d", ++TryCount);
+                    __dbsi("\nRetry %d", ++TryCount);
                 }
 
-                __db("\n--> %lu (ms)\n", (Stop-Start)/TICK_PER_MS);
+                __dbsi("\n--> ", (Stop-Start)/TICK_PER_MS);
+                __dbs("(ms)\n");
             } // </editor-fold>
             break;
 
@@ -703,18 +649,18 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             {
                 AppCxt.Flag=1;
                 while(!RTCC_TimeGet(&SysRtc));
-                __db("\n[%02d:%02d:%02d] ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                __db("Close section");
+                __dbstime("\n", SysRtc);
+                __dbs("] Close section");
             }
 
-            rslt=ATCMD_SendGetAck("+++\r", "OK", 5000, 250);
+            rslt=ATCMD_SendGetAck("+++\r", "\r\nOK\r\n", 5000, 250);
 
             if(rslt==PROC_DONE)
                 Next_Task();
             else if(rslt==PROC_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs(": Error");
             } // </editor-fold>
             break;
 
@@ -723,18 +669,18 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             {
                 AppCxt.Flag=1;
                 while(!RTCC_TimeGet(&SysRtc));
-                __db("\n[%02d:%02d:%02d] ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                __db("Close socket");
+                __dbstime("\n[", SysRtc);
+                __dbs("] Close socket");
             }
 
-            rslt=ATCMD_SendGetAck("AT#SH=1\r", "OK", 5000, 250);
+            rslt=ATCMD_SendGetAck("AT#SH=1\r", "\r\nOK\r\n", 5000, 250);
 
             if(rslt==PROC_DONE)
                 Next_Task();
             else if(rslt==PROC_ERR)
             {
                 New_Task(APP_REBOOT);
-                __db(": Error");
+                __dbs(": Error");
             } // </editor-fold>
             break;
 
@@ -744,11 +690,11 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             {
                 AppCxt.Flag=1;
                 while(!RTCC_TimeGet(&SysRtc));
-                __db("\n[%02d:%02d:%02d] ", SysRtc.tm_hour, SysRtc.tm_min, SysRtc.tm_sec);
-                __db("Module reboot");
+                __dbstime("\n[", SysRtc);
+                __dbs("] Module reboot");
             }
 
-            rslt=ATCMD_SendGetAck("AT#REBOOT\r", "OK", 5000, 250);
+            rslt=ATCMD_SendGetAck("AT+CRESET\r", "\r\nOK\r\n", 5000, 250);
 
             if(rslt==PROC_DONE)
             {
@@ -765,15 +711,17 @@ static int8_t TcpIpApp(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
 
 static void LoadCfg(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" desc="Load config">
 {
-    __db("\nLOAD CONFIGURE: %d (byte)", sizeof (cfg_t));
+    __dbsi("\nLOAD CONFIGURE: ", sizeof (cfg_t));
+    __dbs("(byte)");
     memcpy((void *) pConfig, (void *) UserConfig, sizeof (cfg_t));
 
     uint32_t crc=crc32((uint8_t *) pConfig, sizeof (cfg_t)-4);
 
     if(crc!=pConfig->Crc32)
     {
-        __db("\nCRC error %08X != %08X", crc, pConfig->Crc32);
-        __db("\nUse default config");
+        __dbsh("\nCRC error ", crc);
+        __dbsh(" != ", pConfig->Crc32);
+        __dbs("\nUse default config");
         memcpy((void *) pConfig, (void *) &DefaultConfig, sizeof (cfg_t));
     }
 
@@ -791,11 +739,12 @@ static void SaveCfg(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" des
 
     flash_storage_address=(uint32_t) UserConfig;
     FLASH_Unlock(FLASH_UNLOCK_KEY);
-    __db("\nSAVE CONFIGURE @ %08X, CRC=%08X", flash_storage_address, pConfig->Crc32);
+    __dbsh("\nSAVE CONFIGURE @ ", flash_storage_address);
+    __dbsh(", CRC=", pConfig->Crc32);
 
     if(!FLASH_ErasePage(flash_storage_address))
     {
-        __db("\nErase error");
+        __dbs("\nErase error");
         return;
     }
 
@@ -804,17 +753,15 @@ static void SaveCfg(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" des
         uint32_t Data0=*pData++;
         uint32_t Data1=*pData++;
 
-        //__db("\n%08X: %08X %08X\n", flash_storage_address+flashOffset, Data0, Data1);
-
         if(!FLASH_WriteDoubleWord(flash_storage_address+flashOffset, Data0, Data1))
         {
-            __db("\nWrite error");
+            __dbs("\nWrite error");
             return;
         }
     }
 
     FLASH_Lock();
-    __db("\nDone");
+    __dbs("\nDone");
     LoadCfg(pConfig);
 } // </editor-fold>
 
@@ -837,7 +784,7 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
         return 0;
 
     c=USB_CDC_Debug_Read();
-    __db("%c", c);
+    __dbc(c);
 
     switch(next)
     {
@@ -847,7 +794,7 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             if(FindString(c, &cmdidx[next++], "AT\r"))
             {
                 idx=0;
-                __db("\nAT COMMAND HELPER%s", Help);
+                __dbss("\nAT COMMAND HELPER%s", Help);
                 goto __EXIT_OK;
             }
 
@@ -925,7 +872,7 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                 else
                 {
                     strcpy(pConfig->Ip, pConfig->BkArr);
-                    __db("\nSet IP: %s", pConfig->Ip);
+                    __dbss("\nSet IP: ", pConfig->Ip);
                     goto __EXIT_OK;
                 }
             }
@@ -945,10 +892,12 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                     goto __EXIT_ERR;
                 else
                 {
-                    if(Parse(pConfig->BkArr, idx)<65536)
+                    pConfig->BkArr[idx++]=0;
+
+                    if(UIntParse(pConfig->BkArr)<65536)
                     {
                         strcpy(pConfig->Port, pConfig->BkArr);
-                        __db("\nSet port: %s", pConfig->Port);
+                        __dbss("\nSet port: ", pConfig->Port);
                         goto __EXIT_OK;
                     }
                     else
@@ -967,12 +916,14 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
         case 4: // Set APN
             if(c=='\r')
             {
+                pConfig->BkArr[idx++]=0;
+
                 if(idx==0)
                     goto __EXIT_ERR;
                 else
                 {
                     strcpy(pConfig->Apn, pConfig->BkArr);
-                    __db("\nSet APN: %s", pConfig->Apn);
+                    __dbss("\nSet APN: ", pConfig->Apn);
                     goto __EXIT_OK;
                 }
             }
@@ -995,11 +946,11 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                     if(pConfig->BkVal==0)
                     {
                         pConfig->BkVal=1;
-                        __db("\nMinimum message delay is 1ms");
+                        __dbs("\nMinimum message delay is 1ms");
                     }
 
                     pConfig->MsgDelay=pConfig->BkVal;
-                    __db("\nSet message delay (ms): %d", pConfig->MsgDelay);
+                    __dbsi("\nSet message delay (ms): ", pConfig->MsgDelay);
                     goto __EXIT_OK;
                 }
             }
@@ -1023,11 +974,11 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                     if(pConfig->BkVal==0)
                     {
                         pConfig->BkVal=1;
-                        __db("\nMinimum app delay is 1sec");
+                        __dbs("\nMinimum app delay is 1sec");
                     }
 
                     pConfig->AppDelay=pConfig->BkVal;
-                    __db("\nSet app delay (sec): %d", pConfig->AppDelay);
+                    __dbsi("\nSet app delay (sec): ", pConfig->AppDelay);
                     goto __EXIT_OK;
                 }
             }
@@ -1051,11 +1002,11 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
                     if(pConfig->BkVal<5)
                     {
                         pConfig->BkVal=5;
-                        __db("\nMinimum app reset count is 5");
+                        __dbs("\nMinimum app reset count is 5");
                     }
 
                     pConfig->AppCount=pConfig->BkVal;
-                    __db("\nSet reset count: %d", pConfig->AppCount);
+                    __dbsi("\nSet reset count: ", pConfig->AppCount);
                     goto __EXIT_OK;
                 }
             }
@@ -1089,7 +1040,7 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             {
                 if(idx==0)
                 {
-                    __db("\nLOAD DEFAULT CONFIG");
+                    __dbs("\nLOAD DEFAULT CONFIG");
                     memcpy((void *) pConfig, (void *) &DefaultConfig, sizeof (cfg_t));
                     goto __EXIT_OK;
                 }
@@ -1105,7 +1056,7 @@ static bool ConfigTask(cfg_t *pConfig) // <editor-fold defaultstate="collapsed" 
             {
                 if(idx==0)
                 {
-                    __db("\nDISPLAY CURRENT CONFIG");
+                    __dbs("\nDISPLAY CURRENT CONFIG");
                     ConfigDisplay(pConfig);
                     goto __EXIT_OK;
                 }
@@ -1125,7 +1076,7 @@ __EXIT_OK:
 
     idx=0;
     next=0;
-    __db("\nOK\n");
+    __dbs("\nOK\n");
     return 0;
 
 __EXIT_ERR:
@@ -1134,101 +1085,116 @@ __EXIT_ERR:
 
     idx=0;
     next=0;
-    __db("\nERROR\n");
+    __dbs("\nERROR\n");
     return 0;
 } // </editor-fold>
 
-static void Bt_SinglePress_Callback(void)
+static bool CELL_WaitPwrUp(void) // <editor-fold defaultstate="collapsed" desc="Check power up">
 {
-    __db("\nButton is pressed: 1 time");
-}
+    int8_t rslt=ATCMD_SendGetAck("AT\r", "\r\nOK\r\n", 250, 100);
 
-static void Bt_DoublePress_Callback(void)
+    if(rslt==RESULT_DONE)
+        return 1;
+
+    return 0;
+} // </editor-fold>
+
+static bool CELL_WaitPwrDown(void) // <editor-fold defaultstate="collapsed" desc="Check power down">
 {
-    __db("\nButton is pressed: 2 times");
-}
+    int8_t rslt=ATCMD_SendGetAck("AT\r", "\r\nOK\r\n", 250, 100);
 
-void Application_Init(void)
+    if(rslt==RESULT_ERR)
+        return 1;
+
+    return 0;
+} // </editor-fold>
+
+void Application_Init(void) // <editor-fold defaultstate="collapsed" desc="Application initialize">
 {
     Indicator_Init();
     RTCC_TimeSet(&SysRtc);
-    CELL_RESET_SetHigh();
-    CELL_RESET_SetDigitalOutput();
-    MOD_Button_SetSinglePress_Event(Bt_SinglePress_Callback);
-    MOD_Button_SetDoublePress_Event(Bt_DoublePress_Callback);
-}
+    RxBuff.pData=Buff1;
+    RxBuff.Size=membersof(Buff1);
+    ATCMD_Init(&RxBuff);
 
-void Application_Tasks(void)
+    TxBuff.pData=Buff2;
+    TxBuff.Size=membersof(Buff2);
+} // </editor-fold>
+
+void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Application tasks">
 {
     static cfg_t AppConfig;
     static uint8_t DoNext=0;
     static size_t AccessKey=0;
-    static tick_t TickCell={1, 0, 0};
+    static tick_timer_t TickCell={1, 0, 0};
     int8_t rslt;
-    bool softResetFlag=0;
 
     switch(DoNext)
     {
         case 0: // System info display
             DoNext++;
-            __db("%s", HwInfo);
             RestCodeDisplay();
             LoadCfg(&AppConfig);
-            Indicator_SetState(0, 25, 25, IND_LOOP_FOREVER);
+            RLED_Toggle(25, 25);
+            __dbss(HwInfo, "\nStarting up...\n");
+
+            if(CELL_WaitPwrUp())
+                DoNext++;
             break;
 
-        case 1: // Disable cellular power
-            CELL_RESET_SetHigh();
+        case 1:
+            CELL_ONOFF_SetHigh();
 
-            if(Tick_Timer_Is_Over_Sec(TickCell, 3))
+            if(Tick_Timer_Is_Over_Ms(TickCell, 300))
             {
                 DoNext++;
-                RTCC_TimeSet(&SysRtc);
-                CELL_RESET_SetLow();
-                Wait_Task(5000, APP_ECHO_OFF);
-                ATCMD_Init();
-                TxBuff.pData=Buff1;
-                RxBuff.pData=Buff2;
-                ATCMD_SetBkBuffer(Buff3);
-                Tick_Timer_Reset(AppCxt.Tick);
-                Tick_Timer_Reset(TickCell);
-                Indicator_SetState(0, 10, 990, IND_LOOP_FOREVER);
-                __db("\nApp started");
+                CELL_ONOFF_SetLow();
             }
             break;
 
-        case 2:
-            rslt=TcpIpApp(&AppConfig);
-
-            if(rslt>APP_IDLE)
+        case 2: // Disable cellular power
+            if(CELL_WaitPwrUp())
+            {
+                DoNext++;
+                Wait_Task(5000, APP_ECHO_OFF);
+                Tick_Timer_Reset(AppCxt.Tick);
+                Tick_Timer_Reset(TickCell);
+                RLED_Toggle(10, 990);
+                __dbs("\nApp started");
+            }
+            else if(Tick_Timer_Is_Over_Sec(TickCell, 3))
             {
                 DoNext--;
-                CELL_RESET_SetHigh();
-                Tick_Timer_Reset(TickCell);
-                Indicator_SetState(0, 25, 25, IND_LOOP_FOREVER);
-                __db("\nApp is restarting\n");
+                __dbs("\nModule is not working");
             }
             break;
 
         case 3:
-            DoNext++;
-            Indicator_SetState(0, 500, 500, IND_LOOP_FOREVER);
-            __db("\n\nCONFIGURATION MODE\n%s", Help);
-        case 4:
-            if(ConfigTask(&AppConfig))
+            rslt=CellTasks(&AppConfig);
+
+            if(rslt>APP_IDLE)
             {
-                DoNext++;
-                softResetFlag=1;
+                DoNext--;
+                Tick_Timer_Reset(TickCell);
+                RLED_Toggle(25, 25);
+                __dbs("\nApp is restarting\n");
             }
             break;
 
-        case 5: // Do nothing
+        case 4:
+            DoNext++;
+            RLED_Toggle(500, 500);
+            __dbss("\n\nCONFIGURATION MODE\n", Help);
+
+        case 5:
+            if(ConfigTask(&AppConfig))
+            {
+                DoNext++;
+            }
             break;
 
-        case 6:
+        case 6: // Do nothing
         default:
-            if(Tick_Timer_Is_Over_Ms(TickCell, 5000))
-                __db("\nPress BTN to start app");
             break;
     }
 
@@ -1236,44 +1202,32 @@ void Application_Tasks(void)
     {
         if(USB_CDC_Debug_Is_RxReady())
         {
-            uint8_t c=USB_CDC_Debug_Read();
-
-            if(FindString(c, &AccessKey, "$$$\r"))
-            {
+            if(FindString(USB_CDC_Debug_Read(), &AccessKey, "$$$\r"))
                 DoNext=3;
-                CELL_RESET_SetHigh();
-            }
         }
     }
 
     switch(MOD_Button_GetState())
     {
-        case SINGLE_PRESS: // Shutdown module
-            __db("\nSINGLE PRESS");
+        case SINGLE_PRESS:
+            __dbs("\nReset trigger 100ms\n");
+            MCLR_TRIG_OneShot(100);
             break;
 
         case DOUBLE_PRESS: // Configure mode
-            __db("\nDOUBLE PRESS");
-            DoNext=1;
             break;
 
         case HOLD_PRESS: // System reboot
-            __db("\nHOLD PRESS");
-            softResetFlag=1;
-            break;
+            __dbs("\nSystem is restarting\n");
+            WDT_Disable();
+            GLED_SetLow();
+            BLED_SetLow();
+            MCLR_TRIG_SetLow();
+
+            while(1)
+                TaskManager();
 
         default:
             break;
     }
-
-    if(softResetFlag==1) // System reboot
-    {
-        __db("\nSystem is restarting\n");
-        WDT_Disable();
-        CELL_RESET_SetHigh();
-        Indicator_SetHigh(0);
-
-        while(1)
-            TaskManager();
-    }
-}
+} // </editor-fold>
