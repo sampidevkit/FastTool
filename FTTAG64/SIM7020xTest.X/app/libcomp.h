@@ -7,8 +7,6 @@
 #include "usb/usb.h"
 #include "system.h"
 #include "uart2.h"
-#include "rtcc.h"
-#include "memory/flash.h"
 #include "watchdog.h"
 #include "pin_manager.h"
 #include "Bootloader/Bootloader.h"

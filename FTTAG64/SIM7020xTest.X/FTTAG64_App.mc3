@@ -10,10 +10,6 @@
          <string>class com.microchip.mcc.mcu16.modules.coreTimer.CoreTimer</string>
       </entry>
       <entry>
-         <string>FLASH</string>
-         <string>class com.microchip.mcc.mcu16.modules.flash.FLASH</string>
-      </entry>
-      <entry>
          <string>ICD</string>
          <string>class com.microchip.mcc.mcu16.systemManager.icd.Icd</string>
       </entry>
@@ -36,10 +32,6 @@
       <entry>
          <string>Pin Module</string>
          <string>class com.microchip.mcc.mcu16.pinManager.PinManager</string>
-      </entry>
-      <entry>
-         <string>RTCC</string>
-         <string>class com.microchip.mcc.mcu16.modules.rtcc.RTCC</string>
       </entry>
       <entry>
          <string>System Module</string>
@@ -71,8 +63,8 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.mcu16.Mcu16PeripheralLibrary" version="1.171.1"/>
       <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.USBDEVICELite.USBDEVICELite" version="1.27.0"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.mcu16.Mcu16PeripheralLibrary" version="1.171.1"/>
       <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.boardsupportlibrary.BoardSuppportLibrary" version="1.12.0"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
@@ -134,154 +126,6 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="CORETIMER" registerAlias="Count" settingAlias="Count"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="FLASH" name="DemoCodeGeneration"/>
-         <value>false</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="FLASH" name="FLASH_NVMIISRFunction"/>
-         <value>ISR_FLASH_NVMI</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="LVDERR" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="LVDERR" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Double-word programming operation"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="No operation"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Page erase operation"/>
-         <value>3</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Program erase operation"/>
-         <value>7</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP" alias="Row programming operation"/>
-         <value>2</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WR" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WR" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WREN" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WREN" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WRERR" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WRERR" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMKEY" settingAlias="NVMKEY" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="FLASH" registerAlias="NVMKEY" settingAlias="NVMKEY" alias="enabled"/>
-         <value>-1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMADDR"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMCON"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMDATA0"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMDATA1"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMKEY"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="FLASH" registerAlias="NVMSRCADDR"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMADDR" settingAlias="NVMADDR"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="LVDERR"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="NVMOP"/>
-         <value>No operation</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WR"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WREN"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMCON" settingAlias="WRERR"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMDATA0" settingAlias="NVMDATA0"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMDATA1" settingAlias="NVMDATA1"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMI" settingAlias="context"/>
-         <value>OFF</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMI" settingAlias="enable"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMI" settingAlias="flag"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMI" settingAlias="priority"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMKEY" settingAlias="NVMKEY"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="FLASH" registerAlias="NVMSRCADDR" settingAlias="NVMSRCADDR"/>
          <value>0</value>
       </entry>
       <entry>
@@ -5721,378 +5565,6 @@
          <value>input</value>
       </entry>
       <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="RTCC" name="AlarmTime"/>
-         <value>2023-02-23 10-13-58</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="RTCC" name="CLOCK Error"/>
-         <value/>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="RTCC" name="CLOCK FREQ"/>
-         <value>32000</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="RTCC" name="RTCCTime"/>
-         <value>2023-02-23 10-13-58</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="RTCC" name="RTCC_RTCIISRFunction"/>
-         <value>ISR_RTCC_RTCI</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="RTCC" name="disabled"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="ALRMEN" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="ALRMEN" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every 10 Minute"/>
-         <value>4</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every 10 Second"/>
-         <value>2</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Day"/>
-         <value>6</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Half Second"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Hour"/>
-         <value>5</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Minute"/>
-         <value>3</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Month"/>
-         <value>8</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Second"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Week"/>
-         <value>7</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK" alias="Every Year"/>
-         <value>9</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="CHIME" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="CHIME" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCEN" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCEN" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCOE" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCOE" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCOUT" alias="Alarm Event"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCOUT" alias="RTCC Input Clock"/>
-         <value>2</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCOUT" alias="Seconds Clock"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="WRLOCK" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="WRLOCK" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="RTCLK" alias="50_HZ"/>
-         <value>2</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="RTCLK" alias="60_HZ"/>
-         <value>2</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="RTCLK" alias="FCY"/>
-         <value>3</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="RTCLK" alias="LPRC"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="RTCLK" alias="SOSC"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="ALMEVT" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="ALMEVT" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="ALMSYNC" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="ALMSYNC" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="HALFSEC" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="HALFSEC" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="SYNC" alias="disabled"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="SYNC" alias="enabled"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="RTCC" registerAlias="ALMDATEL"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="RTCC" registerAlias="ALMTIMEL"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="RTCC" registerAlias="DATEL"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="RTCC" registerAlias="RCFGCAL"/>
-         <value>32768</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="RTCC" registerAlias="RTCPWC"/>
-         <value>1048510465</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="RTCC" registerAlias="RTCSTATL"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="RTCC" registerAlias="TIMEL"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMDATEL" settingAlias="DAYONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMDATEL" settingAlias="DAYTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMDATEL" settingAlias="MTHONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMDATEL" settingAlias="MTHTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMDATEL" settingAlias="WDAY"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMTIMEL" settingAlias="HRONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMTIMEL" settingAlias="HRTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMTIMEL" settingAlias="MINONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMTIMEL" settingAlias="MINTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMTIMEL" settingAlias="SECONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="ALMTIMEL" settingAlias="SECTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="DATEL" settingAlias="DAYONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="DATEL" settingAlias="DAYTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="DATEL" settingAlias="MTHONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="DATEL" settingAlias="MTHTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="DATEL" settingAlias="WDAY"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="DATEL" settingAlias="YRONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="DATEL" settingAlias="YRTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="ALRMEN"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="AMASK"/>
-         <value>Every Half Second</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="ARPT"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="CHIME"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCEN"/>
-         <value>enabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCOE"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="RTCOUT"/>
-         <value>Alarm Event</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RCFGCAL" settingAlias="WRLOCK"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCI" settingAlias="SubPriority"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCI" settingAlias="context"/>
-         <value>OFF</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCI" settingAlias="enable"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCI" settingAlias="flag"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCI" settingAlias="priority"/>
-         <value>1</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="DIV"/>
-         <value>15999</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="FDIV"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCPWC" settingAlias="RTCLK"/>
-         <value>LPRC</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="ALMEVT"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="ALMSYNC"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="HALFSEC"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="RTCSTATL" settingAlias="SYNC"/>
-         <value>disabled</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="TIMEL" settingAlias="HRONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="TIMEL" settingAlias="HRTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="TIMEL" settingAlias="MINONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="TIMEL" settingAlias="MINTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="TIMEL" settingAlias="SECONE"/>
-         <value>0</value>
-      </entry>
-      <entry>
-         <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="RTCC" registerAlias="TIMEL" settingAlias="SECTEN"/>
-         <value>0</value>
-      </entry>
-      <entry>
          <key class="com.microchip.mcc.core.tokenManager.OptionKey" moduleName="System Module" registerAlias="FDEVOPT" settingAlias="ALTI2C" alias="OFF"/>
          <value>16</value>
       </entry>
@@ -9401,18 +8873,110 @@
          <value>0</value>
       </entry>
    </tokenMap>
-   <generatedFileHashHistoryMap class="java.util.TreeMap">
+   <generatedFileHashHistoryMap class="java.util.HashMap">
       <entry>
-         <file>main.c</file>
-         <hash>3cd1c30d132468a46469f694f33a8bc05f60685199fbdf01afcb391c4ec2bb4a</hash>
+         <file>mcc_generated_files\interrupt_manager.h</file>
+         <hash>c4f56b7e0698d60197c5c7cdfacf64ef64d00e1aa0c54c1f643823acdfbf8dc1</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_ch9.h</file>
+         <hash>a54fc7d8f9bb1e71db712223113173a687851fd38c05a2cc878c2aed5f1fa9ac</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_hal_pic32mm.h</file>
+         <hash>f1c4eb1a9c68d9d8ebd1a4c5ccb9669c92db3cb82bebd451e311f5e02a15d3e0</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_config.h</file>
+         <hash>78a09903c1f10b0f367e0b600d67abe5a4f5c19496cbff8116c1fa911013be90</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_cdc.h</file>
+         <hash>d1c0c3f6568521ad1a09882958efbd447ce9214151684496e4342bda482bf789</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_cdc.c</file>
+         <hash>ebebd999bebdef496c21f092a95c7f402e9cec00a88d82ce5a2695f07c7eff43</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\system.h</file>
+         <hash>8a214e4f3140b4387836242dd0b34269bb59587e9a85bac1293a073b63c4359c</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\system.c</file>
+         <hash>6adcf5f0578147f7ecc4590570ff485e6935be35c49e62238ab8b6889deafba9</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\clock.h</file>
+         <hash>03dba388bf82c4ae9b6c080e2228f165bc07007fbcb713a1fe0a0a089a287548</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\mcc.c</file>
+         <hash>877fda1280b71432a62bab318abfdf04f437325bceae1afacf884297dfdf0f4f</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_descriptors.c</file>
+         <hash>217fa6619a55f9f912f1900dd362b806c93b8df2290d2032a1bceffdca3dabc7</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\mcc.h</file>
+         <hash>e8cef4fd5decad8774dba07f80a45282058b0d5afbdf9f640e721fa0be2d9fde</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\exceptions.h</file>
+         <hash>ebc44f2c9d61178a5da20063bdb4b59569d7b59ee97735e5b44ad19b34d92336</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb.h</file>
+         <hash>9de38e5cda15c760bb9b8ec78702566b8a326306626cfd8e6c9ee35bcab030f0</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\uart2.h</file>
+         <hash>a0fbea4b75b53085d895c478692e7457d98b92819541f2e5462c0ce1472699aa</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\exceptions.c</file>
+         <hash>43af9c16701718f2469a59d3ff536833f8809bace9b34968141aa48185fff499</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\clock.c</file>
          <hash>9a3f5cb9510afd022dcd52fa3e73c6e738affe8b98327f419c6dbad13ada790d</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\clock.h</file>
-         <hash>03dba388bf82c4ae9b6c080e2228f165bc07007fbcb713a1fe0a0a089a287548</hash>
+         <file>main.c</file>
+         <hash>3cd1c30d132468a46469f694f33a8bc05f60685199fbdf01afcb391c4ec2bb4a</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device.c</file>
+         <hash>386906dcfa271ae2d841b1610df4299ecb586ef8485f04273a6c649c11a5449b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\uart2.c</file>
+         <hash>671aca07faef4d9ea56d928d1d175dceb948484765c60088945b22fdb1e03f67</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device.h</file>
+         <hash>d52cca783292c65509a0a32dcee70eb352e4684078896bb9cb790123ba9cff1b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_local.h</file>
+         <hash>9f51bf91f27d6e9a19ae81be0c9dfda08c9384ea134067844918c14ff4ccba22</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_events.c</file>
+         <hash>fde4b32a9e299a6b8a259ca613f1664a7bf589bf9414573ab4e68b68bddc8351</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.h</file>
+         <hash>596a4f38e0cad473d90e0aceb35e19d6d6fc9a30484490c9cddfd326bcf8aa36</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_hal.h</file>
+         <hash>4e4ccc67c8e238ad1033ff8b9d04be5e9f00ba01ee536ac25d203cba119fe24b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.c</file>
+         <hash>98734fd02c81334bc5e67b4d52b10621fbc7bfd7cf2696c3f10c5755b90e266b</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\coretimer.c</file>
@@ -9423,128 +8987,20 @@
          <hash>00edfa4b50b3764c3afaa793a76db7185703a8a6ccabf23ef43772794ee5fbe6</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\exceptions.c</file>
-         <hash>43af9c16701718f2469a59d3ff536833f8809bace9b34968141aa48185fff499</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\exceptions.h</file>
-         <hash>ebc44f2c9d61178a5da20063bdb4b59569d7b59ee97735e5b44ad19b34d92336</hash>
+         <file>mcc_generated_files\usb\utilities\mchpcdc_template.inf</file>
+         <hash>86436164b8ceba318e16b67b479f013a3007056ad3e2aa7dbf655b6cdef7eb04</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
          <hash>fa705b3dd3ad845a0a76d831ef8a11aa75284e3931c15bc1157b6568187c8218</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>c4f56b7e0698d60197c5c7cdfacf64ef64d00e1aa0c54c1f643823acdfbf8dc1</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\mcc.c</file>
-         <hash>877fda1280b71432a62bab318abfdf04f437325bceae1afacf884297dfdf0f4f</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\mcc.h</file>
-         <hash>3608b2bfc4b4ff68223296a370e81eab1f58a4b2fdf48181b3525d414681dffd</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\memory\flash.c</file>
-         <hash>10162269ef26e2be17cc73730649b40b949fd6382692aefcf0bb627ad334506b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\memory\flash.h</file>
-         <hash>c95b1efabef172afd53f1484391f7d631d49e1939381227cf89404be56b2dbda</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.c</file>
-         <hash>98734fd02c81334bc5e67b4d52b10621fbc7bfd7cf2696c3f10c5755b90e266b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.h</file>
-         <hash>596a4f38e0cad473d90e0aceb35e19d6d6fc9a30484490c9cddfd326bcf8aa36</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\rtcc.c</file>
-         <hash>c4c8e0bc477aab5bc5395786f01a02177fd4b760408e906159b12ced7e931dac</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\rtcc.h</file>
-         <hash>093923acda3cd68a9521e1779b18bc1e89401423fb067586dc94f7fae356dfc5</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\system.c</file>
-         <hash>f8c18558ac6c9da5ef7d98bf237b2f26e3358a6a6c6ba27109ce71d253c35068</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\system.h</file>
-         <hash>8a214e4f3140b4387836242dd0b34269bb59587e9a85bac1293a073b63c4359c</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\uart2.c</file>
-         <hash>671aca07faef4d9ea56d928d1d175dceb948484765c60088945b22fdb1e03f67</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\uart2.h</file>
-         <hash>a0fbea4b75b53085d895c478692e7457d98b92819541f2e5462c0ce1472699aa</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb.h</file>
-         <hash>9de38e5cda15c760bb9b8ec78702566b8a326306626cfd8e6c9ee35bcab030f0</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_ch9.h</file>
-         <hash>a54fc7d8f9bb1e71db712223113173a687851fd38c05a2cc878c2aed5f1fa9ac</hash>
+         <file>mcc_generated_files\watchdog.h</file>
+         <hash>9c900eae4f45650d2d204a08a353e92fa731d9b97a585234f463f3632cf049c3</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\usb\usb_common.h</file>
          <hash>86617caf86de4aaa4596cea9bd17678c049be0be66d8ab6d0a0fa994bbaee7cd</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_descriptors.c</file>
-         <hash>217fa6619a55f9f912f1900dd362b806c93b8df2290d2032a1bceffdca3dabc7</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device.c</file>
-         <hash>386906dcfa271ae2d841b1610df4299ecb586ef8485f04273a6c649c11a5449b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device.h</file>
-         <hash>d52cca783292c65509a0a32dcee70eb352e4684078896bb9cb790123ba9cff1b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_cdc.c</file>
-         <hash>ebebd999bebdef496c21f092a95c7f402e9cec00a88d82ce5a2695f07c7eff43</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_cdc.h</file>
-         <hash>d1c0c3f6568521ad1a09882958efbd447ce9214151684496e4342bda482bf789</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_config.h</file>
-         <hash>78a09903c1f10b0f367e0b600d67abe5a4f5c19496cbff8116c1fa911013be90</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_events.c</file>
-         <hash>fde4b32a9e299a6b8a259ca613f1664a7bf589bf9414573ab4e68b68bddc8351</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_local.h</file>
-         <hash>9f51bf91f27d6e9a19ae81be0c9dfda08c9384ea134067844918c14ff4ccba22</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_hal.h</file>
-         <hash>4e4ccc67c8e238ad1033ff8b9d04be5e9f00ba01ee536ac25d203cba119fe24b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_hal_pic32mm.h</file>
-         <hash>f1c4eb1a9c68d9d8ebd1a4c5ccb9669c92db3cb82bebd451e311f5e02a15d3e0</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\utilities\mchpcdc_template.inf</file>
-         <hash>2afb0b00762345ddf04cf19373f902b346829eb5f15ac20abeca6896e657e3cd</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\watchdog.h</file>
-         <hash>9c900eae4f45650d2d204a08a353e92fa731d9b97a585234f463f3632cf049c3</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

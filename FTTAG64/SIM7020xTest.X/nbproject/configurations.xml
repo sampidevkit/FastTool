@@ -3,7 +3,9 @@
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="f1" displayName="Documents" projectFiles="true">
       <itemPath>../../Docs/FTTAG_v1.0.pdf</itemPath>
-      <itemPath>SIM7020E-NB-IoT-HAT-Schematic.pdf</itemPath>
+      <itemPath>../../Docs/SIM7020 Series Hardware Design_V1.03.pdf</itemPath>
+      <itemPath>../../Docs/SIM7020E-NB-IoT-HAT-Schematic.pdf</itemPath>
+      <itemPath>../../Docs/sim7020_series_at_command_manual_v1.05.pdf</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -15,9 +17,9 @@
       <logicalFolder name="f2" displayName="Configuration" projectFiles="true">
         <itemPath>cfg/Indicator_Cfg.h</itemPath>
         <itemPath>cfg/Wdt_Cfg.h</itemPath>
-        <itemPath>cfg/crc_cfg.h</itemPath>
         <itemPath>cfg/debug_cfg.h</itemPath>
         <itemPath>cfg/AtCmd_Cfg.h</itemPath>
+        <itemPath>cfg/crc32_cfg.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Library" projectFiles="true">
         <logicalFolder name="f1" displayName="Bootloader" projectFiles="true">
@@ -46,9 +48,6 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
-        <logicalFolder name="memory" displayName="memory" projectFiles="true">
-          <itemPath>mcc_generated_files/memory/flash.h</itemPath>
-        </logicalFolder>
         <logicalFolder name="usb" displayName="usb" projectFiles="true">
           <itemPath>mcc_generated_files/usb/usb_device_local.h</itemPath>
           <itemPath>mcc_generated_files/usb/usb_device_config.h</itemPath>
@@ -69,7 +68,6 @@
         <itemPath>mcc_generated_files/watchdog.h</itemPath>
         <itemPath>mcc_generated_files/system.h</itemPath>
         <itemPath>mcc_generated_files/uart2.h</itemPath>
-        <itemPath>mcc_generated_files/rtcc.h</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
@@ -95,8 +93,8 @@
           <itemPath>../../Library/Common/Util.c</itemPath>
           <itemPath>../../Library/Common/AtCmd.c</itemPath>
           <itemPath>../../Library/Common/Indicator.c</itemPath>
-          <itemPath>../../Library/Common/crc32.c</itemPath>
           <itemPath>../../Library/Common/debug.c</itemPath>
+          <itemPath>../../Library/Common/crc32.c</itemPath>
         </logicalFolder>
         <logicalFolder name="f5" displayName="Tasks" projectFiles="true">
           <itemPath>../../Library/Tasks/TaskManager.c</itemPath>
@@ -112,9 +110,6 @@
       <logicalFolder name="MCC Generated Files"
                      displayName="MCC Generated Files"
                      projectFiles="true">
-        <logicalFolder name="memory" displayName="memory" projectFiles="true">
-          <itemPath>mcc_generated_files/memory/flash.c</itemPath>
-        </logicalFolder>
         <logicalFolder name="usb" displayName="usb" projectFiles="true">
           <logicalFolder name="utilities" displayName="utilities" projectFiles="true">
             <itemPath>mcc_generated_files/usb/utilities/mchpcdc_template.inf</itemPath>
@@ -132,7 +127,6 @@
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/coretimer.c</itemPath>
         <itemPath>mcc_generated_files/uart2.c</itemPath>
-        <itemPath>mcc_generated_files/rtcc.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
     </logicalFolder>
@@ -149,6 +143,7 @@
     <Elem>../../Library</Elem>
     <Elem>../../Loadables</Elem>
     <Elem>.</Elem>
+    <Elem>../../Docs</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
