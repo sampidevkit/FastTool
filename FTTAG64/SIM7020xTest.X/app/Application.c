@@ -1,13 +1,8 @@
 #include "libcomp.h"
 #include "Application.h"
 
-#if(0)
 #define HOST_IP             "45.79.112.203"
 #define HOST_PORT           "4242"
-#else
-#define HOST_IP             "103.156.0.37"
-#define HOST_PORT           "1234"
-#endif
 
 #define SECTION_INTERVAL    1 // ms
 #define APP_COUNT           10
@@ -50,34 +45,34 @@ static struct
 
 private uint8_t Buff1[1024]; // Tx buffer
 private uint8_t Buff2[1024]; // Rx buffer
-private uint8_t Buff3[1024]; // Common buffer
 
 private buff_t TxBuff;
 private buff_t RxBuff;
-private buff_t AtcBuff;
-private uint32_t AppCount=0;
-private uint8_t AppSerial[24];
-private uint8_t AppCcid[24];
-private uint8_t AppCimi[24];
-private uint8_t AppModuleName[24];
-private uint8_t AppIp[40];
+
+private tick_t Begin;
+
+#define AppSerial       RxBuff.pData
+#define AppCcid         RxBuff.pData
+#define AppCimi         RxBuff.pData
+#define AppModuleName   RxBuff.pData
+#define AppIp           RxBuff.pData
 
 static const char HwInfo[]={
     "\n\nNB-IOT DEMO"
     "\nBuild: " __TIME__ "-" __DATE__ "\n"
 };
 
-static void Wait_Task(tick_t wait, apptask_t donext)
+static void Wait_Task(tick_t wait, apptask_t donext) // <editor-fold defaultstate="collapsed" desc="Delay before to do a new task">
 {
     if(donext!=AppCxt.DoNext)
         AppCxt.Flag=0;
-    
+
     AppCxt.Backup=AppCxt.DoNext;
     AppCxt.DoNext=APP_IDLE;
     AppCxt.ToDo=donext;
     AppCxt.Wait=wait;
     Tick_Timer_Reset(AppCxt.Tick);
-}
+} // </editor-fold>
 
 static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQTT Application">
 {
@@ -170,7 +165,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __dbs("\nSerial: ");
+                __dbs("\nSerial:  ");
             }
 
             rslt=ATCMD_SendGetAck("AT+CGSN\r", RES_OK, 250, 250, 3);
@@ -193,7 +188,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __dbs("\nCIMI: ");
+                __dbs("\nCIMI:    ");
             }
 
             rslt=ATCMD_SendGetAck("AT+CIMI\r", RES_OK, 250, 250, 3);
@@ -216,7 +211,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __dbs("\nCCID: ");
+                __dbs("\nCCID:    ");
             }
 
             rslt=ATCMD_SendGetAck("AT+CCID\r", RES_OK, 250, 250, 3);
@@ -239,10 +234,10 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __dbs("\nLTE Network: ");
+                __dbs("\nLTE:     ");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CEREG?\r", "+CEREG: 0,1", 1000, 250, 3);
+            rslt=ATCMD_SendGetAck("AT+CEREG?\r", "+CEREG: 0,1", 1000, 250, 30);
 
             if(rslt==RESULT_DONE)
             {
@@ -260,10 +255,10 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __dbs("\nGSM Network: ");
+                __dbs("\nGSM:     ");
             }
 
-            rslt=ATCMD_SendGetAck("AT+CREG?\r", "+CREG: 0,1", 1000, 250, 3);
+            rslt=ATCMD_SendGetAck("AT+CREG?\r", "+CREG: 0,1", 1000, 250, 30);
 
             if(rslt==RESULT_DONE)
             {
@@ -281,7 +276,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
-                __dbs("\nIP: ");
+                __dbs("\nIP:      ");
             }
 
             rslt=ATCMD_SendGetAck("AT+CGCONTRDP=1\r", RES_OK, 5000, 2000, 3);
@@ -294,6 +289,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
                     //\r\n+CGCONTRDP: 1,5,"m-wap","10.222.81.159.255.255.255.0",,"10.53.120.254","10.51.40.254",,,,,1500\r\n\r\nOK\r\n
                     str_sub(AppIp, &ATCMD_GetRxBuffer(0), ',', 3, 2, '.', 4, -1);
                     __dbs(AppIp);
+                    __dbsi(" - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
                 }
                 else if(++AppCxt.Flag>3)
                 {
@@ -315,10 +311,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
 
         case APP_CREATE_SOCKET: // <editor-fold defaultstate="collapsed" desc="Create socket">
             if(AppCxt.Flag==0)
-            {
                 AppCxt.Flag=1;
-                __dbs("\nOpen socket");
-            }
 
             rslt=ATCMD_SendGetAck("AT+CSOC=1,1,1\r", RES_OK, 5000, 250, 3);
 
@@ -327,7 +320,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             else if(rslt==PROC_ERR)
             {
                 New_Task(APP_REBOOT);
-                __dbs(": error");
+                __dbs("\nOpen socket error");
             } // </editor-fold>
             break;
 
@@ -336,8 +329,9 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             {
                 AppCxt.Flag=1;
                 sprintf(TxBuff.pData, "AT+CSOCON=0,%s,\"%s\"\r", HOST_PORT, HOST_IP);
-                __dbss("\nConnect to ", HOST_IP);
+                __dbss("\nConnect: ", HOST_IP);
                 __dbss(":", HOST_PORT);
+                Begin=Tick_Get();
             }
 
             rslt=ATCMD_SendGetAck(TxBuff.pData, RES_OK, 30000, 250, 3);
@@ -345,8 +339,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(rslt==PROC_DONE)
             {
                 Next_Task();
-                AppCount=1;
-                __dbs(": OK");
+                __dbsi(" - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
             }
             else if(rslt==PROC_ERR)
             {
@@ -359,42 +352,40 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 uint8_t Rnd[128];
-                
+
                 AppCxt.Flag=1;
                 srand(Tick_Get());
                 random8(Rnd, 127, ' ', '~');
                 Rnd[127]='\n';
                 RxBuff.Len=Array2AHex(RxBuff.pData, Rnd, 128);
-                sprintf(TxBuff.pData, "AT+CSOSEND=0,256,\"%s\"\r", RxBuff.pData);
+                sprintf(TxBuff.pData, "AT+CSOSEND=0,%d,\"%s\"\r", RxBuff.Len, RxBuff.pData);
                 TxBuff.Len=slen(TxBuff.pData);
                 // Remove '\n'
                 RxBuff.pData[--RxBuff.Len]=0;
                 RxBuff.pData[--RxBuff.Len]=0;
-                __dbsi("\nSend data ", RxBuff.Len);
+                __dbsi("\nSend:    ", RxBuff.Len);
                 __dbs(RxBuff.pData);
+                Begin=Tick_Get();
             }
 
-            rslt=ATCMD_SendGetAck(TxBuff.pData, RxBuff.pData, 1000, 10000, 1);
+            rslt=ATCMD_SendGetAck(TxBuff.pData, RxBuff.pData, 3000, 20000, 1);
 
             if(rslt==PROC_DONE)
             {
                 Wait_Task(5000, APP_SEND_DATA);
                 AppCxt.Flag=0;
-                __dbs("\n--> matched\n");
+                __dbsi("\n--> matched - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
             }
             else if(rslt==PROC_ERR)
             {
                 Next_Task();
-                __dbs("\n--> error\n");
+                __dbs("\n--> error");
             } // </editor-fold>
             break;
 
         case APP_CLOSE_SOCKET: // <editor-fold defaultstate="collapsed" desc="Close socket">
             if(AppCxt.Flag==0)
-            {
                 AppCxt.Flag=1;
-                __dbs("\nClose socket");
-            }
 
             rslt=ATCMD_SendGetAck("AT+CSOCL=0\r", RES_OK, 5000, 250, 3);
 
@@ -403,13 +394,13 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             else if(rslt==PROC_ERR)
             {
                 New_Task(APP_REBOOT);
-                __dbs(": error");
+                __dbs("\nClose socket error");
             } // </editor-fold>
             break;
 
         case APP_REBOOT:
         default: // <editor-fold defaultstate="collapsed" desc="Software reset">
-            return RESULT_REBOOT;// </editor-fold>
+            return RESULT_REBOOT; // </editor-fold>
     }
 
     return RESULT_BUSY;
@@ -418,15 +409,11 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
 void Application_Init(void) // <editor-fold defaultstate="collapsed" desc="Application initialize">
 {
     Indicator_Init();
+    ATCMD_Init();
     RxBuff.pData=Buff1;
     RxBuff.Size=membersof(Buff1);
-
     TxBuff.pData=Buff2;
     TxBuff.Size=membersof(Buff2);
-    
-    AtcBuff.pData=Buff3;
-    AtcBuff.Size=membersof(Buff3);
-    ATCMD_Init(&AtcBuff);
 } // </editor-fold>
 
 void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Application tasks">
@@ -439,7 +426,11 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
     switch(DoNext)
     {
         default: // ON-OFF trigger
-            CELL_ONOFF_SetHigh();
+            if(CELL_ONOFF_GetValue()==0)
+            {
+                Begin=Tick_Get();
+                CELL_ONOFF_SetHigh();
+            }
 
             if(Tick_Timer_Is_Over_Ms(TickCell, 1000))
             {
@@ -455,7 +446,7 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
 
         case 0: // System info display
             DoNext++;
-            RLED_Toggle(25, 25);
+            RLED_Toggle(50, 50);
             __dbs(HwInfo);
 
         case 1: // Check module off
@@ -482,6 +473,7 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
 
             if(rslt==RESULT_DONE) // already ON
             {
+                __dbsi("\nBoot: ", Tick_Dif_Ms(Tick_Get(), Begin));
                 DoNext++;
                 New_Task(APP_ECHO_OFF);
                 Tick_Timer_Reset(AppCxt.Tick);
@@ -507,7 +499,7 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
                 {
                     DoNext=1;
                     Tick_Timer_Reset(TickCell);
-                    RLED_Toggle(25, 25);
+                    RLED_Toggle(50, 50);
                     __dbs("\nApp is restarting\n");
                 }
             }
@@ -543,7 +535,6 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
             if(Mode==0)
             {
                 Mode=1;
-                RLED_Toggle(500, 500);
                 __dbs("\nAT Command Mode\n");
             }
             else
@@ -552,7 +543,6 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
                 New_Task(APP_ECHO_OFF);
                 Tick_Timer_Reset(AppCxt.Tick);
                 Tick_Timer_Reset(TickCell);
-                RLED_Toggle(10, 990);
                 __dbs("\nTCP/IP Test Mode\n");
             }
             break;

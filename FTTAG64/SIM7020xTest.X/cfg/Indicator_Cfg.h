@@ -1,6 +1,8 @@
 #ifndef INDICATOR_CFG_H
 #define INDICATOR_CFG_H
 
+#include "pin_manager.h"
+
 #define NUM_OF_INDICATORS       4
 #define IND_ACTIVELOGIC         1
 #define IND_INACTIVELOGIC       0

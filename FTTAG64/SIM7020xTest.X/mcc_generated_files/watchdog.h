@@ -45,6 +45,8 @@
 #ifndef WATCHDOG_H
 #define	WATCHDOG_H
 
+#include <xc.h>
+
 #define WATCHDOG_CLR_KEY 0x5743
  
 /* Enables Watch Dog Timer (WDT) using the software bit.

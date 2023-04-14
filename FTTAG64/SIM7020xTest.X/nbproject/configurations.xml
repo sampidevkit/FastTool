@@ -19,7 +19,6 @@
         <itemPath>cfg/Wdt_Cfg.h</itemPath>
         <itemPath>cfg/debug_cfg.h</itemPath>
         <itemPath>cfg/AtCmd_Cfg.h</itemPath>
-        <itemPath>cfg/crc32_cfg.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f3" displayName="Library" projectFiles="true">
         <logicalFolder name="f1" displayName="Bootloader" projectFiles="true">
@@ -30,7 +29,6 @@
           <itemPath>../../Library/Common/Util.h</itemPath>
           <itemPath>../../Library/Common/LibDef.h</itemPath>
           <itemPath>../../Library/Common/AtCmd.h</itemPath>
-          <itemPath>../../Library/Common/crc32.h</itemPath>
           <itemPath>../../Library/Common/debug.h</itemPath>
           <itemPath>../../Library/Common/Indicator.h</itemPath>
         </logicalFolder>
@@ -82,8 +80,6 @@
         <itemPath>app/libcomp.c</itemPath>
         <itemPath>app/Application.c</itemPath>
       </logicalFolder>
-      <logicalFolder name="f2" displayName="Configuration" projectFiles="true">
-      </logicalFolder>
       <logicalFolder name="f3" displayName="Library" projectFiles="true">
         <logicalFolder name="f1" displayName="Bootloader" projectFiles="true">
           <itemPath>../../Library/Bootloader/Bootloader.c</itemPath>
@@ -94,7 +90,6 @@
           <itemPath>../../Library/Common/AtCmd.c</itemPath>
           <itemPath>../../Library/Common/Indicator.c</itemPath>
           <itemPath>../../Library/Common/debug.c</itemPath>
-          <itemPath>../../Library/Common/crc32.c</itemPath>
         </logicalFolder>
         <logicalFolder name="f5" displayName="Tasks" projectFiles="true">
           <itemPath>../../Library/Tasks/TaskManager.c</itemPath>
@@ -206,7 +201,8 @@
         <property key="place-data-into-section" value="true"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros" value=""/>
+        <property key="preprocessor-macros"
+                  value="DISABLE_LIBRARY_WARNING;USB_CDC_DISABLE_LED"/>
         <property key="strict-ansi" value="false"/>
         <property key="support-ansi" value="false"/>
         <property key="tentative-definitions" value="-fno-common"/>
@@ -275,7 +271,7 @@
         <property key="optimization-level" value="-O2"/>
         <property key="preprocessor-macros" value=""/>
         <property key="remove-unused-sections" value="true"/>
-        <property key="report-memory-usage" value="true"/>
+        <property key="report-memory-usage" value="false"/>
         <property key="serial-length" value=""/>
         <property key="serial-origin" value=""/>
         <property key="stack-size" value="2048"/>
