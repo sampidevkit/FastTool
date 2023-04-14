@@ -12,10 +12,6 @@
 #define New_Task(now)       do{AppCxt.ToDo=AppCxt.Backup=AppCxt.DoNext; \
                             AppCxt.DoNext=now; AppCxt.Flag=0;}while(0)
 
-#define Wait_Task(wait, donext) do{AppCxt.Backup=AppCxt.DoNext; AppCxt.DoNext=APP_IDLE; \
-                                AppCxt.ToDo=donext; AppCxt.Wait=wait; AppCxt.Flag=0; \
-                                Tick_Timer_Reset(AppCxt.Tick);}while(0)
-
 typedef enum
 {
     APP_IDLE=1,
@@ -46,8 +42,8 @@ static struct
     uint8_t Flag;
 } AppCxt;
 
-private uint8_t Buff1[512]; // Tx buffer
-private uint8_t Buff2[64]; // Rx buffer
+private uint8_t Buff1[1024]; // Tx buffer
+private uint8_t Buff2[1024]; // Rx buffer
 
 private buff_t TxBuff;
 private buff_t RxBuff;
@@ -62,6 +58,18 @@ static const char HwInfo[]={
     "\n\nNB-IOT DEMO"
     "\nBuild: " __TIME__ "-" __DATE__ "\n"
 };
+
+static void Wait_Task(tick_t wait, apptask_t donext)
+{
+    if(donext!=AppCxt.DoNext)
+        AppCxt.Flag=0;
+    
+    AppCxt.Backup=AppCxt.DoNext;
+    AppCxt.DoNext=APP_IDLE;
+    AppCxt.ToDo=donext;
+    AppCxt.Wait=wait;
+    Tick_Timer_Reset(AppCxt.Tick);
+}
 
 static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQTT Application">
 {
@@ -79,7 +87,6 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
                 {
                     AppCxt.Backup=AppCxt.DoNext;
                     AppCxt.DoNext=AppCxt.ToDo;
-                    AppCxt.Flag=0;
                 }
             } // </editor-fold>
             break;
@@ -163,8 +170,8 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
 
             if(rslt==RESULT_DONE)
             {
-                //\r\n\r\n359206100023282\r\n\r\nOK\r\n
-                str_sub_between(AppSerial, &ATCMD_GetRxBuffer(0), '\n', 2, '\r', 1);
+                //\r\n359206100023282\r\n\r\nOK\r\n
+                str_sub_between(AppSerial, &ATCMD_GetRxBuffer(0), '\n', 1, '\r', 1);
                 __dbs(AppSerial);
                 Next_Task();
             }
@@ -209,8 +216,8 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
 
             if(rslt==RESULT_DONE)
             {
-                //\r\n\r\n8984012105502006430\r\n\r\nOK\r\n
-                str_sub_between(AppCcid, &ATCMD_GetRxBuffer(0), '\n', 2, '\r', 1);
+                //\r\n8984012105502006430\r\n\r\nOK\r\n
+                str_sub_between(AppCcid, &ATCMD_GetRxBuffer(0), '\n', 1, '\r', 1);
                 __dbs(AppCcid);
                 Next_Task();
             }
@@ -274,11 +281,11 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
 
             if(rslt==RESULT_DONE)
             {
-                if(findSString(&ATCMD_GetRxBuffer(0), ATCMD_GetRxBufferSize(), "+CGCONTRDP:"))
+                if(findSString(&ATCMD_GetRxBuffer(0), "+CGCONTRDP:"))
                 {
                     Next_Task();
                     //\r\n+CGCONTRDP: 1,5,"m-wap","10.222.81.159.255.255.255.0",,"10.53.120.254","10.51.40.254",,,,,1500\r\n\r\nOK\r\n
-                    str_sub(AppIp, &ATCMD_GetRxBuffer(0), ',', 3, 1, '.', 4, -1);
+                    str_sub(AppIp, &ATCMD_GetRxBuffer(0), ',', 3, 2, '.', 4, -1);
                     __dbs(AppIp);
                 }
                 else if(++AppCxt.Flag>3)
@@ -287,7 +294,10 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
                     __dbs("not achieve");
                 }
                 else
+                {
                     Wait_Task(1000, APP_READ_PDP);
+                    __dbsi("wait ", AppCxt.Flag);
+                }
             }
             else if(rslt==RESULT_ERR)
             {
@@ -341,7 +351,17 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
         case APP_SEND_DATA: // <editor-fold defaultstate="collapsed" desc="Send data">
             if(AppCxt.Flag==0)
             {
+                int i;
+                uint8_t Rnd[128];
+                
                 AppCxt.Flag=1;
+                srand(Tick_Get());
+                
+                for(i=0; i<127; i++)
+                    Rnd[i]=(uint8_t)rand();
+                
+                Rnd[i]='\n';
+                Array2AHex(TxBuff.pData, );
                 TxBuff.Len=sprintf(TxBuff.pData, "AT+CSOSEND=0,0,\"\n%s-%s-%s:%d.%d\"\r", AppSerial, AppCimi, AppCcid, AppCount);
                 strcpy(RxBuff.pData, &TxBuff.pData[16]);
                 Start=Tick_Timer_Read();
@@ -381,11 +401,10 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
 
         case APP_REBOOT:
         default: // <editor-fold defaultstate="collapsed" desc="Software reset">
-            // </editor-fold>
-            break;
+            return RESULT_REBOOT;// </editor-fold>
     }
 
-    return 0;
+    return RESULT_BUSY;
 } // </editor-fold>
 
 void Application_Init(void) // <editor-fold defaultstate="collapsed" desc="Application initialize">
@@ -411,32 +430,39 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
         default: // ON-OFF trigger
             CELL_ONOFF_SetHigh();
 
-            if(Tick_Timer_Is_Over_Ms(TickCell, 300))
+            if(Tick_Timer_Is_Over_Ms(TickCell, 1000))
             {
                 CELL_ONOFF_SetLow();
-                DoNext=ToDo;
+                DoNext=254;
             }
+            break;
+
+        case 254:
+            if(Tick_Timer_Is_Over_Ms(TickCell, 3000))
+                DoNext=ToDo;
             break;
 
         case 0: // System info display
             DoNext++;
             RLED_Toggle(25, 25);
-            __dbss(HwInfo, "\nTCP/IP Test Mode\n");
+            __dbs(HwInfo);
 
         case 1: // Check module off
-            rslt=ATCMD_Test(5);
+            rslt=ATCMD_Test(3);
 
             if(rslt==RESULT_DONE) // already ON
             {
                 DoNext=255;
                 ToDo=1;
                 Tick_Timer_Reset(TickCell);
+                __dbs("\nTrigger off");
             }
             else if(rslt==RESULT_ERR) // already OFF
             {
                 DoNext=255;
                 ToDo=2;
                 Tick_Timer_Reset(TickCell);
+                __dbs("\nTrigger on");
             }
             break;
 
@@ -446,17 +472,18 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
             if(rslt==RESULT_DONE) // already ON
             {
                 DoNext++;
-                Wait_Task(5000, APP_ECHO_OFF);
+                New_Task(APP_ECHO_OFF);
                 Tick_Timer_Reset(AppCxt.Tick);
                 Tick_Timer_Reset(TickCell);
                 RLED_Toggle(10, 990);
-                __dbs("\nApp started");
+                __dbs("\nTCP/IP Test Mode\n");
             }
             else if(rslt==RESULT_ERR) // already OFF
             {
                 DoNext=255;
                 ToDo=2;
                 Tick_Timer_Reset(TickCell);
+                __dbs("\nTrigger on again");
             }
             break;
 
@@ -465,7 +492,7 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
             {
                 rslt=CellTasks();
 
-                if(rslt==RESULT_ERR)
+                if(rslt==RESULT_REBOOT)
                 {
                     DoNext=2;
                     Tick_Timer_Reset(TickCell);
@@ -505,17 +532,26 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
             if(Mode==0)
             {
                 Mode=1;
+                RLED_Toggle(500, 500);
                 __dbs("\nAT Command Mode\n");
             }
             else
             {
                 Mode=0;
+                New_Task(APP_ECHO_OFF);
+                Tick_Timer_Reset(AppCxt.Tick);
+                Tick_Timer_Reset(TickCell);
+                RLED_Toggle(10, 990);
                 __dbs("\nTCP/IP Test Mode\n");
             }
             break;
 
         case HOLD_PRESS: // System reboot
             __dbs("\nSystem is restarting\n");
+            // Disable UART2
+            U2STACLR=_U2STA_UTXEN_MASK;
+            U2STACLR=_U2STA_URXEN_MASK;
+            U2MODECLR=_U2MODE_ON_MASK;
             WDT_Disable();
             GLED_SetLow();
             BLED_SetLow();

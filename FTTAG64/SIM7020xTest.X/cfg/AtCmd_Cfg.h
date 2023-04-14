@@ -11,6 +11,6 @@
 #define ATCMD_Port_IsTxDone()       UART2_IsTxDone()
 
 /* ************************************************************ Library Debug */
-//#define USE_ATCMD_DEBUG
+#define USE_ATCMD_DEBUG
 
 #endif
