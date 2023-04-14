@@ -1,8 +1,14 @@
 #include "libcomp.h"
 #include "Application.h"
 
+#if(0)
 #define HOST_IP             "45.79.112.203"
 #define HOST_PORT           "4242"
+#else
+#define HOST_IP             "103.156.0.37"
+#define HOST_PORT           "1234"
+#endif
+
 #define SECTION_INTERVAL    1 // ms
 #define APP_COUNT           10
 
@@ -44,9 +50,11 @@ static struct
 
 private uint8_t Buff1[1024]; // Tx buffer
 private uint8_t Buff2[1024]; // Rx buffer
+private uint8_t Buff3[1024]; // Common buffer
 
 private buff_t TxBuff;
 private buff_t RxBuff;
+private buff_t AtcBuff;
 private uint32_t AppCount=0;
 private uint8_t AppSerial[24];
 private uint8_t AppCcid[24];
@@ -73,7 +81,6 @@ static void Wait_Task(tick_t wait, apptask_t donext)
 
 static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQTT Application">
 {
-    static uint32_t Start, Stop;
     int8_t rslt;
 
     switch(AppCxt.DoNext)
@@ -296,7 +303,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
                 else
                 {
                     Wait_Task(1000, APP_READ_PDP);
-                    __dbsi("wait ", AppCxt.Flag);
+                    //__dbsi("wait ", AppCxt.Flag);
                 }
             }
             else if(rslt==RESULT_ERR)
@@ -351,33 +358,34 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
         case APP_SEND_DATA: // <editor-fold defaultstate="collapsed" desc="Send data">
             if(AppCxt.Flag==0)
             {
-                int i;
                 uint8_t Rnd[128];
                 
                 AppCxt.Flag=1;
                 srand(Tick_Get());
-                
-                for(i=0; i<127; i++)
-                    Rnd[i]=(uint8_t)rand();
-                
-                Rnd[i]='\n';
-                Array2AHex(TxBuff.pData, );
-                TxBuff.Len=sprintf(TxBuff.pData, "AT+CSOSEND=0,0,\"\n%s-%s-%s:%d.%d\"\r", AppSerial, AppCimi, AppCcid, AppCount);
-                strcpy(RxBuff.pData, &TxBuff.pData[16]);
-                Start=Tick_Timer_Read();
-                __dbs("\nSend data: ");
+                random8(Rnd, 127, ' ', '~');
+                Rnd[127]='\n';
+                RxBuff.Len=Array2AHex(RxBuff.pData, Rnd, 128);
+                sprintf(TxBuff.pData, "AT+CSOSEND=0,256,\"%s\"\r", RxBuff.pData);
+                TxBuff.Len=slen(TxBuff.pData);
+                // Remove '\n'
+                RxBuff.pData[--RxBuff.Len]=0;
+                RxBuff.pData[--RxBuff.Len]=0;
+                __dbsi("\nSend data ", RxBuff.Len);
+                __dbs(RxBuff.pData);
             }
 
-            rslt=ATCMD_SendGetAck(TxBuff.pData, RxBuff.pData, 20000, 1000, 3);
+            rslt=ATCMD_SendGetAck(TxBuff.pData, RxBuff.pData, 1000, 10000, 1);
 
             if(rslt==PROC_DONE)
             {
-
+                Wait_Task(5000, APP_SEND_DATA);
+                AppCxt.Flag=0;
+                __dbs("\n--> matched\n");
             }
             else if(rslt==PROC_ERR)
             {
                 Next_Task();
-                __dbs("error");
+                __dbs("\n--> error\n");
             } // </editor-fold>
             break;
 
@@ -412,10 +420,13 @@ void Application_Init(void) // <editor-fold defaultstate="collapsed" desc="Appli
     Indicator_Init();
     RxBuff.pData=Buff1;
     RxBuff.Size=membersof(Buff1);
-    ATCMD_Init(&RxBuff);
 
     TxBuff.pData=Buff2;
     TxBuff.Size=membersof(Buff2);
+    
+    AtcBuff.pData=Buff3;
+    AtcBuff.Size=membersof(Buff3);
+    ATCMD_Init(&AtcBuff);
 } // </editor-fold>
 
 void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Application tasks">
@@ -494,7 +505,7 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
 
                 if(rslt==RESULT_REBOOT)
                 {
-                    DoNext=2;
+                    DoNext=1;
                     Tick_Timer_Reset(TickCell);
                     RLED_Toggle(25, 25);
                     __dbs("\nApp is restarting\n");
