@@ -6,6 +6,7 @@
 
 #define SECTION_INTERVAL    1 // ms
 #define APP_COUNT           10
+#define TEST_DATA_SIZE      512
 
 #define Next_Task()         do{AppCxt.ToDo=AppCxt.Backup=AppCxt.DoNext; \
                             AppCxt.DoNext++; AppCxt.Flag=0;}while(0)
@@ -28,10 +29,20 @@ typedef enum
     APP_READ_PDP,
     APP_CREATE_SOCKET,
     APP_OPEN_SOCKET,
+    APP_SET_RF_REPORT,
+    APP_GET_RF_REPORT,
     APP_SEND_DATA,
     APP_CLOSE_SOCKET,
     APP_REBOOT
 } apptask_t;
+
+typedef struct
+{
+    int32_t Rsrp;
+    int32_t Rsrq;
+    int32_t Rssi;
+    int32_t Count;
+} signal_t;
 
 static struct
 {
@@ -43,13 +54,17 @@ static struct
     uint8_t Flag;
 } AppCxt;
 
-private uint8_t Buff1[1024]; // Tx buffer
-private uint8_t Buff2[1024]; // Rx buffer
+private uint8_t Buff1[ATCMD_BUFFER_SIZE]; // Tx buffer
+private uint8_t Buff2[ATCMD_BUFFER_SIZE]; // Rx buffer
 
 private buff_t TxBuff;
 private buff_t RxBuff;
 
 private tick_t Begin;
+private int TestCount;
+private signal_t RfCxt;
+private uint8_t *AppCellTac=&Buff2[0];
+private uint8_t *AppCellId=&Buff2[16];
 
 #define AppSerial       RxBuff.pData
 #define AppCcid         RxBuff.pData
@@ -328,6 +343,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(AppCxt.Flag==0)
             {
                 AppCxt.Flag=1;
+                TestCount=0;
                 sprintf(TxBuff.pData, "AT+CSOCON=0,%s,\"%s\"\r", HOST_PORT, HOST_IP);
                 __dbss("\nConnect: ", HOST_IP);
                 __dbss(":", HOST_PORT);
@@ -348,38 +364,121 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             } // </editor-fold>
             break;
 
+        case APP_SET_RF_REPORT: // <editor-fold defaultstate="collapsed" desc="Set RF report">
+            if(AppCxt.Flag==0)
+                AppCxt.Flag=1;
+
+            rslt=ATCMD_SendGetAck("AT+CENG=0\r", RES_OK, 250, 250, 3);
+
+            if(rslt==RESULT_DONE)
+            {
+                Next_Task();
+            }
+            else if(rslt==RESULT_ERR)
+            {
+                New_Task(APP_REBOOT);
+                __dbs("\nSet RF report error");
+            } // </editor-fold>
+            break;
+
+        case APP_GET_RF_REPORT: // <editor-fold defaultstate="collapsed" desc="Get RF report">
+            if(AppCxt.Flag==0)
+            {
+                AppCxt.Flag=1;
+                RfCxt.Count=0;
+                RfCxt.Rsrp=0;
+                RfCxt.Rsrq=0;
+                RfCxt.Rssi=0;
+            }
+
+            rslt=ATCMD_SendGetAck("AT+CENG?\r", RES_OK, 5000, 2000, 3);
+
+            if(rslt==RESULT_DONE)
+            {
+                if(findSString(&ATCMD_GetRxBuffer(0), "+CENG:"))
+                {
+                    int idx;
+
+                    // \r\n+CENG: 1410,3,308,"01BF9A17",-77,-10,-68,32,3,"5EAD",0,,-66\r\n\r\nOK\r\n
+                    idx=str_n_index(&ATCMD_GetRxBuffer(0), ',', 4)+1;
+                    RfCxt.Rsrp+=IntParse(&ATCMD_GetRxBuffer(idx));
+
+                    idx=str_n_index(&ATCMD_GetRxBuffer(0), ',', 5)+1;
+                    RfCxt.Rsrq+=IntParse(&ATCMD_GetRxBuffer(idx));
+
+                    idx=str_n_index(&ATCMD_GetRxBuffer(0), ',', 6)+1;
+                    RfCxt.Rssi+=IntParse(&ATCMD_GetRxBuffer(idx));
+
+                    if(++RfCxt.Count>=5)
+                    {
+                        Next_Task();
+                        str_sub(AppCellId, &ATCMD_GetRxBuffer(0), ',', 3, 2, '\"', 1, -1);
+                        str_sub(AppCellTac, &ATCMD_GetRxBuffer(0), ',', 9, 2, '\"', 1, -1);
+                        RfCxt.Rsrp/=RfCxt.Count;
+                        RfCxt.Rsrq/=RfCxt.Count;
+                        RfCxt.Rssi/=RfCxt.Count;
+
+                        __dbss("\nRF:      TAC=", AppCellTac);
+                        __dbss(", RSRQ=", AppCellId);
+                        __dbsi(", RSRP=", RfCxt.Rsrp);
+                        __dbsi(", RSRQ=", RfCxt.Rsrq);
+                        __dbsi(", RSSI=", RfCxt.Rssi);
+                    }
+                }
+                else if(++AppCxt.Flag>3)
+                {
+                    New_Task(APP_REBOOT);
+                    __dbs("not achieve");
+                }
+                else
+                {
+                    Wait_Task(1000, APP_READ_PDP);
+                    //__dbsi("wait ", AppCxt.Flag);
+                }
+            }
+            else if(rslt==RESULT_ERR)
+            {
+                New_Task(APP_REBOOT);
+                __dbs("error");
+            } // </editor-fold>
+            break;
+
         case APP_SEND_DATA: // <editor-fold defaultstate="collapsed" desc="Send data">
             if(AppCxt.Flag==0)
             {
-                uint8_t Rnd[128];
+                uint8_t Rnd[TEST_DATA_SIZE];
 
                 AppCxt.Flag=1;
                 srand(Tick_Get());
-                random8(Rnd, 127, ' ', '~');
-                Rnd[127]='\n';
-                RxBuff.Len=Array2AHex(RxBuff.pData, Rnd, 128);
+                random8(Rnd, (TEST_DATA_SIZE-1), ' ', '~');
+                Rnd[TEST_DATA_SIZE-1]='\n';
+                RxBuff.Len=Array2AHex(RxBuff.pData, Rnd, TEST_DATA_SIZE);
                 sprintf(TxBuff.pData, "AT+CSOSEND=0,%d,\"%s\"\r", RxBuff.Len, RxBuff.pData);
                 TxBuff.Len=slen(TxBuff.pData);
                 // Remove '\n'
                 RxBuff.pData[--RxBuff.Len]=0;
                 RxBuff.pData[--RxBuff.Len]=0;
-                __dbsi("\nSend:    ", RxBuff.Len);
-                __dbs(RxBuff.pData);
+                __dbsi("\n\nSend:    ", ++TestCount);
+                __dbsi(" - ", (RxBuff.Len+2)/2);
+                __dbs(" (bytes)");
+                //__dbss(" (bytes) ", RxBuff.pData);
                 Begin=Tick_Get();
             }
 
-            rslt=ATCMD_SendGetAck(TxBuff.pData, RxBuff.pData, 3000, 20000, 1);
+            rslt=ATCMD_SendGetAck(TxBuff.pData, RxBuff.pData, 30000, 30000, 1);
 
             if(rslt==PROC_DONE)
             {
-                Wait_Task(5000, APP_SEND_DATA);
-                AppCxt.Flag=0;
-                __dbsi("\n--> matched - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
+                //Wait_Task(5000, APP_SEND_DATA);
+                New_Task(APP_GET_RF_REPORT);
+                __dbsi("\n    --> matched - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
             }
             else if(rslt==PROC_ERR)
             {
                 Next_Task();
-                __dbs("\n--> error");
+                __dbsi("\n    --> error - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
+                __dbsi("\nRX ", ATCMD_GetRxLen());
+                __dbss(" (bytes): ", &ATCMD_GetRxBuffer(0));
             } // </editor-fold>
             break;
 

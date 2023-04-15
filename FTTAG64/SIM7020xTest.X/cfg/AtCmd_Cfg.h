@@ -4,7 +4,7 @@
 #include "uart2.h"
 
 /* **************************************************************** Data Port */
-#define ATCMD_BUFFER_SIZE           1024
+#define ATCMD_BUFFER_SIZE           2048
 #define ATCMD_Port_IsRxReady()      UART2_IsRxReady()
 #define ATCMD_Port_Read()           UART2_Read()
 #define ATCMD_Port_IsTxReady()      UART2_IsTxReady()
