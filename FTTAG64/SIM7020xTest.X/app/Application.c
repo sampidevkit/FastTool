@@ -25,7 +25,6 @@ typedef enum
     APP_GET_CIMI,
     APP_GET_CCID,
     APP_CHECK_NETWORK,
-    APP_ALT_CHECK_NETWORK,
     APP_READ_PDP,
     APP_CREATE_SOCKET,
     APP_OPEN_SOCKET,
@@ -261,27 +260,6 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             }
             else if(rslt==RESULT_ERR)
             {
-                Next_Task();
-                __dbs("Un-Registered");
-            } // </editor-fold>
-            break;
-
-        case APP_ALT_CHECK_NETWORK: // <editor-fold defaultstate="collapsed" desc="Check network registration">
-            if(AppCxt.Flag==0)
-            {
-                AppCxt.Flag=1;
-                __dbs("\nGSM:     ");
-            }
-
-            rslt=ATCMD_SendGetAck("AT+CREG?\r", "+CREG: 0,1", 1000, 250, 30);
-
-            if(rslt==RESULT_DONE)
-            {
-                Next_Task();
-                __dbs("Registered");
-            }
-            else if(rslt==RESULT_ERR)
-            {
                 New_Task(APP_REBOOT);
                 __dbs("Un-Registered");
             } // </editor-fold>
@@ -397,17 +375,24 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             {
                 if(findSString(&ATCMD_GetRxBuffer(0), "+CENG:"))
                 {
-                    int idx;
+                    int32_t idx, tmp;
 
                     // \r\n+CENG: 1410,3,308,"01BF9A17",-77,-10,-68,32,3,"5EAD",0,,-66\r\n\r\nOK\r\n
+                    //__dbss("\nRX: ", &ATCMD_GetRxBuffer(0));
                     idx=str_n_index(&ATCMD_GetRxBuffer(0), ',', 4)+1;
-                    RfCxt.Rsrp+=IntParse(&ATCMD_GetRxBuffer(idx));
+                    tmp=IntParse(&ATCMD_GetRxBuffer(idx));
+                    RfCxt.Rsrp+=tmp;
+                    //__dbsi("\nRSRP: ", tmp);
 
                     idx=str_n_index(&ATCMD_GetRxBuffer(0), ',', 5)+1;
-                    RfCxt.Rsrq+=IntParse(&ATCMD_GetRxBuffer(idx));
+                    tmp=IntParse(&ATCMD_GetRxBuffer(idx));
+                    RfCxt.Rsrq+=tmp;
+                    //__dbsi("\nRSRQ: ", tmp);
 
                     idx=str_n_index(&ATCMD_GetRxBuffer(0), ',', 6)+1;
-                    RfCxt.Rssi+=IntParse(&ATCMD_GetRxBuffer(idx));
+                    tmp=IntParse(&ATCMD_GetRxBuffer(idx));
+                    RfCxt.Rssi+=tmp;
+                    //__dbsi("\nRSSI: ", tmp);
 
                     if(++RfCxt.Count>=5)
                     {
@@ -418,12 +403,14 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
                         RfCxt.Rsrq/=RfCxt.Count;
                         RfCxt.Rssi/=RfCxt.Count;
 
-                        __dbss("\nRF:      TAC=", AppCellTac);
-                        __dbss(", RSRQ=", AppCellId);
+                        __dbss("\n\nRF:      TAC=", AppCellTac);
+                        __dbss(", CID=", AppCellId);
                         __dbsi(", RSRP=", RfCxt.Rsrp);
                         __dbsi(", RSRQ=", RfCxt.Rsrq);
                         __dbsi(", RSSI=", RfCxt.Rssi);
                     }
+                    else
+                        Wait_Task(1000, APP_GET_RF_REPORT);
                 }
                 else if(++AppCxt.Flag>3)
                 {
@@ -458,7 +445,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
                 // Remove '\n'
                 RxBuff.pData[--RxBuff.Len]=0;
                 RxBuff.pData[--RxBuff.Len]=0;
-                __dbsi("\n\nSend:    ", ++TestCount);
+                __dbsi("\nSend:    ", ++TestCount);
                 __dbsi(" - ", (RxBuff.Len+2)/2);
                 __dbs(" (bytes)");
                 //__dbss(" (bytes) ", RxBuff.pData);
