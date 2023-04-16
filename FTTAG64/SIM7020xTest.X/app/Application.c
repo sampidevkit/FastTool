@@ -43,6 +43,17 @@ typedef struct
     int32_t Count;
 } signal_t;
 
+typedef enum
+{
+    MAIN_INIT=0,
+    MAIN_CHECK_OFF,
+    MAIN_TRIGGER_OFF,
+    MAIN_CHECK_ON,
+    MAIN_TRIGGER_ON,
+    MAIN_TEST_MODE,
+    MAIN_AT_MODE
+} main_task_t;
+
 static struct
 {
     apptask_t DoNext;
@@ -52,6 +63,13 @@ static struct
     uint32_t Wait;
     uint8_t Flag;
 } AppCxt;
+
+static struct
+{
+    static bool Mode=0;
+    static uint8_t DoNext=0, ToDo=0;
+    static tick_timer_t TickCell={1, 0, 0};
+};
 
 private uint8_t Buff1[ATCMD_BUFFER_SIZE]; // Tx buffer
 private uint8_t Buff2[ATCMD_BUFFER_SIZE]; // Rx buffer
@@ -504,9 +522,6 @@ void Application_Init(void) // <editor-fold defaultstate="collapsed" desc="Appli
 
 void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Application tasks">
 {
-    static bool Mode=0;
-    static uint8_t DoNext=0, ToDo=0;
-    static tick_timer_t TickCell={1, 0, 0};
     int8_t rslt;
 
     switch(DoNext)
