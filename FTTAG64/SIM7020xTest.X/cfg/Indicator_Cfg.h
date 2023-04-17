@@ -30,4 +30,9 @@
 #define MCLR_TRIG_SetLow()      Indicator_SetState(3, 0, 1, IND_LOOP_FOREVER)
 #define MCLR_TRIG_OneShot(Ton)  Indicator_SetState(3, Ton, 1, 1)
 
+//#define LED5_SetState               CELL_ONOFF_SetValue
+//#define CELL_ONOFF_TRIG_SetHigh()   Indicator_SetState(3, 1, 0, IND_LOOP_FOREVER)
+//#define CELL_ONOFF_SetLow()         Indicator_SetState(3, 0, 1, IND_LOOP_FOREVER)
+//#define CELL_ONOFF_OneShot(Ton)     Indicator_SetState(3, Ton, 1, 1)
+
 #endif
