@@ -23,4 +23,7 @@
 #include "Timer/SystemTick.h"
 #include "USB/USB_CDC_Debug.h"
 
+#define CELL_PWR_EN_SetLow()
+#define CELL_PWR_EN_SetHigh()
+
 #endif

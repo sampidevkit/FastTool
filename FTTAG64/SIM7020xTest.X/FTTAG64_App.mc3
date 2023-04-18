@@ -63,9 +63,9 @@
       </entry>
    </usedClasses>
    <usedLibraries class="java.util.ArrayList">
-      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.USBDEVICELite.USBDEVICELite" version="1.27.0"/>
       <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.mcu16.Mcu16PeripheralLibrary" version="1.171.1"/>
       <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.boardsupportlibrary.BoardSuppportLibrary" version="1.12.0"/>
+      <ILibraryFile class="com.microchip.mcc.core.library.BaseLibraryFile" libraryClass="com.microchip.mcc.USBDEVICELite.USBDEVICELite" version="1.27.0"/>
    </usedLibraries>
    <tokenMap class="java.util.TreeMap">
       <entry>
@@ -4386,7 +4386,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="LATB"/>
-         <value>16642</value>
+         <value>16386</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.RegisterKey" moduleName="Pin Module" registerAlias="LATC"/>
@@ -5198,7 +5198,7 @@
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="LATB" settingAlias="LATB8"/>
-         <value>set</value>
+         <value>clear</value>
       </entry>
       <entry>
          <key class="com.microchip.mcc.core.tokenManager.SettingKey" moduleName="Pin Module" registerAlias="LATB" settingAlias="LATB9"/>
@@ -8873,110 +8873,18 @@
          <value>0</value>
       </entry>
    </tokenMap>
-   <generatedFileHashHistoryMap class="java.util.HashMap">
+   <generatedFileHashHistoryMap class="java.util.TreeMap">
       <entry>
-         <file>mcc_generated_files\interrupt_manager.h</file>
-         <hash>c4f56b7e0698d60197c5c7cdfacf64ef64d00e1aa0c54c1f643823acdfbf8dc1</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_ch9.h</file>
-         <hash>a54fc7d8f9bb1e71db712223113173a687851fd38c05a2cc878c2aed5f1fa9ac</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_hal_pic32mm.h</file>
-         <hash>f1c4eb1a9c68d9d8ebd1a4c5ccb9669c92db3cb82bebd451e311f5e02a15d3e0</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_config.h</file>
-         <hash>78a09903c1f10b0f367e0b600d67abe5a4f5c19496cbff8116c1fa911013be90</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_cdc.h</file>
-         <hash>d1c0c3f6568521ad1a09882958efbd447ce9214151684496e4342bda482bf789</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_cdc.c</file>
-         <hash>ebebd999bebdef496c21f092a95c7f402e9cec00a88d82ce5a2695f07c7eff43</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\system.h</file>
-         <hash>8a214e4f3140b4387836242dd0b34269bb59587e9a85bac1293a073b63c4359c</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\system.c</file>
-         <hash>6adcf5f0578147f7ecc4590570ff485e6935be35c49e62238ab8b6889deafba9</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\clock.h</file>
-         <hash>03dba388bf82c4ae9b6c080e2228f165bc07007fbcb713a1fe0a0a089a287548</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\mcc.c</file>
-         <hash>877fda1280b71432a62bab318abfdf04f437325bceae1afacf884297dfdf0f4f</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_descriptors.c</file>
-         <hash>217fa6619a55f9f912f1900dd362b806c93b8df2290d2032a1bceffdca3dabc7</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\mcc.h</file>
-         <hash>e8cef4fd5decad8774dba07f80a45282058b0d5afbdf9f640e721fa0be2d9fde</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\exceptions.h</file>
-         <hash>ebc44f2c9d61178a5da20063bdb4b59569d7b59ee97735e5b44ad19b34d92336</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb.h</file>
-         <hash>9de38e5cda15c760bb9b8ec78702566b8a326306626cfd8e6c9ee35bcab030f0</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\uart2.h</file>
-         <hash>a0fbea4b75b53085d895c478692e7457d98b92819541f2e5462c0ce1472699aa</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\exceptions.c</file>
-         <hash>43af9c16701718f2469a59d3ff536833f8809bace9b34968141aa48185fff499</hash>
+         <file>main.c</file>
+         <hash>3cd1c30d132468a46469f694f33a8bc05f60685199fbdf01afcb391c4ec2bb4a</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\clock.c</file>
          <hash>9a3f5cb9510afd022dcd52fa3e73c6e738affe8b98327f419c6dbad13ada790d</hash>
       </entry>
       <entry>
-         <file>main.c</file>
-         <hash>3cd1c30d132468a46469f694f33a8bc05f60685199fbdf01afcb391c4ec2bb4a</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device.c</file>
-         <hash>386906dcfa271ae2d841b1610df4299ecb586ef8485f04273a6c649c11a5449b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\uart2.c</file>
-         <hash>671aca07faef4d9ea56d928d1d175dceb948484765c60088945b22fdb1e03f67</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device.h</file>
-         <hash>d52cca783292c65509a0a32dcee70eb352e4684078896bb9cb790123ba9cff1b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_local.h</file>
-         <hash>9f51bf91f27d6e9a19ae81be0c9dfda08c9384ea134067844918c14ff4ccba22</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_device_events.c</file>
-         <hash>fde4b32a9e299a6b8a259ca613f1664a7bf589bf9414573ab4e68b68bddc8351</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.h</file>
-         <hash>596a4f38e0cad473d90e0aceb35e19d6d6fc9a30484490c9cddfd326bcf8aa36</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\usb\usb_hal.h</file>
-         <hash>4e4ccc67c8e238ad1033ff8b9d04be5e9f00ba01ee536ac25d203cba119fe24b</hash>
-      </entry>
-      <entry>
-         <file>mcc_generated_files\pin_manager.c</file>
-         <hash>98734fd02c81334bc5e67b4d52b10621fbc7bfd7cf2696c3f10c5755b90e266b</hash>
+         <file>mcc_generated_files\clock.h</file>
+         <hash>03dba388bf82c4ae9b6c080e2228f165bc07007fbcb713a1fe0a0a089a287548</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\coretimer.c</file>
@@ -8987,20 +8895,112 @@
          <hash>00edfa4b50b3764c3afaa793a76db7185703a8a6ccabf23ef43772794ee5fbe6</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\usb\utilities\mchpcdc_template.inf</file>
-         <hash>86436164b8ceba318e16b67b479f013a3007056ad3e2aa7dbf655b6cdef7eb04</hash>
+         <file>mcc_generated_files\exceptions.c</file>
+         <hash>43af9c16701718f2469a59d3ff536833f8809bace9b34968141aa48185fff499</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\exceptions.h</file>
+         <hash>ebc44f2c9d61178a5da20063bdb4b59569d7b59ee97735e5b44ad19b34d92336</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\interrupt_manager.c</file>
          <hash>fa705b3dd3ad845a0a76d831ef8a11aa75284e3931c15bc1157b6568187c8218</hash>
       </entry>
       <entry>
-         <file>mcc_generated_files\watchdog.h</file>
-         <hash>9c900eae4f45650d2d204a08a353e92fa731d9b97a585234f463f3632cf049c3</hash>
+         <file>mcc_generated_files\interrupt_manager.h</file>
+         <hash>c4f56b7e0698d60197c5c7cdfacf64ef64d00e1aa0c54c1f643823acdfbf8dc1</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\mcc.c</file>
+         <hash>877fda1280b71432a62bab318abfdf04f437325bceae1afacf884297dfdf0f4f</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\mcc.h</file>
+         <hash>85692e9524e155ae2af38059b968430bb0a0f5b11a0b3c80a8ac13b0c33918c7</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.c</file>
+         <hash>260dc95911f216cccd15815c2b8997d1258e24fb9f1a2b5a36b58ddb4de0a676</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\pin_manager.h</file>
+         <hash>596a4f38e0cad473d90e0aceb35e19d6d6fc9a30484490c9cddfd326bcf8aa36</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\system.c</file>
+         <hash>60a5454373956492a6cf50f47c54feeeacf2e374febd7a6eb4cc921677f0b149</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\system.h</file>
+         <hash>8a214e4f3140b4387836242dd0b34269bb59587e9a85bac1293a073b63c4359c</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\uart2.c</file>
+         <hash>671aca07faef4d9ea56d928d1d175dceb948484765c60088945b22fdb1e03f67</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\uart2.h</file>
+         <hash>a0fbea4b75b53085d895c478692e7457d98b92819541f2e5462c0ce1472699aa</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb.h</file>
+         <hash>9de38e5cda15c760bb9b8ec78702566b8a326306626cfd8e6c9ee35bcab030f0</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_ch9.h</file>
+         <hash>a54fc7d8f9bb1e71db712223113173a687851fd38c05a2cc878c2aed5f1fa9ac</hash>
       </entry>
       <entry>
          <file>mcc_generated_files\usb\usb_common.h</file>
          <hash>86617caf86de4aaa4596cea9bd17678c049be0be66d8ab6d0a0fa994bbaee7cd</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_descriptors.c</file>
+         <hash>217fa6619a55f9f912f1900dd362b806c93b8df2290d2032a1bceffdca3dabc7</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device.c</file>
+         <hash>386906dcfa271ae2d841b1610df4299ecb586ef8485f04273a6c649c11a5449b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device.h</file>
+         <hash>d52cca783292c65509a0a32dcee70eb352e4684078896bb9cb790123ba9cff1b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_cdc.c</file>
+         <hash>ebebd999bebdef496c21f092a95c7f402e9cec00a88d82ce5a2695f07c7eff43</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_cdc.h</file>
+         <hash>d1c0c3f6568521ad1a09882958efbd447ce9214151684496e4342bda482bf789</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_config.h</file>
+         <hash>78a09903c1f10b0f367e0b600d67abe5a4f5c19496cbff8116c1fa911013be90</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_events.c</file>
+         <hash>fde4b32a9e299a6b8a259ca613f1664a7bf589bf9414573ab4e68b68bddc8351</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_device_local.h</file>
+         <hash>9f51bf91f27d6e9a19ae81be0c9dfda08c9384ea134067844918c14ff4ccba22</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_hal.h</file>
+         <hash>4e4ccc67c8e238ad1033ff8b9d04be5e9f00ba01ee536ac25d203cba119fe24b</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\usb_hal_pic32mm.h</file>
+         <hash>f1c4eb1a9c68d9d8ebd1a4c5ccb9669c92db3cb82bebd451e311f5e02a15d3e0</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\usb\utilities\mchpcdc_template.inf</file>
+         <hash>d9c043ab089acf750f46961fef1da8a0ac2033ed9b77da9497b08b6f7e70f391</hash>
+      </entry>
+      <entry>
+         <file>mcc_generated_files\watchdog.h</file>
+         <hash>9c900eae4f45650d2d204a08a353e92fa731d9b97a585234f463f3632cf049c3</hash>
       </entry>
    </generatedFileHashHistoryMap>
 </config>

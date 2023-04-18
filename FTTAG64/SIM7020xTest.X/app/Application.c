@@ -51,12 +51,14 @@ typedef struct
 
 typedef enum
 {
-    MAIN_WAIT=0,
+    MAIN_IDLE=0,
+    MAIN_WAIT,
     MAIN_INIT,
     MAIN_TRIG_OFF,
     MAIN_TRIG_ON,
     MAIN_TEST_MODE,
-    MAIN_AT_MODE
+    MAIN_AT_MODE,
+    MAIN_FORCE_OFF
 } main_task_t;
 
 static struct
@@ -80,9 +82,9 @@ static struct
     uint8_t Flag;
 } MainCxt={
     0,
-    MAIN_INIT,
-    MAIN_INIT,
-    MAIN_INIT,
+    MAIN_IDLE,
+    MAIN_IDLE,
+    MAIN_IDLE,
     {1, 0, 0},
     1000,
     0
@@ -303,7 +305,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(rslt==RESULT_DONE)
             {
                 Cell_New(APP_READ_PDP);
-                __dbs("Registered");
+                __dbsi("Registered - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
             }
             else if(rslt==RESULT_ERR)
             {
@@ -466,7 +468,7 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
                 }
                 else
                 {
-                    App_Wait(1000, APP_READ_PDP);
+                    App_Wait(1000, APP_GET_RF_REPORT);
                     //__dbsi("wait ", CellCxt.Flag);
                 }
             }
@@ -504,7 +506,11 @@ static int8_t CellTasks(void) // <editor-fold defaultstate="collapsed" desc="MQT
             if(rslt==PROC_DONE)
             {
                 //App_Wait(5000, APP_SEND_DATA);
-                Cell_New(APP_GET_RF_REPORT);
+                if(TestCount>=10)
+                    Cell_New(APP_REBOOT);
+                else
+                    Cell_New(APP_GET_RF_REPORT);
+
                 __dbsi("\n    --> matched - Wait: ", Tick_Dif_Ms(Tick_Get(), Begin));
             }
             else if(rslt==PROC_ERR)
@@ -547,7 +553,9 @@ void Application_Init(void) // <editor-fold defaultstate="collapsed" desc="Appli
     RxBuff.Size=membersof(Buff1);
     TxBuff.pData=Buff2;
     TxBuff.Size=membersof(Buff2);
-    Cell_New(MAIN_INIT);
+    Main_New(MAIN_IDLE);
+    Tick_Timer_Reset(MainCxt.Tick);
+    __dbs(HwInfo);
 } // </editor-fold>
 
 void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Application tasks">
@@ -557,73 +565,65 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
     switch(MainCxt.DoNext)
     {
         default:
+        case MAIN_IDLE:
+            if(Tick_Timer_Is_Over_Ms(MainCxt.Tick, 3000))
+            {
+                RLED_Toggle(10, 1990);
+                __dbs("\nPress button to start app\n");
+            }
+            break;
+
         case MAIN_WAIT:
             if(Tick_Timer_Is_Over_Ms(MainCxt.Tick, MainCxt.Wait))
                 MainCxt.DoNext=MainCxt.ToDo;
             break;
 
         case MAIN_INIT: // System info display
-            Main_Next();
+            Main_Wait(1000, MAIN_TRIG_OFF);
             ATCMD_Delay(250);
-            CELL_ONOFF_SetLow();
-
-#ifdef CELL_PWR_EN_SetHigh
+            CELL_ONOFF_TRIG_SetLow();
             CELL_PWR_EN_SetHigh();
-#endif
-
             RLED_Toggle(50, 50);
-            __dbs(HwInfo);
+            GLED_Toggle(50, 50);
+            BLED_Toggle(50, 50);
             break;
 
         case MAIN_TRIG_OFF: // Check module off
-            if(CELL_ONOFF_GetValue()==1)
-                CELL_ONOFF_SetLow();
-
-#ifndef CELL_PWRMON_GetState
-            rslt=ATCMD_Test(3|ALL_STATE_OFF);
-#else
-            if(CELL_PWRMON_GetState()==1)
-                rslt=RESULT_DONE;
-            else
-                rslt=RESULT_ERR;
-#endif
-
-            if(rslt==RESULT_ERR) // already ON
+            if(ATCMD_Test(5|AT_LEAST_1ON)==RESULT_DONE) // already ON
             {
-                Main_Wait(1000, MAIN_TRIG_OFF);
-                CELL_ONOFF_SetHigh();
-                __dbs("\nTrigger off");
+                if(CELL_ONOFF_GetValue()==0)
+                {
+                    if(Tick_Timer_Is_Over_Ms(MainCxt.Tick, 12200))
+                    {
+                        CELL_ONOFF_TRIG_OneShot(1000);
+                        __dbs("\nTrigger off");
+                    }
+                }
             }
-            else if(rslt==RESULT_DONE) // already OFF
+            else // already OFF
             {
                 Main_Wait(1000, MAIN_TRIG_ON);
-                CELL_ONOFF_SetHigh();
                 Begin=Tick_Get();
+                CELL_ONOFF_TRIG_OneShot(1000);
                 __dbs("\nTrigger on");
             }
             break;
 
         case MAIN_TRIG_ON: // Check module on
-            if(CELL_ONOFF_GetValue()==1)
-                CELL_ONOFF_SetLow();
+            rslt=RESULT_BUSY;
 
-            rslt=ATCMD_Test(10|AT_LEAST_1ON);
-
-#ifdef CELL_PWRMON_GetState
-            if(CELL_PWRMON_GetState()==1)
+            if(CELL_ONOFF_GetValue()==0)
             {
-                if(Tick_Timer_Is_Over_Ms(MainCxt.Tick, 10000))
-                    rslt=RESULT_ERR;
-            }
-            else
                 Tick_Timer_Reset(MainCxt.Tick);
-#endif
+                rslt=ATCMD_Test(60|AT_LEAST_1ON);
+            }
 
             if(rslt==RESULT_DONE) // already ON
             {
                 __dbsi("\nBoot: ", Tick_Dif_Ms(Tick_Get(), Begin));
-                CELL_ONOFF_SetLow();
                 RLED_Toggle(10, 990);
+                GLED_Toggle(10, 490);
+                BLED_Toggle(10, 490);
                 Tick_Timer_Reset(MainCxt.Tick);
 
                 if(MainCxt.Mode==0)
@@ -641,9 +641,9 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
             }
             else if(rslt==RESULT_ERR) // already OFF
             {
-                CELL_ONOFF_SetHigh();
+                Begin=Tick_Get();
+                CELL_ONOFF_TRIG_OneShot(8000);
                 Tick_Timer_Reset(MainCxt.Tick);
-                Main_Wait(1000, MAIN_TRIG_ON);
                 __dbs("\nTrigger on again");
             }
             break;
@@ -653,17 +653,24 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
 
             if(rslt==RESULT_REBOOT)
             {
-                Main_New(MAIN_TRIG_OFF);
+                Main_New(MAIN_FORCE_OFF);
                 RLED_Toggle(50, 50);
-                __dbs("\nApp is restarting\n");
+                GLED_Toggle(50, 50);
+                BLED_Toggle(50, 50);
+                __dbs("\nApp force off\n");
             }
+            else if(MainCxt.Mode==1)
+                Main_New(MAIN_AT_MODE);
             break;
 
         case MAIN_AT_MODE:
             while(UART2_IsRxReady())
             {
                 if(USB_CDC_Debug_Is_TxReady())
+                {
+                    GLED_OneShot(10);
                     USB_CDC_Debug_Write(UART2_Read());
+                }
                 else
                     break;
             }
@@ -671,9 +678,38 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
             while(USB_CDC_Debug_Is_RxReady())
             {
                 if(UART2_IsTxReady())
+                {
+                    BLED_OneShot(10);
                     UART2_Write(USB_CDC_Debug_Read());
+                }
                 else
                     break;
+            }
+
+            if(MainCxt.Mode==0)
+                Main_New(MAIN_TEST_MODE);
+            break;
+
+        case MAIN_FORCE_OFF:
+            if(ATCMD_Test(5|AT_LEAST_1ON)==RESULT_DONE) // already ON
+            {
+                if(CELL_ONOFF_GetValue()==0)
+                {
+                    if(Tick_Timer_Is_Over_Ms(MainCxt.Tick, 12200))
+                    {
+                        CELL_ONOFF_TRIG_OneShot(1000);
+                        __dbs("\nTrigger off");
+                    }
+                }
+            }
+            else // already OFF
+            {
+                Main_Wait(1000, MAIN_IDLE);
+                Begin=Tick_Get();
+                CELL_PWR_EN_SetLow();
+                CELL_ONOFF_TRIG_OneShot(1000);
+                __dbs("\nApp stop\n");
+                GLED_SetLow();
             }
             break;
     }
@@ -681,8 +717,19 @@ void Application_Tasks(void) // <editor-fold defaultstate="collapsed" desc="Appl
     switch(MOD_Button_GetState())
     {
         case SINGLE_PRESS:
-            __dbs("\nReset trigger 100ms\n");
-            MCLR_TRIG_OneShot(100);
+            if(MainCxt.DoNext==MAIN_IDLE)
+            {
+                Main_New(MAIN_INIT);
+                Tick_Timer_Reset(MainCxt.Tick);
+                __dbs("\nApp start\n");
+            }
+            else if(MainCxt.DoNext!=MAIN_FORCE_OFF)
+            {
+                Main_New(MAIN_FORCE_OFF);
+                __dbs("\nApp force off\n");
+            }
+            else
+                __dbs("\nApp is shutting down");
             break;
 
         case DOUBLE_PRESS: // Configure mode
