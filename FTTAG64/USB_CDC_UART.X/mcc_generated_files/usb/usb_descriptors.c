@@ -293,7 +293,7 @@ void USB_Device_LoadUDID(void) // <editor-fold defaultstate="collapsed" desc="Lo
 
     for(i=0; i<8; i++)
     {
-        sd003.string[i]=(uint16_t)Bcd2Hex((uint8_t) (udID&0xF));
+        sd003.string[i]=(uint16_t)Bcd2AHex((uint8_t) (udID&0xF));
         udID>>=4;
     }
 
@@ -301,7 +301,7 @@ void USB_Device_LoadUDID(void) // <editor-fold defaultstate="collapsed" desc="Lo
 
     for(i=0; i<4; i++)
     {
-        sd003.string[8+i]=(uint16_t)Bcd2Hex((uint8_t) (udID&0xF));
+        sd003.string[8+i]=(uint16_t)Bcd2AHex((uint8_t) (udID&0xF));
         udID>>=4;
     }
 } // </editor-fold>
