@@ -1,0 +1,4 @@
+[submodule "FTDI/Fw/Library"]
+	path = FTDI/Fw/Library
+	url = https://github.com/sampidevkit/Library.git
+	branch = main
