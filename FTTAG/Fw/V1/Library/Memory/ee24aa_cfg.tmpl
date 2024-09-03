@@ -1,0 +1,19 @@
+#ifndef EE24AA_CFG_H
+#define	EE24AA_CFG_H
+
+#define EE24AA_CS_A0                    0
+#define EE24AA_CS_A1                    0
+#define EE24AA_CS_A2                    0
+#define EE24AA_MAX_ADDR                 0x3FFF // 128Kbit
+
+/* EE24AA_I2C_Xfer(a, b, c, d, e)
+ * a: read/write address of device
+ * b: pointer of TX data
+ * c: length of TX data
+ * d: pointer of RX data
+ * e: length or RX data                                                       */
+#define EE24AA_I2C_Xfer(a, b, c, d, e)  I2C_Xfer(a, b, c, d, e)
+#define EE24AA_I2C_GetState()           I2C_GetState()
+#define EE24AA_I2C_Init()               I2C_Init()
+
+#endif

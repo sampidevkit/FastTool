@@ -1,0 +1,29 @@
+#ifndef KIT_PIC32MM_I2C_CFG_H
+#define KIT_PIC32MM_I2C_CFG_H
+
+//#define USE_KIT_I2C
+//#define KIT_I2C_MasterOpen(slvaddr)         i2c_open(slvaddr)
+//#define KIT_I2C_MasterClose()               i2c_close()
+//#define KIT_I2C_MasterSetBuffer(pD, len)    i2c_setBuffer((void*) pD, (size_t) len)
+//#define KIT_I2C_MasterOperation(rw)         i2c_masterOperation(rw)
+
+//#define USE_KIT_I2C1
+//#define KIT_I2C1_MasterOpen(slvaddr)         i2c_open(slvaddr)
+//#define KIT_I2C1_MasterClose()               i2c_close()
+//#define KIT_I2C1_MasterSetBuffer(pD, len)    i2c_setBuffer((void*) pD, (size_t) len)
+//#define KIT_I2C1_MasterOperation(rw)         i2c_masterOperation(rw)
+
+#define USE_KIT_I2C2
+#define KIT_I2C2_MasterOpen(slvaddr)         i2c_open(slvaddr)
+#define KIT_I2C2_MasterClose()               i2c_close()
+#define KIT_I2C2_MasterSetBuffer(pD, len)    i2c_setBuffer((void*) pD, (size_t) len)
+#define KIT_I2C2_MasterOperation(rw)         i2c_masterOperation(rw)
+#define KIT_I2C2_HardwareDisale()           i2c2_driver_close()
+
+//#define USE_KIT_I2C3
+//#define KIT_I2C3_MasterOpen(slvaddr)         i2c_open(slvaddr)
+//#define KIT_I2C3_MasterClose()               i2c_close()
+//#define KIT_I2C3_MasterSetBuffer(pD, len)    i2c_setBuffer((void*) pD, (size_t) len)
+//#define KIT_I2C3_MasterOperation(rw)         i2c_masterOperation(rw)
+
+#endif
