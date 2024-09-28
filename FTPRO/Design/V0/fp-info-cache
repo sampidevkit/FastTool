@@ -1,4 +1,4 @@
-25242006283333511
+25247215177545291
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -65324,6 +65324,20 @@ HDM-1x10x2MM-SMD
 10
 10
 Liem
+HDM-1x13x2.54-SMD-RA
+
+
+0
+14
+14
+Liem
+HDM-1x14x2.54-SMD-RA
+
+
+0
+14
+14
+Liem
 HDM-2x4-2.54x7.62
 
 
@@ -102752,6 +102766,13 @@ SOT-23-6
 0
 6
 6
+Triet_KiCAD_Fprint
+SOT-23-BJT
+
+
+0
+3
+3
 Triet_KiCAD_Fprint
 SOT-23-Mosfet-DSG
 

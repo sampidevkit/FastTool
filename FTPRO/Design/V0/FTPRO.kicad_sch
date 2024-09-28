@@ -448,6 +448,82 @@
 			)
 		)
 	)
+	(sheet
+		(at 31.75 25.4)
+		(size 25.4 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "3caff212-c44a-4020-a30c-4962986dd20e")
+		(property "Sheetname" "POWER"
+			(at 31.75 24.6884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "POWER.kicad_sch"
+			(at 31.75 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "FTPRO"
+				(path "/23049313-8394-4ad2-b0e9-99c19e3c74e9"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 69.85 25.4)
+		(size 25.4 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "561ce360-8f4f-432c-b3a7-e53072455be4")
+		(property "Sheetname" "TERMINALS"
+			(at 69.85 24.6884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "TERMINALS.kicad_sch"
+			(at 69.85 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "FTPRO"
+				(path "/23049313-8394-4ad2-b0e9-99c19e3c74e9"
+					(page "3")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")

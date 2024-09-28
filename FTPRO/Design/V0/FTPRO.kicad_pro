@@ -431,7 +431,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "FT.kicad_pro",
+    "filename": "FTPRO.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -590,6 +590,14 @@
     [
       "23049313-8394-4ad2-b0e9-99c19e3c74e9",
       "Root"
+    ],
+    [
+      "3caff212-c44a-4020-a30c-4962986dd20e",
+      "POWER"
+    ],
+    [
+      "561ce360-8f4f-432c-b3a7-e53072455be4",
+      "TERMINALS"
     ]
   ],
   "text_variables": {}
