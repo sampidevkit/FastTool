@@ -1,68 +1,85 @@
-/**
-  Generated main.c file from MPLAB Code Configurator
+#include "AppMain.h"
 
-  @Company
-    Microchip Technology Inc.
-
-  @File Name
-    main.c
-
-  @Summary
-    This is the generated main.c using PIC24 / dsPIC33 / PIC32MM MCUs.
-
-  @Description
-    This source file provides main entry point for system initialization and application code development.
-    Generation Information :
-        Product Revision  :  PIC24 / dsPIC33 / PIC32MM MCUs - 1.171.5
-        Device            :  PIC24FJ256GB106
-    The generated drivers are tested against the following:
-        Compiler          :  XC16 v2.10
-        MPLAB 	          :  MPLAB X v6.05
-*/
-
-/*
-    (c) 2020 Microchip Technology Inc. and its subsidiaries. You may use this
-    software and any derivatives exclusively with Microchip products.
-
-    THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES, WHETHER
-    EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE, INCLUDING ANY IMPLIED
-    WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY, AND FITNESS FOR A
-    PARTICULAR PURPOSE, OR ITS INTERACTION WITH MICROCHIP PRODUCTS, COMBINATION
-    WITH ANY OTHER PRODUCTS, OR USE IN ANY APPLICATION.
-
-    IN NO EVENT WILL MICROCHIP BE LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE,
-    INCIDENTAL OR CONSEQUENTIAL LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND
-    WHATSOEVER RELATED TO THE SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS
-    BEEN ADVISED OF THE POSSIBILITY OR THE DAMAGES ARE FORESEEABLE. TO THE
-    FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
-    ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
-    THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
-
-    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
-    TERMS.
-*/
-
-/**
-  Section: Included Files
-*/
-#include "mcc_generated_files/system.h"
-
-/*
-                         Main application
- */
-int main(void)
+static void SYS_Info(void) // <editor-fold defaultstate="collapsed" desc="System info">
 {
-    // initialize the device
-    SYSTEM_Initialize();
+    __dbs("\r\nPIC KIT3 AVR MODE");
+    __dbss("\r\nFW: ", __DATE__);
+    __dbss(" - ", __TIME__);
+    __dbsu("\r\nClock: ", _XTAL_FREQ);
+    __dbsh("Hz\r\nReset code: ", RCON);
 
-    while (1)
+    if(RCONbits.TRAPR)
+        __dbs("\r\n-->TRAPR: A Trap Conflict Reset has occurred");
+
+    if(RCONbits.IOPUWR)
+        __dbs("\r\n-->IOPUWR: An illegal opcode/address or uninitialized W register used as an Address Pointer");
+
+    if(RCONbits.CM)
+        __dbs("\r\n-->CM: A Configuration Word Mismatch Reset has occurred");
+
+    if(RCONbits.PMSLP)
+        __dbs("\r\n-->PMSLP: Program memory bias voltage remains powered during Sleep");
+
+    if(RCONbits.EXTR)
+        __dbs("\r\n-->EXTR:  Master Clear (pin) Reset has occurred");
+
+    if(RCONbits.SWR)
+        __dbs("\r\n-->SWR: Software Reset was executed");
+
+    if(RCONbits.WDTO)
+        __dbs("\r\n-->WDTO: Watchdog Timer Time-out Flag bit");
+
+    if(RCONbits.SLEEP)
+        __dbs("\r\n-->SLEEP: Device was in Sleep mode");
+
+    if(RCONbits.IDLE)
+        __dbs("\r\n-->IDLE: Device was in Idle mode");
+
+    if(RCONbits.BOR)
+        __dbs("\r\n-->BOR: Brown-out Reset has occurred");
+
+    if(RCONbits.POR)
+        __dbs("\r\n-->POR: Power-on Reset has occurred");
+
+    RCON&=0x0020; // Clear all bits, exclude bit 5: SWDTEN
+} // </editor-fold>
+
+void SYS_Wait(void) // <editor-fold defaultstate="collapsed" desc="System waiting task">
+{
+    ClrWdt();
+    TaskManager();
+} // </editor-fold>
+
+int main(void) // <editor-fold defaultstate="collapsed" desc="Main">
+{
+    uint32_t usbID[2];
+
+    SYSTEM_Initialize();
+    Enable_Global_Interrupt();
+
+    Tick_Timer_Init();
+    TaskManager_Init();
+    Tick_Timer_SetFncCallInDelay(SYS_Wait);
+    USB_Device_LoadUDID(usbID);
+    USBDeviceInit();
+    USBDeviceAttach();
+    VCP_Init();
+    BUTTON_Init(ModeBtCxt, NULL, NULL, NULL);
+    Indicator_Init();
+    Indicator_Toggle(0, 500, 500);
+    __delay_ms(5000);
+    SYS_Info();
+    __dbs("\r\nUSB ID: ");
+    __dbh8(usbID[0]);
+    __dbh8(usbID[1]);
+    __dbs("\r\nSystem init done\r\n");
+    AppMain_Init();
+
+    while(1)
     {
-        // Add your application code
+        SYS_Wait();
+        AppMain_Tasks();
     }
 
     return 1;
-}
-/**
- End of File
-*/
-
+} // </editor-fold>

@@ -53,16 +53,19 @@
 void INTERRUPT_Initialize (void)
 {
     //    USBI: USB1 - USB1 Interrupt
-    //    Priority: 1
-        IPC21bits.USB1IP = 1;
+    //    Priority: 5
+        IPC21bits.USB1IP = 5;
     //    UERI: U1E - UART1 Error
-    //    Priority: 1
-        IPC16bits.U1ERIP = 1;
+    //    Priority: 4
+        IPC16bits.U1ERIP = 4;
     //    UTXI: U1TX - UART1 Transmitter
-    //    Priority: 1
-        IPC3bits.U1TXIP = 1;
+    //    Priority: 3
+        IPC3bits.U1TXIP = 3;
     //    URXI: U1RX - UART1 Receiver
+    //    Priority: 2
+        IPC2bits.U1RXIP = 2;
+    //    TI: T4 - Timer4
     //    Priority: 1
-        IPC2bits.U1RXIP = 1;
+        IPC6bits.T4IP = 1;
 
 }

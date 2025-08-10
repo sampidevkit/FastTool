@@ -8,7 +8,15 @@
             <make-project-type>0</make-project-type>
             <sourceEncoding>ISO-8859-1</sourceEncoding>
             <make-dep-projects/>
-            <sourceRootList/>
+            <sourceRootList>
+                <sourceRootElem>clib/common</sourceRootElem>
+                <sourceRootElem>clib/system</sourceRootElem>
+                <sourceRootElem>apps</sourceRootElem>
+                <sourceRootElem>cfg</sourceRootElem>
+                <sourceRootElem>../../Docs</sourceRootElem>
+                <sourceRootElem>clib/indicator</sourceRootElem>
+                <sourceRootElem>clib/buttons</sourceRootElem>
+            </sourceRootList>
             <confList>
                 <confElem>
                     <name>default</name>

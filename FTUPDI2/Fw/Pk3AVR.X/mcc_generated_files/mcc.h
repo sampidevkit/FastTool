@@ -51,16 +51,17 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "uart1.h"
+#include "tmr2.h"
+#include "tmr4.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "usb/usb.h"
-#include "tmr1.h"
-#include "tmr2.h"
 #include "oc1.h"
+#include "tmr1.h"
+#include "usb/usb.h"
 #include "adc1.h"
-#include "uart1.h"
 
-#warning "This file will be removed in future MCC releases. Use system.h instead."
+//#warning "This file will be removed in future MCC releases. Use system.h instead."
 
 #endif	/* MCC_H */
 /**

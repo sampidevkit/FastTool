@@ -1,69 +1,27 @@
-// DOM-IGNORE-BEGIN
-/*******************************************************************************
-Copyright 2015 Microchip Technology Inc. (www.microchip.com)
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-To request to license the code under the MLA license (www.microchip.com/mla_license), 
-please contact mla_licensing@microchip.com
-*******************************************************************************/
-//DOM-IGNORE-END
-
-/********************************************************************
- Change History:
-  Rev    Description
-  ----   -----------
-  2.3    Deprecated the mUSBUSARTIsTxTrfReady() macro.  It is 
-         replaced by the USBUSARTIsTxTrfReady() function.
-
-  2.6    Minor definition changes
-
-  2.6a   No Changes
-
-  2.7    Fixed error in the part support list of the variables section
-         where the address of the CDC variables are defined.  The 
-         PIC18F2553 was incorrectly named PIC18F2453 and the PIC18F4558
-         was incorrectly named PIC18F4458.
-
-         http://www.microchip.com/forums/fb.aspx?m=487397
-
-  2.8    Minor change to CDCInitEP() to enhance ruggedness in
-         multi0-threaded usage scenarios.
-  
-  2.9b   Updated to implement optional support for DTS reporting.
-
-********************************************************************/
-
-/** I N C L U D E S **********************************************************/
-#include "usb.h"
+#include <stdio.h>
 #include "usb_device_cdc.h"
+#include "usb.h"
 
-#ifdef USB_USE_CDC
+#if(0)
+#include "Common/TinyPrintf.h"
+#else
+#define __tsdbsu(...)
+#define __tsdbs(...)
+#define __dbsu(...)
+#endif
 
 #ifndef FIXED_ADDRESS_MEMORY
-    #define IN_DATA_BUFFER_ADDRESS_TAG
-    #define OUT_DATA_BUFFER_ADDRESS_TAG
-    #define CONTROL_BUFFER_ADDRESS_TAG
-    #define DRIVER_DATA_ADDRESS_TAG
+#define IN_DATA_BUFFER_ADDRESS_TAG
+#define OUT_DATA_BUFFER_ADDRESS_TAG
+#define CONTROL_BUFFER_ADDRESS_TAG
 #endif
 
-#if !defined(IN_DATA_BUFFER_ADDRESS_TAG) || !defined(OUT_DATA_BUFFER_ADDRESS_TAG) || !defined(CONTROL_BUFFER_ADDRESS_TAG) || !defined(DRIVER_DATA_ADDRESS_TAG)
-    #error "One of the fixed memory address definitions is not defined.  Please define the required address tags for the required buffers."
+#if !defined(IN_DATA_BUFFER_ADDRESS_TAG) || !defined(OUT_DATA_BUFFER_ADDRESS_TAG) || !defined(CONTROL_BUFFER_ADDRESS_TAG)
+#error "One of the fixed memory address definitions is not defined.  Please define the required address tags for the required buffers."
 #endif
 
-/** V A R I A B L E S ********************************************************/
-volatile unsigned char cdc_data_tx[CDC_DATA_IN_EP_SIZE] IN_DATA_BUFFER_ADDRESS_TAG;
-volatile unsigned char cdc_data_rx[CDC_DATA_OUT_EP_SIZE] OUT_DATA_BUFFER_ADDRESS_TAG;
+volatile unsigned char cdc_data_tx[NUM_OF_CDC_PORTS][CDC_DATA_IN_EP_SIZE] IN_DATA_BUFFER_ADDRESS_TAG;
+volatile unsigned char cdc_data_rx[NUM_OF_CDC_PORTS][CDC_DATA_OUT_EP_SIZE] OUT_DATA_BUFFER_ADDRESS_TAG;
 
 typedef union
 {
@@ -71,852 +29,507 @@ typedef union
     CDC_NOTICE cdcNotice;
 } CONTROL_BUFFER;
 
-//static CONTROL_BUFFER controlBuffer CONTROL_BUFFER_ADDRESS_TAG;
-
-LINE_CODING line_coding;    // Buffer to store line coding information
+LINE_CODING line_coding; // Buffer to store line coding information
 CDC_NOTICE cdc_notice;
 
-#if defined(USB_CDC_SUPPORT_DSR_REPORTING)
-    SERIAL_STATE_NOTIFICATION SerialStatePacket DRIVER_DATA_ADDRESS_TAG;
-#endif
+uint8_t cdc_rx_len[NUM_OF_CDC_PORTS]; // total rx length
+uint8_t cdc_trf_state[NUM_OF_CDC_PORTS]; // States are defined cdc.h
+POINTER pCDCSrc[NUM_OF_CDC_PORTS]; // Dedicated source pointer
+POINTER pCDCDst[NUM_OF_CDC_PORTS]; // Dedicated destination pointer
+uint8_t cdc_tx_len[NUM_OF_CDC_PORTS]; // total tx length
+uint8_t cdc_mem_type[NUM_OF_CDC_PORTS]; // _ROM, _RAM
 
-uint8_t cdc_rx_len;            // total rx length
-uint8_t cdc_trf_state;         // States are defined cdc.h
-POINTER pCDCSrc;            // Dedicated source pointer
-POINTER pCDCDst;            // Dedicated destination pointer
-uint8_t cdc_tx_len;            // total tx length
-uint8_t cdc_mem_type;          // _ROM, _RAM
-
-USB_HANDLE CDCDataOutHandle;
-USB_HANDLE CDCDataInHandle;
-
+USB_HANDLE CDCDataOutHandle[NUM_OF_CDC_PORTS];
+USB_HANDLE CDCDataInHandle[NUM_OF_CDC_PORTS];
 
 CONTROL_SIGNAL_BITMAP control_signal_bitmap;
-uint32_t BaudRateGen;			// BRG value calculated from baud rate
 
-#if defined(USB_CDC_SUPPORT_DSR_REPORTING)
-    BM_SERIAL_STATE SerialStateBitmap;
-    BM_SERIAL_STATE OldSerialStateBitmap;
-    USB_HANDLE CDCNotificationInHandle;
-#endif
-
-/**************************************************************************
-  SEND_ENCAPSULATED_COMMAND and GET_ENCAPSULATED_RESPONSE are required
-  requests according to the CDC specification.
-  However, it is not really being used here, therefore a dummy buffer is
-  used for conformance.
- **************************************************************************/
 #define dummy_length    0x08
 uint8_t dummy_encapsulated_cmd_response[dummy_length];
 
-#if defined(USB_CDC_SET_LINE_CODING_HANDLER)
-CTRL_TRF_RETURN USB_CDC_SET_LINE_CODING_HANDLER(CTRL_TRF_PARAMS);
+#if defined(USB_CDC_SUPPORT_DTR_SIGNALING)
+static cdc_pin_cb_fnc DTRPin_Handler[NUM_OF_CDC_PORTS]={
+    NULL,
+
+#if(NUM_OF_CDC_PORTS>=2)
+    NULL,
 #endif
 
-/** P R I V A T E  P R O T O T Y P E S ***************************************/
-void USBCDCSetLineCoding(void);
+#if(NUM_OF_CDC_PORTS>=3)
+    NULL,
+#endif
 
-/** D E C L A R A T I O N S **************************************************/
-//#pragma code
+#if(NUM_OF_CDC_PORTS>=4)
+    NULL,
+#endif
 
-/** C L A S S  S P E C I F I C  R E Q ****************************************/
-/******************************************************************************
- 	Function:
- 		void USBCheckCDCRequest(void)
- 
- 	Description:
- 		This routine checks the most recently received SETUP data packet to 
- 		see if the request is specific to the CDC class.  If the request was
- 		a CDC specific request, this function will take care of handling the
- 		request and responding appropriately.
- 		
- 	PreCondition:
- 		This function should only be called after a control transfer SETUP
- 		packet has arrived from the host.
+#if(NUM_OF_CDC_PORTS>=5)
+    NULL,
+#endif
 
-	Parameters:
-		None
-		
-	Return Values:
-		None
-		
-	Remarks:
-		This function does not change status or do anything if the SETUP packet
-		did not contain a CDC class specific request.		 
-  *****************************************************************************/
-void USBCheckCDCRequest(void)
+#if(NUM_OF_CDC_PORTS>=6)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=7)
+    NULL
+#endif
+};
+
+static void DTRPin_DefaultHandler(char logic)
 {
-    /*
-     * If request recipient is not an interface then return
-     */
-    if(SetupPkt.Recipient != USB_SETUP_RECIPIENT_INTERFACE_BITFIELD) return;
+    __tsdbsu("Port1 DTR=", logic);
+}
 
-    /*
-     * If request type is not class-specific then return
-     */
-    if(SetupPkt.RequestType != USB_SETUP_TYPE_CLASS_BITFIELD) return;
+void DTRPin_SetHandler(uint8_t index, cdc_pin_cb_fnc cbFnc)
+{
+    USBMaskInterrupts();
 
-    /*
-     * Interface ID must match interface numbers associated with
-     * CDC class, else return
-     */
-    if((SetupPkt.bIntfID != CDC_COMM_INTF_ID)&&
-       (SetupPkt.bIntfID != CDC_DATA_INTF_ID)) return;
-    
+    if(cbFnc!=NULL)
+        DTRPin_Handler[index]=cbFnc;
+    else
+        DTRPin_Handler[index]=DTRPin_DefaultHandler;
+
+    USBUnmaskInterrupts();
+}
+
+#endif
+
+#if defined(USB_CDC_SUPPORT_HARDWARE_FLOW_CONTROL)
+static cdc_pin_cb_fnc CTSPin_Handler[NUM_OF_CDC_PORTS]={
+    NULL,
+
+#if(NUM_OF_CDC_PORTS>=2)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=3)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=4)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=5)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=6)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=7)
+    NULL
+#endif
+};
+
+static void CTSPin_DefaultHandler(char logic)
+{
+    __tsdbsu("Port1 CTS=", logic);
+}
+
+void CTSPin_SetHandler(uint8_t index, cdc_pin_cb_fnc cbFnc)
+{
+    USBMaskInterrupts();
+
+    if(cbFnc!=NULL)
+        CTSPin_Handler[index]=cbFnc;
+    else
+        CTSPin_Handler[index]=CTSPin_DefaultHandler;
+
+    USBUnmaskInterrupts();
+}
+#endif
+
+static cdc_coding_cb_fnc USB_CDC_LineCodingHandler[NUM_OF_CDC_PORTS]={
+    NULL,
+
+#if(NUM_OF_CDC_PORTS>=2)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=3)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=4)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=5)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=6)
+    NULL,
+#endif
+
+#if(NUM_OF_CDC_PORTS>=7)
+    NULL
+#endif
+};
+
+static void USB_CDC_DefaultLineCodingHandler(void)
+{
+    __tsdbs("Port1 Line Coding");
+    __dbsu("Baud: ", line_coding.bDataBits);
+    __dbsu("Parity: ", line_coding.bParityType);
+}
+
+void USB_CDC_SetLineCodingHandler(uint8_t index, cdc_coding_cb_fnc cbFnc)
+{
+    USBMaskInterrupts();
+
+    if(cbFnc!=NULL)
+        USB_CDC_LineCodingHandler[index]=cbFnc;
+    else
+        USB_CDC_LineCodingHandler[index]=USB_CDC_DefaultLineCodingHandler;
+
+    USBUnmaskInterrupts();
+}
+
+static uint8_t getDataEndpointName(uint8_t index) // <editor-fold defaultstate="collapsed" desc="Get DATA endpoint name">
+{
+    switch(index)
+    {
+        case 0:
+#if(NUM_OF_CDC_PORTS>1)
+            return CDC1_DATA_EP;
+#else
+            return CDC_DATA_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=2)
+        case 1:
+            return CDC2_DATA_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=3)
+        case 2:
+            return CDC3_DATA_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=4)
+        case 3:
+            return CDC4_DATA_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=5)
+        case 4:
+            return CDC5_DATA_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=6)
+        case 5:
+            return CDC6_DATA_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=7)
+        case 6:
+            return CDC7_DATA_EP;
+#endif
+
+        default:
+            break;
+    }
+
+    return 0xFF;
+} // </editor-fold>
+
+static uint8_t getCommEndpointName(uint8_t index) // <editor-fold defaultstate="collapsed" desc="Get COMM endpoint name">
+{
+    switch(index)
+    {
+        case 0:
+#if(NUM_OF_CDC_PORTS>1)
+            return CDC1_COMM_EP;
+#else
+            return CDC_COMM_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=2)
+        case 1:
+            return CDC2_COMM_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=3)
+        case 2:
+            return CDC3_COMM_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=4)
+        case 3:
+            return CDC4_COMM_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=5)
+        case 4:
+            return CDC5_COMM_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=6)
+        case 5:
+            return CDC6_COMM_EP;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=7)
+        case 6:
+            return CDC7_COMM_EP;
+#endif
+
+        default:
+            break;
+    }
+
+    return 0xFF;
+} // </editor-fold>
+
+void USBCheckCDCRequest(void) // <editor-fold defaultstate="collapsed" desc="USB Check CDC Request">
+{
+    uint8_t index;
+
+    if(SetupPkt.Recipient!=USB_SETUP_RECIPIENT_INTERFACE_BITFIELD)
+        return;
+
+    if(SetupPkt.RequestType!=USB_SETUP_TYPE_CLASS_BITFIELD)
+        return;
+
+#if(NUM_OF_CDC_PORTS>1)
+    if((SetupPkt.bIntfID==CDC1_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC1_DATA_INTF_ID))
+        index=0;
+#else
+    if((SetupPkt.bIntfID==CDC_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC_DATA_INTF_ID))
+        index=0;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=2)
+    else if((SetupPkt.bIntfID==CDC2_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC2_DATA_INTF_ID))
+        index=1;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=3)
+    else if((SetupPkt.bIntfID==CDC3_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC3_DATA_INTF_ID))
+        index=2;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=4)
+    else if((SetupPkt.bIntfID==CDC4_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC4_DATA_INTF_ID))
+        index=3;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=5)
+    else if((SetupPkt.bIntfID==CDC5_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC5_DATA_INTF_ID))
+        index=4;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=6)
+    else if((SetupPkt.bIntfID==CDC6_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC6_DATA_INTF_ID))
+        index=5;
+#endif
+
+#if(NUM_OF_CDC_PORTS>=7)
+    else if((SetupPkt.bIntfID==CDC7_COMM_INTF_ID)||(SetupPkt.bIntfID==CDC7_DATA_INTF_ID))
+        index=6;
+#endif
+    else
+        return;
+
     switch(SetupPkt.bRequest)
     {
-        //****** These commands are required ******//
-        case SEND_ENCAPSULATED_COMMAND:
-         //send the packet
-            inPipes[0].pSrc.bRam = (uint8_t*)&dummy_encapsulated_cmd_response;
-            inPipes[0].wCount.Val = dummy_length;
-            inPipes[0].info.bits.ctrl_trf_mem = USB_EP0_RAM;
-            inPipes[0].info.bits.busy = 1;
+        case SEND_ENCAPSULATED_COMMAND: //send the packet
+            inPipes[0].pSrc.bRam=(uint8_t*)&dummy_encapsulated_cmd_response;
+            inPipes[0].wCount.Val=dummy_length;
+            inPipes[0].info.bits.ctrl_trf_mem=USB_EP0_RAM;
+            inPipes[0].info.bits.busy=1;
             break;
-        case GET_ENCAPSULATED_RESPONSE:
-            // Populate dummy_encapsulated_cmd_response first.
-            inPipes[0].pSrc.bRam = (uint8_t*)&dummy_encapsulated_cmd_response;
-            inPipes[0].info.bits.busy = 1;
-            break;
-        //****** End of required commands ******//
 
-        #if defined(USB_CDC_SUPPORT_ABSTRACT_CONTROL_MANAGEMENT_CAPABILITIES_D1)
-        case SET_LINE_CODING:
-            outPipes[0].wCount.Val = SetupPkt.wLength;
-            outPipes[0].pDst.bRam = (uint8_t*)LINE_CODING_TARGET;
-            outPipes[0].pFunc = LINE_CODING_PFUNC;
-            outPipes[0].info.bits.busy = 1;
+        case GET_ENCAPSULATED_RESPONSE: // Populate dummy_encapsulated_cmd_response first.
+            inPipes[0].pSrc.bRam=(uint8_t*)&dummy_encapsulated_cmd_response;
+            inPipes[0].info.bits.busy=1;
             break;
-            
+
+#if defined(USB_CDC_SUPPORT_ABSTRACT_CONTROL_MANAGEMENT_CAPABILITIES_D1)
+        case SET_LINE_CODING:
+            outPipes[0].wCount.Val=SetupPkt.wLength;
+            outPipes[0].pDst.bRam=(uint8_t*) LINE_CODING_TARGET;
+            outPipes[0].pFunc=LINE_CODING_PFUNC(index);
+            outPipes[0].info.bits.busy=1;
+            break;
+
         case GET_LINE_CODING:
-            USBEP0SendRAMPtr(
-                (uint8_t*)&line_coding,
-                LINE_CODING_LENGTH,
-                USB_EP0_INCLUDE_ZERO);
+            USBEP0SendRAMPtr((uint8_t*)&line_coding, LINE_CODING_LENGTH, USB_EP0_INCLUDE_ZERO);
             break;
 
         case SET_CONTROL_LINE_STATE:
-            control_signal_bitmap._byte = (uint8_t)SetupPkt.wValue;
-            //------------------------------------------------------------------            
-            //One way to control the RTS pin is to allow the USB host to decide the value
-            //that should be output on the RTS pin.  Although RTS and CTS pin functions
-            //are technically intended for UART hardware based flow control, some legacy
-            //UART devices use the RTS pin like a "general purpose" output pin 
-            //from the PC host.  In this usage model, the RTS pin is not related
-            //to flow control for RX/TX.
-            //In this scenario, the USB host would want to be able to control the RTS
-            //pin, and the below line of code should be uncommented.
-            //However, if the intention is to implement true RTS/CTS flow control
-            //for the RX/TX pair, then this application firmware should override
-            //the USB host's setting for RTS, and instead generate a real RTS signal,
-            //based on the amount of remaining buffer space available for the 
-            //actual hardware UART of this microcontroller.  In this case, the 
-            //below code should be left commented out, but instead RTS should be 
-            //controlled in the application firmware responsible for operating the 
-            //hardware UART of this microcontroller.
-            //---------            
-            //CONFIGURE_RTS(control_signal_bitmap.CARRIER_CONTROL);  
-            //------------------------------------------------------------------            
-            
-            #if defined(USB_CDC_SUPPORT_DTR_SIGNALING)
-                if(control_signal_bitmap.DTE_PRESENT == 1)
-                {
-                    UART_DTR = USB_CDC_DTR_ACTIVE_LEVEL;
-                }
-                else
-                {
-                    UART_DTR = (USB_CDC_DTR_ACTIVE_LEVEL ^ 1);
-                }        
-            #endif
-            inPipes[0].info.bits.busy = 1;
+            control_signal_bitmap._byte=(uint8_t) SetupPkt.wValue;
+
+#if defined(USB_CDC_SUPPORT_DTR_SIGNALING)
+            if(control_signal_bitmap.DTE_PRESENT==1)
+                DTRPin_Handler[index](USB_CDC_DTR_ACTIVE_LEVEL);
+            else
+                DTRPin_Handler[index](USB_CDC_DTR_ACTIVE_LEVEL^1);
+#endif
+            inPipes[0].info.bits.busy=1;
             break;
-        #endif
-
-        #if defined(USB_CDC_SUPPORT_ABSTRACT_CONTROL_MANAGEMENT_CAPABILITIES_D2)
-        case SEND_BREAK:                        // Optional
-            inPipes[0].info.bits.busy = 1;
-			if (SetupPkt.wValue == 0xFFFF)  //0xFFFF means send break indefinitely until a new SEND_BREAK command is received
-			{
-				UART_Tx = 0;       // Prepare to drive TX low (for break signaling)
-				UART_TRISTx = 0;   // Make sure TX pin configured as an output
-				UART_ENABLE = 0;   // Turn off USART (to relinquish TX pin control)
-			}
-			else if (SetupPkt.wValue == 0x0000) //0x0000 means stop sending indefinite break 
-			{
-    			UART_ENABLE = 1;   // turn on USART
-				UART_TRISTx = 1;   // Make TX pin an input
-			}
-			else
-			{
-                //Send break signaling on the pin for (SetupPkt.wValue) milliseconds
-                UART_SEND_BREAK();
-			}
-            break;
-        #endif
-        default:
-            break;
-    }//end switch(SetupPkt.bRequest)
-
-}//end USBCheckCDCRequest
-
-/** U S E R  A P I ***********************************************************/
-
-/**************************************************************************
-  Function:
-        void CDCInitEP(void)
-    
-  Summary:
-    This function initializes the CDC function driver. This function should
-    be called after the SET_CONFIGURATION command (ex: within the context of
-    the USBCBInitEP() function).
-  Description:
-    This function initializes the CDC function driver. This function sets
-    the default line coding (baud rate, bit parity, number of data bits,
-    and format). This function also enables the endpoints and prepares for
-    the first transfer from the host.
-    
-    This function should be called after the SET_CONFIGURATION command.
-    This is most simply done by calling this function from the
-    USBCBInitEP() function.
-    
-    Typical Usage:
-    <code>
-        void USBCBInitEP(void)
-        {
-            CDCInitEP();
-        }
-    </code>
-  Conditions:
-    None
-  Remarks:
-    None                                                                   
-  **************************************************************************/
-void CDCInitEP(void)
-{
-    //Abstract line coding information
-    line_coding.dwDTERate   = 19200;      // baud rate
-    line_coding.bCharFormat = 0x00;             // 1 stop bit
-    line_coding.bParityType = 0x00;             // None
-    line_coding.bDataBits = 0x08;               // 5,6,7,8, or 16
-
-    cdc_rx_len = 0;
-    
-    /*
-     * Do not have to init Cnt of IN pipes here.
-     * Reason:  Number of BYTEs to send to the host
-     *          varies from one transaction to
-     *          another. Cnt should equal the exact
-     *          number of BYTEs to transmit for
-     *          a given IN transaction.
-     *          This number of BYTEs will only
-     *          be known right before the data is
-     *          sent.
-     */
-    USBEnableEndpoint(CDC_COMM_EP,USB_IN_ENABLED|USB_HANDSHAKE_ENABLED|USB_DISALLOW_SETUP);
-    USBEnableEndpoint(CDC_DATA_EP,USB_IN_ENABLED|USB_OUT_ENABLED|USB_HANDSHAKE_ENABLED|USB_DISALLOW_SETUP);
-
-    CDCDataOutHandle = USBRxOnePacket(CDC_DATA_EP,(uint8_t*)&cdc_data_rx,sizeof(cdc_data_rx));
-    CDCDataInHandle = NULL;
-
-    #if defined(USB_CDC_SUPPORT_DSR_REPORTING)
-      	CDCNotificationInHandle = NULL;
-        mInitDTSPin();  //Configure DTS as a digital input
-      	SerialStateBitmap.byte = 0x00;
-      	OldSerialStateBitmap.byte = !SerialStateBitmap.byte;    //To force firmware to send an initial serial state packet to the host.
-        //Prepare a SerialState notification element packet (contains info like DSR state)
-        SerialStatePacket.bmRequestType = 0xA1; //Always 0xA1 for this type of packet.
-        SerialStatePacket.bNotification = SERIAL_STATE;
-        SerialStatePacket.wValue = 0x0000;  //Always 0x0000 for this type of packet
-        SerialStatePacket.wIndex = CDC_COMM_INTF_ID;  //Interface number  
-        SerialStatePacket.SerialState.byte = 0x00;
-        SerialStatePacket.Reserved = 0x00;
-        SerialStatePacket.wLength = 0x02;   //Always 2 bytes for this type of packet    
-        CDCNotificationHandler();
-  	#endif
-  	
-  	#if defined(USB_CDC_SUPPORT_DTR_SIGNALING)
-  	    mInitDTRPin();
-  	#endif
-  	
-  	#if defined(USB_CDC_SUPPORT_HARDWARE_FLOW_CONTROL)
-  	    mInitRTSPin();
-  	    mInitCTSPin();
-  	#endif
-    
-    cdc_trf_state = CDC_TX_READY;
-}//end CDCInitEP
-
-
-/**************************************************************************
-  Function: void CDCNotificationHandler(void)
-  Summary: Checks for changes in DSR status and reports them to the USB host.
-  Description: Checks for changes in DSR pin state and reports any changes
-               to the USB host. 
-  Conditions: CDCInitEP() must have been called previously, prior to calling
-              CDCNotificationHandler() for the first time.
-  Remarks:
-    This function is only implemented and needed when the 
-    USB_CDC_SUPPORT_DSR_REPORTING option has been enabled.  If the function is
-    enabled, it should be called periodically to sample the DSR pin and feed
-    the information to the USB host.  This can be done by calling 
-    CDCNotificationHandler() by itself, or, by calling CDCTxService() which
-    also calls CDCNotificationHandler() internally, when appropriate.
-  **************************************************************************/
-#if defined(USB_CDC_SUPPORT_DSR_REPORTING)
-void CDCNotificationHandler(void)
-{
-    //Check the DTS I/O pin and if a state change is detected, notify the 
-    //USB host by sending a serial state notification element packet.
-    if(UART_DTS == USB_CDC_DSR_ACTIVE_LEVEL) //UART_DTS must be defined to be an I/O pin in the hardware profile to use the DTS feature (ex: "PORTXbits.RXY")
-    {
-        SerialStateBitmap.bits.DSR = 1;
-    }  
-    else
-    {
-        SerialStateBitmap.bits.DSR = 0;
-    }        
-    
-    //If the state has changed, and the endpoint is available, send a packet to
-    //notify the hUSB host of the change.
-    if((SerialStateBitmap.byte != OldSerialStateBitmap.byte) && (!USBHandleBusy(CDCNotificationInHandle)))
-    {
-        //Copy the updated value into the USB packet buffer to send.
-        SerialStatePacket.SerialState.byte = SerialStateBitmap.byte;
-        //We don't need to write to the other bytes in the SerialStatePacket USB
-        //buffer, since they don't change and will always be the same as our
-        //initialized value.
-
-        //Send the packet over USB to the host.
-        CDCNotificationInHandle = USBTransferOnePacket(CDC_COMM_EP, IN_TO_HOST, (uint8_t*)&SerialStatePacket, sizeof(SERIAL_STATE_NOTIFICATION));
-        
-        //Save the old value, so we can detect changes later.
-        OldSerialStateBitmap.byte = SerialStateBitmap.byte;
-    }    
-}//void CDCNotificationHandler(void)    
-#else
-    #define CDCNotificationHandler() {}
 #endif
 
-
-/**********************************************************************************
-  Function:
-    bool USBCDCEventHandler(USB_EVENT event, void *pdata, uint16_t size)
-    
-  Summary:
-    Handles events from the USB stack, which may have an effect on the CDC 
-    endpoint(s).
-
-  Description:
-    Handles events from the USB stack.  This function should be called when 
-    there is a USB event that needs to be processed by the CDC driver.
-    
-  Conditions:
-    Value of input argument 'len' should be smaller than the maximum
-    endpoint size responsible for receiving bulk data from USB host for CDC
-    class. Input argument 'buffer' should point to a buffer area that is
-    bigger or equal to the size specified by 'len'.
-  Input:
-    event - the type of event that occurred
-    pdata - pointer to the data that caused the event
-    size - the size of the data that is pointed to by pdata
-                                                                                   
-  **********************************************************************************/
-bool USBCDCEventHandler(USB_EVENT event, void *pdata, uint16_t size)
-{
-    switch( (uint16_t)event )
-    {  
-        case EVENT_TRANSFER_TERMINATED:
-            if(pdata == CDCDataOutHandle)
-            {
-                CDCDataOutHandle = USBRxOnePacket(CDC_DATA_EP,(uint8_t*)&cdc_data_rx,sizeof(cdc_data_rx));
-            }
-            if(pdata == CDCDataInHandle)
-            {
-                //flush all of the data in the CDC buffer
-                cdc_trf_state = CDC_TX_READY;
-                cdc_tx_len = 0;
-            }
-            break;
         default:
-            return false;
-    }      
-    return true;
-}
+            break;
+    } //end switch(SetupPkt.bRequest)
 
-/**********************************************************************************
-  Function:
-        uint8_t getsUSBUSART(char *buffer, uint8_t len)
-    
-  Summary:
-    getsUSBUSART copies a string of BYTEs received through USB CDC Bulk OUT
-    endpoint to a user's specified location. It is a non-blocking function.
-    It does not wait for data if there is no data available. Instead it
-    returns '0' to notify the caller that there is no data available.
+} // </editor-fold>
 
-    If a call is made and there is still data remaining in the buffer unread
-    when this function returns, it will be flushed and more data will be 
-    received from the bus.
-
-  Description:
-    getsUSBUSART copies a string of BYTEs received through USB CDC Bulk OUT
-    endpoint to a user's specified location. It is a non-blocking function.
-    It does not wait for data if there is no data available. Instead it
-    returns '0' to notify the caller that there is no data available.
-
-    If a call is made and there is still data remaining in the buffer unread
-    when this function returns, it will be flushed and more data will be 
-    received from the bus.
-    
-    Typical Usage:
-    <code>
-        uint8_t numBytes;
-        uint8_t buffer[64]
-    
-        numBytes = getsUSBUSART(buffer,sizeof(buffer)); //until the buffer is free.
-        if(numBytes \> 0)
-        {
-            //we received numBytes bytes of data and they are copied into
-            //  the "buffer" variable.  We can do something with the data
-            //  here.
-        }
-    </code>
-  Conditions:
-    Value of input argument 'len' should be smaller or equal to the maximum
-    endpoint size responsible for receiving bulk data from USB host for CDC
-    class. Input argument 'buffer' should point to a buffer area that is
-    bigger or equal to the size specified by 'len'.
-
-    If a call is made and there is still data remaining in the buffer unread
-    when this function returns, it will be flushed and more data will be 
-    received from the bus.
-
-  Input:
-    buffer -  Pointer to where received BYTEs are to be stored
-    len -     The number of BYTEs expected.
-  Output:
-    uint8_t -    Returns a byte indicating the total number of bytes that were actually
-              received and copied into the specified buffer.  The returned value
-              can be anything from 0 up to the len input value.  A return value of 0
-              indicates that no new CDC bulk OUT endpoint data was available.
-                                                                                   
-  **********************************************************************************/
-uint8_t getsUSBUSART(uint8_t *buffer, uint8_t len)
+void CDCInitEP(void) // <editor-fold defaultstate="collapsed" desc="CDC Init EP">
 {
-    cdc_rx_len = 0;
-    
-    if(!USBHandleBusy(CDCDataOutHandle))
+    uint8_t i;
+    //Abstract line coding information
+    line_coding.bCharFormat=0; // 1 stop bit
+    line_coding.bDataBits=8; // 5,6,7,8, or 16
+    line_coding.bParityType=0; // None
+    line_coding.dwDTERate=115200; // baud rate
+
+    for(i=0; i<NUM_OF_CDC_PORTS; i++)
+        cdc_rx_len[i]=0;
+
+    for(i=0; i<NUM_OF_CDC_PORTS; i++)
     {
-        /*
-         * Adjust the expected number of BYTEs to equal
-         * the actual number of BYTEs received.
-         */
-        if(len > USBHandleGetLength(CDCDataOutHandle))
-            len = USBHandleGetLength(CDCDataOutHandle);
-        
-        /*
-         * Copy data from dual-ram buffer to user's buffer
-         */
-        for(cdc_rx_len = 0; cdc_rx_len < len; cdc_rx_len++)
-            buffer[cdc_rx_len] = cdc_data_rx[cdc_rx_len];
+        USBEnableEndpoint(getCommEndpointName(i), USB_IN_ENABLED|USB_HANDSHAKE_ENABLED|USB_DISALLOW_SETUP);
+        USBEnableEndpoint(getDataEndpointName(i), USB_IN_ENABLED|USB_OUT_ENABLED|USB_HANDSHAKE_ENABLED|USB_DISALLOW_SETUP);
+    }
 
-        /*
-         * Prepare dual-ram buffer for next OUT transaction
-         */
+    for(i=0; i<NUM_OF_CDC_PORTS; i++)
+        CDCDataOutHandle[i]=USBRxOnePacket(getDataEndpointName(i), (uint8_t*)&cdc_data_rx[i], CDC_DATA_OUT_EP_SIZE);
 
-        CDCDataOutHandle = USBRxOnePacket(CDC_DATA_EP,(uint8_t*)&cdc_data_rx,sizeof(cdc_data_rx));
+    for(i=0; i<NUM_OF_CDC_PORTS; i++)
+    {
+        cdc_trf_state[i]=CDC_TX_READY;
+        CDCDataInHandle[i]=NULL;
 
+        if(USB_CDC_LineCodingHandler[i]==NULL)
+            USB_CDC_LineCodingHandler[i]=USB_CDC_DefaultLineCodingHandler;
+
+#if defined(USB_CDC_SUPPORT_DTR_SIGNALING)
+        if(DTRPin_Handler[i]==NULL)
+            DTRPin_Handler[i]=DTRPin_DefaultHandler;
+
+        DTRPin_Handler[i](USB_CDC_DTR_ACTIVE_LEVEL^1);
+#endif
+
+#if defined(USB_CDC_SUPPORT_HARDWARE_FLOW_CONTROL)
+        if(CTSPin_Handler[i]==NULL)
+            CTSPin_Handler[i]=CTSPin_DefaultHandler;
+
+        CTSPin_Handler[i](USB_CDC_DTR_ACTIVE_LEVEL^1);
+#endif
+    }
+} // </editor-fold>
+
+uint8_t getsUSBUSART(uint8_t index, uint8_t *buffer, uint8_t len) // <editor-fold defaultstate="collapsed" desc="gets USB USART data">
+{
+    cdc_rx_len[index]=0;
+
+    if(!USBHandleBusy(CDCDataOutHandle[index]))
+    {
+        uint8_t i;
+
+        if(len>USBHandleGetLength(CDCDataOutHandle[index]))
+            len=USBHandleGetLength(CDCDataOutHandle[index]);
+
+        cdc_rx_len[index]=len;
+
+        for(i=0; i<len; i++)
+            buffer[i]=cdc_data_rx[index][i];
+
+
+        CDCDataOutHandle[index]=USBRxOnePacket(getDataEndpointName(index), (uint8_t*)&cdc_data_rx[index], CDC_DATA_OUT_EP_SIZE);
     }//end if
-    
-    return cdc_rx_len;
-    
-}//end getsUSBUSART
 
-/******************************************************************************
-  Function:
-	void putUSBUSART(char *data, uint8_t length)
-		
-  Summary:
-    putUSBUSART writes an array of data to the USB. Use this version, is
-    capable of transferring 0x00 (what is typically a NULL character in any of
-    the string transfer functions).
+    return cdc_rx_len[index];
 
-  Description:
-    putUSBUSART writes an array of data to the USB. Use this version, is
-    capable of transferring 0x00 (what is typically a NULL character in any of
-    the string transfer functions).
-    
-    Typical Usage:
-    <code>
-        if(USBUSARTIsTxTrfReady())
-        {
-            char data[] = {0x00, 0x01, 0x02, 0x03, 0x04};
-            putUSBUSART(data,5);
-        }
-    </code>
-    
-    The transfer mechanism for device-to-host(put) is more flexible than
-    host-to-device(get). It can handle a string of data larger than the
-    maximum size of bulk IN endpoint. A state machine is used to transfer a
-    \long string of data over multiple USB transactions. CDCTxService()
-    must be called periodically to keep sending blocks of data to the host.
+} // </editor-fold>
 
-  Conditions:
-    USBUSARTIsTxTrfReady() must return true. This indicates that the last
-    transfer is complete and is ready to receive a new block of data. The
-    string of characters pointed to by 'data' must equal to or smaller than
-    255 BYTEs.
-
-  Input:
-    char *data - pointer to a RAM array of data to be transfered to the host
-    uint8_t length - the number of bytes to be transfered (must be less than 255).
-		
- *****************************************************************************/
-void putUSBUSART(uint8_t *data, uint8_t  length)
+uint8_t getsUSBUSART_CMD(uint8_t index, uint8_t *buffer, uint8_t len) // <editor-fold defaultstate="collapsed" desc="gets USB USART data with <CR> detection">
 {
-    /*
-     * User should have checked that cdc_trf_state is in CDC_TX_READY state
-     * before calling this function.
-     * As a safety precaution, this function checks the state one more time
-     * to make sure it does not override any pending transactions.
-     *
-     * Currently it just quits the routine without reporting any errors back
-     * to the user.
-     *
-     * Bottom line: User MUST make sure that USBUSARTIsTxTrfReady()==1
-     *             before calling this function!
-     * Example:
-     * if(USBUSARTIsTxTrfReady())
-     *     putUSBUSART(pData, Length);
-     *
-     * IMPORTANT: Never use the following blocking while loop to wait:
-     * while(!USBUSARTIsTxTrfReady())
-     *     putUSBUSART(pData, Length);
-     *
-     * The whole firmware framework is written based on cooperative
-     * multi-tasking and a blocking code is not acceptable.
-     * Use a state machine instead.
-     */
-    USBMaskInterrupts();
-    if(cdc_trf_state == CDC_TX_READY)
+    bool newCmd=0;
+
+    cdc_rx_len[index]=0;
+
+    if(!USBHandleBusy(CDCDataOutHandle[index]))
     {
-        mUSBUSARTTxRam((uint8_t*)data, length);     // See cdc.h
-    }
-    USBUnmaskInterrupts();
-}//end putUSBUSART
+        uint8_t i;
 
-/******************************************************************************
-	Function:
-		void putsUSBUSART(char *data)
-		
-  Summary:
-    putsUSBUSART writes a string of data to the USB including the null
-    character. Use this version, 'puts', to transfer data from a RAM buffer.
+        if(len>USBHandleGetLength(CDCDataOutHandle[index]))
+            len=USBHandleGetLength(CDCDataOutHandle[index]);
 
-  Description:
-    putsUSBUSART writes a string of data to the USB including the null
-    character. Use this version, 'puts', to transfer data from a RAM buffer.
-    
-    Typical Usage:
-    <code>
-        if(USBUSARTIsTxTrfReady())
+        cdc_rx_len[index]=len;
+
+        for(i=0; i<len; i++)
         {
-            char data[] = "Hello World";
-            putsUSBUSART(data);
+            buffer[i]=cdc_data_rx[index][i];
+
+            if(buffer[i]=='\r')
+                newCmd=1;
         }
-    </code>
-    
-    The transfer mechanism for device-to-host(put) is more flexible than
-    host-to-device(get). It can handle a string of data larger than the
-    maximum size of bulk IN endpoint. A state machine is used to transfer a
-    \long string of data over multiple USB transactions. CDCTxService()
-    must be called periodically to keep sending blocks of data to the host.
 
-  Conditions:
-    USBUSARTIsTxTrfReady() must return true. This indicates that the last
-    transfer is complete and is ready to receive a new block of data. The
-    string of characters pointed to by 'data' must equal to or smaller than
-    255 BYTEs.
+        CDCDataOutHandle[index]=USBRxOnePacket(getDataEndpointName(index), (uint8_t*)&cdc_data_rx[index], CDC_DATA_OUT_EP_SIZE);
+    }//end if
 
-  Input:
-    char *data -  null\-terminated string of constant data. If a
-                            null character is not found, 255 BYTEs of data
-                            will be transferred to the host.
-		
- *****************************************************************************/
- 
-void putsUSBUSART(char *data)
+    if(newCmd)
+        return cdc_rx_len[index];
+
+    return 0;
+} // </editor-fold>
+
+void putUSBUSART(uint8_t index, uint8_t *data, uint8_t length) // <editor-fold defaultstate="collapsed" desc="put USB USART data">
 {
-    uint8_t len;
-    char *pData;
-
-    /*
-     * User should have checked that cdc_trf_state is in CDC_TX_READY state
-     * before calling this function.
-     * As a safety precaution, this function checks the state one more time
-     * to make sure it does not override any pending transactions.
-     *
-     * Currently it just quits the routine without reporting any errors back
-     * to the user.
-     *
-     * Bottom line: User MUST make sure that USBUSARTIsTxTrfReady()==1
-     *             before calling this function!
-     * Example:
-     * if(USBUSARTIsTxTrfReady())
-     *     putsUSBUSART(pData, Length);
-     *
-     * IMPORTANT: Never use the following blocking while loop to wait:
-     * while(!USBUSARTIsTxTrfReady())
-     *     putsUSBUSART(pData);
-     *
-     * The whole firmware framework is written based on cooperative
-     * multi-tasking and a blocking code is not acceptable.
-     * Use a state machine instead.
-     */
     USBMaskInterrupts();
-    if(cdc_trf_state != CDC_TX_READY)
+
+    if(cdc_trf_state[index]==CDC_TX_READY)
     {
-        USBUnmaskInterrupts();
-        return;
+        mUSBUSARTTxRam(index, (uint8_t*) data, length);
     }
-    
-    /*
-     * While loop counts the number of BYTEs to send including the
-     * null character.
-     */
-    len = 0;
-    pData = data;
-    do
-    {
-        len++;
-        if(len == 255) break;       // Break loop once max len is reached.
-    }while(*pData++);
-    
-    /*
-     * Second piece of information (length of data to send) is ready.
-     * Call mUSBUSARTTxRam to setup the transfer.
-     * The actual transfer process will be handled by CDCTxService(),
-     * which should be called once per Main Program loop.
-     */
-    mUSBUSARTTxRam((uint8_t*)data, len);     // See cdc.h
+
     USBUnmaskInterrupts();
-}//end putsUSBUSART
+} // </editor-fold>
 
-/**************************************************************************
-  Function:
-        void putrsUSBUSART(const char *data)
-    
-  Summary:
-    putrsUSBUSART writes a string of data to the USB including the null
-    character. Use this version, 'putrs', to transfer data literals and
-    data located in program memory.
-
-  Description:
-    putrsUSBUSART writes a string of data to the USB including the null
-    character. Use this version, 'putrs', to transfer data literals and
-    data located in program memory.
-    
-    Typical Usage:
-    <code>
-        if(USBUSARTIsTxTrfReady())
-        {
-            putrsUSBUSART("Hello World");
-        }
-    </code>
-    
-    The transfer mechanism for device-to-host(put) is more flexible than
-    host-to-device(get). It can handle a string of data larger than the
-    maximum size of bulk IN endpoint. A state machine is used to transfer a
-    \long string of data over multiple USB transactions. CDCTxService()
-    must be called periodically to keep sending blocks of data to the host.
-
-  Conditions:
-    USBUSARTIsTxTrfReady() must return true. This indicates that the last
-    transfer is complete and is ready to receive a new block of data. The
-    string of characters pointed to by 'data' must equal to or smaller than
-    255 BYTEs.
-
-  Input:
-    const char *data -      null\-terminated string of constant data. If a
-                            null character is not found, 255 uint8_ts of data
-                            will be transferred to the host.
-                                                                           
-  **************************************************************************/
-void putrsUSBUSART(const char *data)
-{
-    uint8_t len;
-    const char *pData;
-
-    /*
-     * User should have checked that cdc_trf_state is in CDC_TX_READY state
-     * before calling this function.
-     * As a safety precaution, this function checks the state one more time
-     * to make sure it does not override any pending transactions.
-     *
-     * Currently it just quits the routine without reporting any errors back
-     * to the user.
-     *
-     * Bottom line: User MUST make sure that USBUSARTIsTxTrfReady()
-     *             before calling this function!
-     * Example:
-     * if(USBUSARTIsTxTrfReady())
-     *     putsUSBUSART(pData);
-     *
-     * IMPORTANT: Never use the following blocking while loop to wait:
-     * while(cdc_trf_state != CDC_TX_READY)
-     *     putsUSBUSART(pData);
-     *
-     * The whole firmware framework is written based on cooperative
-     * multi-tasking and a blocking code is not acceptable.
-     * Use a state machine instead.
-     */
-    USBMaskInterrupts();
-    if(cdc_trf_state != CDC_TX_READY)
-    {
-        USBUnmaskInterrupts();
-        return;
-    }
-    
-    /*
-     * While loop counts the number of BYTEs to send including the
-     * null character.
-     */
-    len = 0;
-    pData = data;
-    do
-    {
-        len++;
-        if(len == 255) break;       // Break loop once max len is reached.
-    }while(*pData++);
-    
-    /*
-     * Second piece of information (length of data to send) is ready.
-     * Call mUSBUSARTTxRom to setup the transfer.
-     * The actual transfer process will be handled by CDCTxService(),
-     * which should be called once per Main Program loop.
-     */
-
-    mUSBUSARTTxRom((const uint8_t*)data,len); // See cdc.h
-    USBUnmaskInterrupts();
-
-}//end putrsUSBUSART
-
-/************************************************************************
-  Function:
-        void CDCTxService(void)
-    
-  Summary:
-    CDCTxService handles device-to-host transaction(s). This function
-    should be called once per Main Program loop after the device reaches
-    the configured state.
-  Description:
-    CDCTxService handles device-to-host transaction(s). This function
-    should be called once per Main Program loop after the device reaches
-    the configured state (after the CDCIniEP() function has already executed).
-    This function is needed, in order to advance the internal software state 
-    machine that takes care of sending multiple transactions worth of IN USB
-    data to the host, associated with CDC serial data.  Failure to call 
-    CDCTxService() periodically will prevent data from being sent to the
-    USB host, over the CDC serial data interface.
-    
-    Typical Usage:
-    <code>
-    void main(void)
-    {
-        USBDeviceInit();
-        while(1)
-        {
-            USBDeviceTasks();
-            if((USBGetDeviceState() \< CONFIGURED_STATE) ||
-               (USBIsDeviceSuspended() == true))
-            {
-                //Either the device is not configured or we are suspended
-                //  so we don't want to do execute any application code
-                continue;   //go back to the top of the while loop
-            }
-            else
-            {
-                //Keep trying to send data to the PC as required
-                CDCTxService();
-    
-                //Run application code.
-                UserApplication();
-            }
-        }
-    }
-    </code>
-  Conditions:
-    CDCIniEP() function should have already executed/the device should be
-    in the CONFIGURED_STATE.
-  Remarks:
-    None                                                                 
-  ************************************************************************/
- 
-void CDCTxService(void)
+void CDCTxService(uint8_t index) // <editor-fold defaultstate="collapsed" desc="CDC Tx Service">
 {
     uint8_t byte_to_send;
     uint8_t i;
-    
-    USBMaskInterrupts();
-    
-    CDCNotificationHandler();
-    
-    if(USBHandleBusy(CDCDataInHandle)) 
-    {
-        USBUnmaskInterrupts();
-        return;
-    }
 
-    /*
-     * Completing stage is necessary while [ mCDCUSartTxIsBusy()==1 ].
-     * By having this stage, user can always check cdc_trf_state,
-     * and not having to call mCDCUsartTxIsBusy() directly.
-     */
-    if(cdc_trf_state == CDC_TX_COMPLETING)
-        cdc_trf_state = CDC_TX_READY;
-    
-    /*
-     * If CDC_TX_READY state, nothing to do, just return.
-     */
-    if(cdc_trf_state == CDC_TX_READY)
-    {
-        USBUnmaskInterrupts();
+    if(USBHandleBusy(CDCDataInHandle[index]))
         return;
-    }
-    
-    /*
-     * If CDC_TX_BUSY_ZLP state, send zero length packet
-     */
-    if(cdc_trf_state == CDC_TX_BUSY_ZLP)
-    {
-        CDCDataInHandle = USBTxOnePacket(CDC_DATA_EP,NULL,0);
-        //CDC_DATA_BD_IN.CNT = 0;
-        cdc_trf_state = CDC_TX_COMPLETING;
-    }
-    else if(cdc_trf_state == CDC_TX_BUSY)
-    {
-        /*
-         * First, have to figure out how many byte of data to send.
-         */
-    	if(cdc_tx_len > sizeof(cdc_data_tx))
-    	    byte_to_send = sizeof(cdc_data_tx);
-    	else
-    	    byte_to_send = cdc_tx_len;
 
-        /*
-         * Subtract the number of bytes just about to be sent from the total.
-         */
-    	cdc_tx_len = cdc_tx_len - byte_to_send;
-    	  
-        pCDCDst.bRam = (uint8_t*)&cdc_data_tx; // Set destination pointer
-        
-        i = byte_to_send;
-        if(cdc_mem_type == USB_EP0_ROM)            // Determine type of memory source
+    if(cdc_trf_state[index]==CDC_TX_COMPLETING)
+        cdc_trf_state[index]=CDC_TX_READY;
+
+    if(cdc_trf_state[index]==CDC_TX_READY)
+        return;
+
+    if(cdc_trf_state[index]==CDC_TX_BUSY_ZLP)
+    {
+        CDCDataInHandle[index]=USBTxOnePacket(getDataEndpointName(index), NULL, 0);
+        cdc_trf_state[index]=CDC_TX_COMPLETING;
+    }
+    else if(cdc_trf_state[index]==CDC_TX_BUSY)
+    {
+        if(cdc_tx_len[index]>CDC_DATA_IN_EP_SIZE)
+            byte_to_send=CDC_DATA_IN_EP_SIZE;
+        else
+            byte_to_send=cdc_tx_len[index];
+
+        cdc_tx_len[index]=cdc_tx_len[index]-byte_to_send;
+        pCDCDst[index].bRam=(uint8_t*)&cdc_data_tx[index]; // Set destination pointer
+        i=byte_to_send;
+
+        if(cdc_mem_type[index]==USB_EP0_ROM) // Determine type of memory source
         {
             while(i)
             {
-                *pCDCDst.bRam = *pCDCSrc.bRom;
-                pCDCDst.bRam++;
-                pCDCSrc.bRom++;
+                *pCDCDst[index].bRam= *pCDCSrc[index].bRom;
+                pCDCDst[index].bRam++;
+                pCDCSrc[index].bRom++;
                 i--;
             }//end while(byte_to_send)
         }
@@ -924,31 +537,21 @@ void CDCTxService(void)
         {
             while(i)
             {
-                *pCDCDst.bRam = *pCDCSrc.bRam;
-                pCDCDst.bRam++;
-                pCDCSrc.bRam++;
+                *pCDCDst[index].bRam= *pCDCSrc[index].bRam;
+                pCDCDst[index].bRam++;
+                pCDCSrc[index].bRam++;
                 i--;
             }
         }
-        
-        /*
-         * Lastly, determine if a zero length packet state is necessary.
-         * See explanation in USB Specification 2.0: Section 5.8.3
-         */
-        if(cdc_tx_len == 0)
+
+        if(cdc_tx_len[index]==0)
         {
-            if(byte_to_send == CDC_DATA_IN_EP_SIZE)
-                cdc_trf_state = CDC_TX_BUSY_ZLP;
+            if(byte_to_send==CDC_DATA_IN_EP_SIZE)
+                cdc_trf_state[index]=CDC_TX_BUSY_ZLP;
             else
-                cdc_trf_state = CDC_TX_COMPLETING;
+                cdc_trf_state[index]=CDC_TX_COMPLETING;
         }//end if(cdc_tx_len...)
-        CDCDataInHandle = USBTxOnePacket(CDC_DATA_EP,(uint8_t*)&cdc_data_tx,byte_to_send);
 
+        CDCDataInHandle[index]=USBTxOnePacket(getDataEndpointName(index), (uint8_t*)&cdc_data_tx[index], byte_to_send);
     }//end if(cdc_tx_sate == CDC_TX_BUSY)
-    
-    USBUnmaskInterrupts();
-}//end CDCTxService
-
-#endif //USB_USE_CDC
-
-/** EOF cdc.c ****************************************************************/
+} // </editor-fold>

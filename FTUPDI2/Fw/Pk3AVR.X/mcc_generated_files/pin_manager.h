@@ -2117,11 +2117,11 @@
   @Example
     <code>
     // Set RE7 high (1)
-    NVDD_GND_SetHigh();
+    VDD_GND_SetHigh();
     </code>
 
 */
-#define NVDD_GND_SetHigh()          (_LATE7 = 1)
+#define VDD_GND_SetHigh()          (_LATE7 = 1)
 /**
   @Summary
     Sets the GPIO pin, RE7, low using LATE7.
@@ -2141,11 +2141,11 @@
   @Example
     <code>
     // Set RE7 low (0)
-    NVDD_GND_SetLow();
+    VDD_GND_SetLow();
     </code>
 
 */
-#define NVDD_GND_SetLow()           (_LATE7 = 0)
+#define VDD_GND_SetLow()           (_LATE7 = 0)
 /**
   @Summary
     Toggles the GPIO pin, RE7, using LATE7.
@@ -2165,11 +2165,11 @@
   @Example
     <code>
     // Toggle RE7
-    NVDD_GND_Toggle();
+    VDD_GND_Toggle();
     </code>
 
 */
-#define NVDD_GND_Toggle()           (_LATE7 ^= 1)
+#define VDD_GND_Toggle()           (_LATE7 ^= 1)
 /**
   @Summary
     Reads the value of the GPIO pin, RE7.
@@ -2191,11 +2191,11 @@
     uint16_t portValue;
 
     // Read RE7
-    postValue = NVDD_GND_GetValue();
+    postValue = VDD_GND_GetValue();
     </code>
 
 */
-#define NVDD_GND_GetValue()         _RE7
+#define VDD_GND_GetValue()         _RE7
 /**
   @Summary
     Configures the GPIO pin, RE7, as an input.
@@ -2215,11 +2215,11 @@
   @Example
     <code>
     // Sets the RE7 as an input
-    NVDD_GND_SetDigitalInput();
+    VDD_GND_SetDigitalInput();
     </code>
 
 */
-#define NVDD_GND_SetDigitalInput()  (_TRISE7 = 1)
+#define VDD_GND_SetDigitalInput()  (_TRISE7 = 1)
 /**
   @Summary
     Configures the GPIO pin, RE7, as an output.
@@ -2239,11 +2239,11 @@
   @Example
     <code>
     // Sets the RE7 as an output
-    NVDD_GND_SetDigitalOutput();
+    VDD_GND_SetDigitalOutput();
     </code>
 
 */
-#define NVDD_GND_SetDigitalOutput() (_TRISE7 = 0)
+#define VDD_GND_SetDigitalOutput() (_TRISE7 = 0)
 /**
   @Summary
     Sets the GPIO pin, RF1, high using LATF1.

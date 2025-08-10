@@ -105,13 +105,13 @@ void UART1_Initialize(void)
     IEC0bits.U1TXIE = 0;
     IEC0bits.U1RXIE = 0;
 
-    // STSEL 1; IREN disabled; PDSEL 8N; UARTEN enabled; RTSMD disabled; USIDL disabled; WAKE disabled; ABAUD disabled; LPBACK disabled; BRGH enabled; RXINV disabled; UEN TX_RX; 
-    // Data Bits = 8; Parity = None; Stop Bits = 1;
-    U1MODE = (0x8008 & ~(1<<15));  // disabling UART ON bit
+    // STSEL 2; IREN disabled; PDSEL 8E; UARTEN enabled; RTSMD disabled; USIDL disabled; WAKE disabled; ABAUD disabled; LPBACK disabled; BRGH enabled; RXINV disabled; UEN TX_RX; 
+    // Data Bits = 8; Parity = Even; Stop Bits = 2;
+    U1MODE = (0x800B & ~(1<<15));  // disabling UART ON bit
     // UTXISEL0 TX_ONE_CHAR; UTXINV disabled; OERR NO_ERROR_cleared; URXISEL RX_ONE_CHAR; UTXBRK COMPLETED; UTXEN disabled; ADDEN disabled; 
     U1STA = 0x00;
-    // BaudRate = 115200; Frequency = 16000000 Hz; BRG 34; 
-    U1BRG = 0x22;
+    // BaudRate = 100000; Frequency = 16000000 Hz; BRG 39; 
+    U1BRG = 0x27;
     
     txHead = txQueue;
     txTail = txQueue;

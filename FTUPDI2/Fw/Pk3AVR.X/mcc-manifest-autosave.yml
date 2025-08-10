@@ -2,8 +2,8 @@
 
 manifest_file_version: 1.0.0
 project: Pk3AVR
-creation_date: 2025-08-02T11:25:29.941+07:00[Asia/Bangkok]
-operating_system: Windows 11
+creation_date: 2025-08-10T01:19:48.324+07:00[Asia/Bangkok]
+operating_system: Windows 10
 mcc_mode: IDE
 mcc_mode_version: v6.25
 device_name: PIC24FJ256GB106

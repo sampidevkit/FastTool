@@ -72,8 +72,8 @@ void OC1_Initialize (void)
     OC1CON1 = 0x1006;
     // SYNCSEL TMR2; TRIGSTAT disabled; OCINV disabled; OCTRIG Trigger; OC32 disabled; FLTOUT disabled; OCTRIS disabled; FLTMD Cycle; FLTTRIEN disabled; 
     OC1CON2 = 0x8C;
-    // CMP2B 255; 
-    OC1RS = 0xFF;
+    // CMP2B 127; 
+    OC1RS = 0x7F;
     // CMP1B 0; 
     OC1R = 0x00;
     // OC1TMR 0; 
@@ -131,7 +131,7 @@ bool OC1_IsCompareCycleComplete( void )
 
 bool OC1_FaultStatusGet( OC1_FAULTS faultNum )
 {
-    bool status;
+    bool status=0;
     /* Return the status of the fault condition */
    
     switch(faultNum)

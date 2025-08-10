@@ -90,8 +90,8 @@ void TMR1_Initialize (void)
 {
     //TMR1 0; 
     TMR1 = 0x00;
-    //Period = 0.0000160625 s; Frequency = 16000000 Hz; PR1 256; 
-    PR1 = 0x100;
+    //Period = 0.000008 s; Frequency = 16000000 Hz; PR1 127; 
+    PR1 = 0x7F;
     //TCKPS 1:1; TON enabled; TSIDL disabled; TCS FOSC/2; TSYNC disabled; TGATE disabled; 
     T1CON = 0x8000;
 

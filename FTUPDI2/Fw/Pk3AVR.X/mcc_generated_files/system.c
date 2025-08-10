@@ -75,14 +75,15 @@
 #include "pin_manager.h"
 #include "clock.h"
 #include "system.h"
+#include "tmr2.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "usb/usb.h"
 #include "tmr1.h"
-#include "tmr2.h"
+#include "usb/usb.h"
 #include "oc1.h"
-#include "adc1.h"
 #include "uart1.h"
+#include "tmr4.h"
+#include "adc1.h"
 
 void SYSTEM_Initialize(void)
 {
@@ -94,6 +95,7 @@ void SYSTEM_Initialize(void)
     UART1_Initialize();
     ADC1_Initialize();
     OC1_Initialize();
+    TMR4_Initialize();
     TMR2_Initialize();
     TMR1_Initialize();
 }

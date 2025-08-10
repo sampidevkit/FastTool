@@ -53,13 +53,13 @@ please contact mla_licensing@microchip.com
 #endif
 
 #if !defined(DEVICE_SPECIFIC_IEC_REGISTER_COUNT)
-    #warning "Unable to determine the number of interrupt registers on the specified device.  Please check the datasheet to see how many IECx register exist and correct this number.
+    #warning "Unable to determine the number of interrupt registers on the specified device.  Please check the datasheet to see how many IECx register exist and correct this number."
     #define DEVICE_SPECIFIC_IEC_REGISTER_COUNT  8
 #endif
 
 //Private prototypes - do not call directly from application code.
-static void USBSaveAndPrepareInterruptsForSleep(void);
-static void USBRestorePreviousInterruptSettings(void);
+void USBSaveAndPrepareInterruptsForSleep(void);
+void USBRestorePreviousInterruptSettings(void);
 
 //Private static variables needed for context saving operations.  Do not use/touch
 //outside of the context of the implemented APIs.
@@ -521,7 +521,7 @@ Remarks:
     Calling this function more than one (without calling USBRestorePreviousInterruptSettings()
     will result in a loss of state information.
   *******************************************************************/
-static USBSaveAndPrepareInterruptsForSleep(void)
+void USBSaveAndPrepareInterruptsForSleep(void)
 {
     unsigned int i;
     volatile unsigned int* pRegister;
@@ -587,7 +587,7 @@ Remarks:
     must always be called in an exact 1:1 ratio with the
     USBSaveAndPrepareInterruptsForSleep() function.
   *******************************************************************/
-static void USBRestorePreviousInterruptSettings(void)
+void USBRestorePreviousInterruptSettings(void)
 {
     unsigned int i;
     volatile unsigned int* pRegister;

@@ -87,7 +87,7 @@ void PIN_MANAGER_Initialize (void)
     CNPD4 = 0x0000;
     CNPD5 = 0x0000;
     CNPU1 = 0x0000;
-    CNPU2 = 0x0000;
+    CNPU2 = 0x0400;
     CNPU3 = 0x0000;
     CNPU4 = 0x0000;
     CNPU5 = 0x0000;
