@@ -1,0 +1,14 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "64ff7a15-8175-4ddd-9a03-acbe92de1018")
+	(paper "A4")
+	(title_block
+		(title "POWER DEBUGGER")
+		(date "2026-07-30")
+		(rev "0.0")
+		(company "SAMPI DEVELOPMENT KITS")
+	)
+	(lib_symbols)
+)
