@@ -522,7 +522,10 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "SAMPI",
+      "Liem"
+    ]
   },
   "meta": {
     "filename": "SAMM-FTPDB.kicad_pro",
