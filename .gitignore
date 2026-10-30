@@ -1,0 +1,14 @@
+# Maven 
+__Previews/
+History/
+build/
+dist/
+debug/
+*-backups/
+Project Logs*/
+
+*.LOG
+!spec/*.LOG
+
+*.~(*).*
+!spec/*.~(*).*
