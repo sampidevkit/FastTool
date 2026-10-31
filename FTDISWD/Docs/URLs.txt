@@ -1,0 +1,5 @@
+cjmcu-ft232hq-programmer
+https://github.com/m3y54m/cjmcu-ft232hq-programmer/tree/master
+
+azure-sphere-hardware-designs
+https://github.com/Azure/azure-sphere-hardware-designs/tree/main
