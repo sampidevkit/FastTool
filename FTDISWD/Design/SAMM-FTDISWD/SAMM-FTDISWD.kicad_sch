@@ -670,6 +670,171 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Liem:RLED"
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 1.27 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.5 1.5)
+						(bold yes)
+					)
+				)
+			)
+			(property "Value" "RLED"
+				(at 1.27 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "RLED_0_1"
+				(polyline
+					(pts
+						(xy 0 -4.445) (xy 0.635 -4.445)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -3.81) (xy 1.905 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.905 -4.445) (xy 2.54 -4.445)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "RLED_1_1"
+				(polyline
+					(pts
+						(xy 0.635 -3.81) (xy 0.635 -5.08) (xy 1.905 -4.445) (xy 0.635 -3.81)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 1.27 -4.445)
+					(radius 1.27)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type color)
+						(color 255 0 0 1)
+					)
+				)
+				(pin bidirectional line
+					(at -2.54 -4.445 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 5.08 -4.445 180)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Liem:SW-SLIDE"
 			(pin_names
 				(hide yes)
@@ -1360,609 +1525,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "SAMPI:DMN2041"
-			(pin_names
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "Q"
-				(at 4.445 -0.635 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-						(bold yes)
-					)
-				)
-			)
-			(property "Value" "2N-CH"
-				(at 4.445 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Liem:TSOT26"
-				(at 4.445 -0.635 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at -1.016 11.43 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "MOSFET 2N-CH 20V 5.8A TSOT26"
-				(at 4.445 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MNP" "DMN2041UVT-7"
-				(at 4.445 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MFT" "DIODE"
-				(at 4.445 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_locked" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "DMN2041_1_1"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -2.54 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 -2.54) (xy -3.556 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 0.508) (xy -2.032 -0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 0.127) (xy -1.016 0.127) (xy -1.016 1.905)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -0.889) (xy -2.032 -1.651)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -1.27) (xy -1.016 -1.27) (xy -1.016 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -2.159) (xy -2.032 -2.921)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -2.54) (xy -1.016 -2.54) (xy -1.016 -3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.397 -1.651) (xy -1.397 -0.889) (xy -1.778 -1.27) (xy -1.397 -1.651)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 0.127) (xy 0 0.127)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -1.016 -1.27)
-					(radius 2.54)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 -2.54) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.381 -0.635) (xy 0.381 -0.635)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.127) (xy 0 -0.635)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.54) (xy 0 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.381 -1.778) (xy -0.381 -1.778) (xy 0 -0.635) (xy 0.381 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(pin bidirectional line
-					(at -1.016 -5.08 90)
-					(length 1.27)
-					(name "S1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -1.016 3.175 270)
-					(length 1.27)
-					(name "D12"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -4.826 -2.54 0)
-					(length 1.27)
-					(name "G1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "6"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(symbol "DMN2041_2_1"
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -2.54 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 -2.54) (xy -3.556 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 0.508) (xy -2.032 -0.254)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 0.127) (xy -1.016 0.127) (xy -1.016 1.905)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -0.889) (xy -2.032 -1.651)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -1.27) (xy -1.016 -1.27) (xy -1.016 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -2.159) (xy -2.032 -2.921)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -2.54) (xy -1.016 -2.54) (xy -1.016 -3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.27 -1.651) (xy -1.27 -0.889) (xy -1.651 -1.27) (xy -1.27 -1.651)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 0.127) (xy 0 0.127)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center -1.016 -1.27)
-					(radius 2.54)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.016 -2.54) (xy 0 -2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0.127) (xy 0 -0.635)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.54) (xy 0 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.381 -0.635) (xy -0.381 -0.635)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.381 -1.778) (xy -0.381 -1.778) (xy 0 -0.635) (xy 0.381 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type outline)
-					)
-				)
-				(polyline
-					(pts
-						(xy 9.144 1.27) (xy 9.144 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(pin bidirectional line
-					(at -1.016 -5.08 90)
-					(length 1.27)
-					(name "S2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -4.826 -2.54 0)
-					(length 1.27)
-					(name "G2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
-					(at -1.016 3.175 270)
-					(length 1.27)
-					(name "D21"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "SAMPI:ELECCAP"
 			(pin_names
 				(hide yes)
@@ -2132,6 +1694,298 @@
 						)
 					)
 					(number "-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "SAMPI:FET_N-CH"
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "Q"
+				(at 1.27 1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.5 1.5)
+						(bold yes)
+					)
+					(justify right)
+				)
+			)
+			(property "Value" "MFET N"
+				(at 1.27 -1.27 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify right)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "FET_N-CH_0_1"
+				(polyline
+					(pts
+						(xy 1.27 -5.08) (xy 1.905 -5.08) (xy 1.905 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -2.159) (xy 2.54 -2.921)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -3.429) (xy 2.54 -4.191)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -3.81) (xy 3.81 -3.81) (xy 3.81 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 -5.461) (xy 2.54 -4.699)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 -1.27) (xy 3.81 -2.54) (xy 2.54 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 -1.905) (xy 5.08 -1.905) (xy 5.08 -3.175)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 -5.715) (xy 5.08 -5.715) (xy 5.08 -4.445)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.81 -6.35) (xy 3.81 -5.08) (xy 2.54 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.445 -3.175) (xy 5.715 -3.175)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.445 -4.445) (xy 5.715 -4.445)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 4.445 -4.445) (xy 5.08 -3.175) (xy 5.715 -4.445)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "FET_N-CH_1_1"
+				(polyline
+					(pts
+						(xy 3.302 -3.429) (xy 3.302 -4.191) (xy 2.921 -3.81) (xy 3.302 -3.429)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(circle
+					(center 3.81 -3.81)
+					(radius 2.54)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin bidirectional line
+					(at 0 -5.08 0)
+					(length 1.27)
+					(name "G"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 3.81 -7.62 90)
+					(length 1.27)
+					(name "S"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin bidirectional line
+					(at 3.81 0 270)
+					(length 1.27)
+					(name "D"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2410,8 +2264,8 @@
 			(on_board yes)
 			(in_pos_files yes)
 			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "U"
-				(at 0 0 0)
+			(property "Reference" "U?"
+				(at 10.795 -3.81 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
@@ -2419,21 +2273,19 @@
 						(size 1.5 1.5)
 						(bold yes)
 					)
-					(justify left)
 				)
 			)
-			(property "Value" "OP-1CH"
-				(at 0 -1.905 0)
+			(property "Value" "MCP601"
+				(at 12.065 -6.35 0)
 				(show_name no)
 				(do_not_autoplace no)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "SAMPI:SOT-23-5_MCHP"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2455,7 +2307,29 @@
 					)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "IC OP AMP 1CH SOT-23-5"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MNP" "MCP601T-I/OT"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MFT" "Mchp"
 				(at 0 0 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -2548,10 +2422,10 @@
 						)
 					)
 				)
-				(pin input line
-					(at -2.54 -5.08 0)
+				(pin output line
+					(at 15.24 -10.16 180)
 					(length 2.54)
-					(name "VIN+"
+					(name "VOUT"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2585,9 +2459,9 @@
 					)
 				)
 				(pin input line
-					(at -2.54 -15.24 0)
+					(at -2.54 -5.08 0)
 					(length 2.54)
-					(name "VIN-"
+					(name "VIN+"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2602,10 +2476,10 @@
 						)
 					)
 				)
-				(pin output line
-					(at 15.24 -10.16 180)
+				(pin input line
+					(at -2.54 -15.24 0)
 					(length 2.54)
-					(name "VOUT"
+					(name "VIN-"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2756,6 +2630,150 @@
 								(size 1.27 1.27)
 							)
 						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "SAMPI:SCREWHOLDER"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom no)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "SH1"
+				(at 2.54 -2.5399 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "SCREW HOLDER"
+				(at 2.54 -5.0799 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Liem:HOLDER-3MM"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "SCREWHOLDER_1_1"
+				(polyline
+					(pts
+						(xy -1.905 -1.27) (xy 1.905 -1.27) (xy 1.905 -2.54) (xy 0.635 -2.54) (xy 0.635 -5.715) (xy 0 -6.35)
+						(xy -0.635 -5.715) (xy -0.635 -2.54) (xy -1.905 -2.54) (xy -1.905 -1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 -3.302) (xy 0.508 -2.794)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 -4.064) (xy 0.508 -3.556)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 -4.826) (xy 0.508 -4.318)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -0.508 -5.588) (xy 0.508 -5.08)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0.635 -2.54) (xy -0.635 -2.54)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
 					)
 				)
 			)
@@ -4374,6 +4392,12 @@
 		(uuid "3112e122-7192-42a5-8a19-ddb56c92ecfb")
 	)
 	(junction
+		(at 92.71 125.095)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "363036fa-9d93-435b-92ae-9a447e65e7c3")
+	)
+	(junction
 		(at 107.95 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4390,6 +4414,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4ecb6742-e1fb-4a18-9b0d-afa210a52940")
+	)
+	(junction
+		(at 69.85 104.14)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "512a37b2-f638-4c44-abc5-b5ca05b5cb06")
 	)
 	(junction
 		(at 87.63 41.91)
@@ -4434,12 +4464,6 @@
 		(uuid "7d2a1441-438b-49a7-a548-89f521d4640f")
 	)
 	(junction
-		(at 248.285 31.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "816f3142-a0eb-42e8-a1fc-6bbb38116ca2")
-	)
-	(junction
 		(at 142.24 33.02)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4482,7 +4506,7 @@
 		(uuid "b176a2a3-7618-4127-b77e-f169c114ea96")
 	)
 	(junction
-		(at 79.375 77.47)
+		(at 94.615 78.74)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b9325b1f-3c1f-4933-8bd5-977d58851470")
@@ -4492,6 +4516,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bb9e0ddd-ef68-4cc9-82a1-68896cd1d275")
+	)
+	(junction
+		(at 80.01 91.44)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bddaeed5-96f5-4f5f-88ce-fc6e69457ff0")
 	)
 	(junction
 		(at 248.285 38.1)
@@ -4506,6 +4536,12 @@
 		(uuid "cae8e566-f726-4d34-9746-90fc1c2a589e")
 	)
 	(junction
+		(at 87.63 131.445)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "da3591c9-830c-4396-b6e8-62a0d242b568")
+	)
+	(junction
 		(at 78.74 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4516,6 +4552,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ddd7dfd8-3639-473a-b098-e25e3e6c2340")
+	)
+	(junction
+		(at 63.5 101.6)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "df20114c-ae3b-4678-9041-9877a21bad65")
 	)
 	(junction
 		(at 43.18 35.56)
@@ -4530,7 +4572,7 @@
 		(uuid "f5b31114-f8d7-45c7-a620-35ebdf3aa83e")
 	)
 	(junction
-		(at 69.85 84.455)
+		(at 85.09 85.09)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f99deee7-9713-4f8e-96a3-f92b4115a784")
@@ -4546,16 +4588,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ff758c55-b26d-4c1c-86bb-c262e4ce9064")
-	)
-	(wire
-		(pts
-			(xy 248.285 26.035) (xy 248.285 31.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "00e580fb-06dd-4abe-9ba2-d1f4bacd958c")
 	)
 	(wire
 		(pts
@@ -4576,16 +4608,6 @@
 			(type default)
 		)
 		(uuid "033d00bb-c951-48ed-8fdc-00251c375d52")
-	)
-	(wire
-		(pts
-			(xy 256.54 31.75) (xy 248.285 31.75)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "052d01bc-4f82-4216-8e89-057d6246aae5")
 	)
 	(wire
 		(pts
@@ -4689,7 +4711,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 105.41) (xy 58.42 105.41)
+			(xy 57.15 101.6) (xy 63.5 101.6)
 		)
 		(stroke
 			(width 0)
@@ -4706,6 +4728,16 @@
 			(type default)
 		)
 		(uuid "165214f1-b583-4597-9536-54442177f617")
+	)
+	(wire
+		(pts
+			(xy 63.5 101.6) (xy 71.12 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "19841019-6a10-4dd1-8963-2dd1b6a5a73b")
 	)
 	(wire
 		(pts
@@ -4736,6 +4768,36 @@
 			(type default)
 		)
 		(uuid "2169e182-b059-4a6e-9952-7fabb370214b")
+	)
+	(wire
+		(pts
+			(xy 92.71 123.825) (xy 92.71 125.095)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "217605f0-3af6-4578-9adc-644c764f3c1b")
+	)
+	(wire
+		(pts
+			(xy 87.63 131.445) (xy 87.63 132.715)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "21d6129e-3115-477f-96fa-87de7b123ac1")
+	)
+	(wire
+		(pts
+			(xy 234.95 31.75) (xy 248.285 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26077186-f4eb-4ac5-a25d-afd45e5788c8")
 	)
 	(wire
 		(pts
@@ -4809,7 +4871,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 102.87) (xy 58.42 102.87)
+			(xy 57.15 99.06) (xy 58.42 99.06)
 		)
 		(stroke
 			(width 0)
@@ -4869,6 +4931,16 @@
 	)
 	(wire
 		(pts
+			(xy 92.71 125.095) (xy 92.71 126.365)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "359b9964-1cd6-4584-9c98-a10fa1b70dab")
+	)
+	(wire
+		(pts
 			(xy 146.05 157.48) (xy 147.32 157.48)
 		)
 		(stroke
@@ -4919,13 +4991,23 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 84.455) (xy 69.85 85.725)
+			(xy 85.09 85.09) (xy 85.09 86.36)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "41ca3464-b66e-42fb-b9bf-ee817752fa0a")
+	)
+	(wire
+		(pts
+			(xy 69.85 104.14) (xy 69.85 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "425f3b14-812f-4bf8-9968-ecaabab1bacd")
 	)
 	(wire
 		(pts
@@ -4949,7 +5031,7 @@
 	)
 	(wire
 		(pts
-			(xy 69.85 83.185) (xy 69.85 84.455)
+			(xy 85.09 83.82) (xy 85.09 85.09)
 		)
 		(stroke
 			(width 0)
@@ -4969,6 +5051,26 @@
 	)
 	(wire
 		(pts
+			(xy 87.63 131.445) (xy 88.9 131.445)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4e516bc6-bc0d-42f5-884c-be117e10ef9c")
+	)
+	(wire
+		(pts
+			(xy 80.01 91.44) (xy 81.28 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5185c8f3-a9c3-4a75-bbc3-3908ceecf369")
+	)
+	(wire
+		(pts
 			(xy 168.91 24.13) (xy 168.91 25.4)
 		)
 		(stroke
@@ -4979,7 +5081,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 100.33) (xy 58.42 100.33)
+			(xy 57.15 96.52) (xy 58.42 96.52)
 		)
 		(stroke
 			(width 0)
@@ -5119,7 +5221,27 @@
 	)
 	(wire
 		(pts
-			(xy 80.645 77.47) (xy 79.375 77.47)
+			(xy 57.15 131.445) (xy 87.63 131.445)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6a17292c-3c13-4f9c-96ee-6bd8fd11de05")
+	)
+	(wire
+		(pts
+			(xy 204.47 31.75) (xy 205.74 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6aa52c5f-a3d7-4d9d-ab7e-5e983b9e6a63")
+	)
+	(wire
+		(pts
+			(xy 95.885 78.74) (xy 94.615 78.74)
 		)
 		(stroke
 			(width 0)
@@ -5199,7 +5321,7 @@
 	)
 	(wire
 		(pts
-			(xy 79.375 76.2) (xy 79.375 77.47)
+			(xy 94.615 77.47) (xy 94.615 78.74)
 		)
 		(stroke
 			(width 0)
@@ -5259,6 +5381,16 @@
 	)
 	(wire
 		(pts
+			(xy 69.85 104.14) (xy 71.12 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "824b60da-59bc-44df-b602-26222f93d9f9")
+	)
+	(wire
+		(pts
 			(xy 41.91 55.88) (xy 44.45 55.88)
 		)
 		(stroke
@@ -5266,6 +5398,16 @@
 			(type default)
 		)
 		(uuid "830b8465-8cc1-4612-b200-4114d2ecc4af")
+	)
+	(wire
+		(pts
+			(xy 63.5 101.6) (xy 63.5 105.41)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84e32531-eda7-4ce8-a218-f2c0c1e4e6f4")
 	)
 	(wire
 		(pts
@@ -5329,6 +5471,16 @@
 	)
 	(wire
 		(pts
+			(xy 92.71 125.095) (xy 93.98 125.095)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "90382493-159f-41bf-985b-de4c3295001b")
+	)
+	(wire
+		(pts
 			(xy 125.73 81.28) (xy 127 81.28)
 		)
 		(stroke
@@ -5339,7 +5491,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 91.44) (xy 66.04 91.44)
+			(xy 57.15 91.44) (xy 80.01 91.44)
 		)
 		(stroke
 			(width 0)
@@ -5349,7 +5501,7 @@
 	)
 	(wire
 		(pts
-			(xy 79.375 77.47) (xy 79.375 78.74)
+			(xy 94.615 78.74) (xy 94.615 80.01)
 		)
 		(stroke
 			(width 0)
@@ -5376,16 +5528,6 @@
 			(type default)
 		)
 		(uuid "a0c9b7f1-9638-459d-83e9-09039a3d35cd")
-	)
-	(wire
-		(pts
-			(xy 255.27 22.225) (xy 256.54 22.225)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a1c12b60-6ec2-4a91-8a50-8f94d168eef2")
 	)
 	(wire
 		(pts
@@ -5509,6 +5651,16 @@
 	)
 	(wire
 		(pts
+			(xy 80.01 91.44) (xy 80.01 92.71)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb3e81cf-9ba0-4cc1-8d18-40f91c1e07cf")
+	)
+	(wire
+		(pts
 			(xy 53.34 35.56) (xy 43.18 35.56)
 		)
 		(stroke
@@ -5559,7 +5711,7 @@
 	)
 	(wire
 		(pts
-			(xy 75.565 84.455) (xy 69.85 84.455)
+			(xy 90.805 85.09) (xy 85.09 85.09)
 		)
 		(stroke
 			(width 0)
@@ -5569,7 +5721,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 118.11) (xy 57.15 118.11)
+			(xy 58.42 128.905) (xy 57.15 128.905)
 		)
 		(stroke
 			(width 0)
@@ -5579,7 +5731,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 113.03) (xy 57.15 113.03)
+			(xy 58.42 126.365) (xy 57.15 126.365)
 		)
 		(stroke
 			(width 0)
@@ -5639,7 +5791,7 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 107.95) (xy 58.42 107.95)
+			(xy 57.15 104.14) (xy 69.85 104.14)
 		)
 		(stroke
 			(width 0)
@@ -5789,7 +5941,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 97.79) (xy 57.15 97.79)
+			(xy 58.42 93.98) (xy 57.15 93.98)
 		)
 		(stroke
 			(width 0)
@@ -5859,13 +6011,13 @@
 	)
 	(wire
 		(pts
-			(xy 256.54 22.225) (xy 256.54 31.75)
+			(xy 204.47 33.02) (xy 204.47 31.75)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f84264bb-0091-47c4-b4fa-5e184161e578")
+		(uuid "fa966db6-c71e-405b-b3e5-d271822020ad")
 	)
 	(wire
 		(pts
@@ -5913,6 +6065,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -5925,7 +6078,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -5937,6 +6091,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -5949,31 +6104,34 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
 		)
 	)
-	(global_label "TXD"
+	(global_label "TG_TXD"
 		(shape input)
 		(at 267.335 45.72 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "13ec6d7c-c436-4c98-b148-d3363dedf13a")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 271.8886 45.72 0)
+			(at 274.2321 45.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -5985,6 +6143,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -5997,7 +6156,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6009,6 +6169,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 				(color 0 72 72 1)
 			)
@@ -6022,7 +6183,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6034,6 +6196,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6046,31 +6209,34 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
 		)
 	)
-	(global_label "RXD"
+	(global_label "TG_RXD"
 		(shape output)
 		(at 249.555 45.72 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
 		)
 		(uuid "201a50c6-fe85-47c2-83d9-f1e017ca72e4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 245.0014 45.72 0)
+			(at 242.6579 45.72 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6082,6 +6248,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6094,7 +6261,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6102,23 +6270,25 @@
 	)
 	(global_label "SWD_EN"
 		(shape output)
-		(at 58.42 107.95 0)
+		(at 71.12 104.14 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "33151450-10b3-4458-8b8f-2abd7e98e0b5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 65.3171 107.95 0)
+			(at 78.0171 104.14 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6130,6 +6300,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 				(color 0 72 72 1)
 			)
@@ -6143,7 +6314,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6155,6 +6327,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6167,7 +6340,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6179,6 +6353,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6191,7 +6366,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6199,23 +6375,25 @@
 	)
 	(global_label "TXD"
 		(shape output)
-		(at 58.42 118.11 0)
+		(at 58.42 128.905 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "39b52b9b-b7c9-4671-bd52-e63e9a31b48b")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 62.9736 118.11 0)
+			(at 62.9736 128.905 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6227,6 +6405,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6239,7 +6418,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6251,6 +6431,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6263,7 +6444,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6271,23 +6453,51 @@
 	)
 	(global_label "TDO"
 		(shape input)
-		(at 58.42 102.87 0)
+		(at 58.42 99.06 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "4cd69e6a-1bb4-456d-a441-2429854feda3")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 62.9736 102.87 0)
+			(at 62.9736 99.06 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "UART_EN"
+		(shape output)
+		(at 93.98 125.095 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(face "Consolas")
+				(size 1.016 1.016)
+			)
+			(justify left)
+		)
+		(uuid "50d6dc41-5e90-4f31-9de9-a3d1305e908a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 101.6583 125.095 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6299,6 +6509,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6311,7 +6522,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6319,23 +6531,25 @@
 	)
 	(global_label "TCK"
 		(shape output)
-		(at 58.42 97.79 0)
+		(at 58.42 93.98 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "62238ed9-23f3-416e-8089-0a4ba49e37e8")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 62.9736 97.79 0)
+			(at 62.9736 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6343,23 +6557,25 @@
 	)
 	(global_label "TDI"
 		(shape output)
-		(at 58.42 100.33 0)
+		(at 58.42 96.52 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "65ee3588-fbe5-4aea-9087-2a7f5936ebbb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 62.9736 100.33 0)
+			(at 62.9736 96.52 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6367,23 +6583,25 @@
 	)
 	(global_label "RXD"
 		(shape input)
-		(at 58.42 113.03 0)
+		(at 58.42 126.365 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "77f57e22-a298-44a4-9bfb-8ed0a5b7b3eb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 62.9736 113.03 0)
+			(at 62.9736 126.365 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6395,6 +6613,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6407,7 +6626,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6419,6 +6639,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6431,7 +6652,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6439,23 +6661,25 @@
 	)
 	(global_label "~{TG_RST}"
 		(shape output)
-		(at 88.265 77.47 0)
+		(at 103.505 78.74 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "84ac66d7-9e8c-4276-8fc2-d18e0892ac2d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 95.1621 77.47 0)
+			(at 110.4021 78.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6467,6 +6691,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6479,7 +6704,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6491,6 +6717,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6503,7 +6730,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6515,6 +6743,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6527,7 +6756,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6539,6 +6769,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6551,7 +6782,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6559,23 +6791,25 @@
 	)
 	(global_label "IO_DIR"
 		(shape output)
-		(at 58.42 105.41 0)
+		(at 71.12 101.6 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
 		)
 		(uuid "b2944b29-f39b-47ae-91ac-f6fa535da29f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 65.3171 105.41 0)
+			(at 78.0171 101.6 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6587,6 +6821,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6599,7 +6834,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6611,6 +6847,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6623,7 +6860,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6635,6 +6873,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify right)
@@ -6647,7 +6886,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -6659,6 +6899,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6671,7 +6912,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6683,6 +6925,7 @@
 		(fields_autoplaced yes)
 		(effects
 			(font
+				(face "Consolas")
 				(size 1.016 1.016)
 			)
 			(justify left)
@@ -6695,7 +6938,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -6712,7 +6956,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "00e1a25d-9bad-4876-ac57-2f8c39b3914d")
-		(property "Reference" "#PWR0121"
+		(property "Reference" "#PWR0138"
 			(at 179.07 33.02 0)
 			(hide yes)
 			(show_name no)
@@ -6778,7 +7022,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0121")
+					(reference "#PWR0138")
 					(unit 1)
 				)
 			)
@@ -6795,7 +7039,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "028bdefd-1995-47fa-b67d-e9adf16b0c94")
-		(property "Reference" "#PWR0112"
+		(property "Reference" "#PWR0115"
 			(at 116.84 27.94 0)
 			(hide yes)
 			(show_name no)
@@ -6861,7 +7105,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0112")
+					(reference "#PWR0115")
 					(unit 1)
 				)
 			)
@@ -6869,7 +7113,7 @@
 	)
 	(symbol
 		(lib_id "SAMPI:RES")
-		(at 85.725 74.93 0)
+		(at 100.965 76.2 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -6879,8 +7123,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "0862f20f-b3fe-411b-a120-971f489664cf")
-		(property "Reference" "R?"
-			(at 83.185 75.565 0)
+		(property "Reference" "R105"
+			(at 97.79 76.835 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6893,7 +7137,7 @@
 			)
 		)
 		(property "Value" "33R"
-			(at 83.185 79.375 0)
+			(at 98.425 80.645 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6904,8 +7148,8 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
-			(at 85.725 74.93 0)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 100.965 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6917,7 +7161,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 85.725 74.93 0)
+			(at 100.965 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6929,7 +7173,7 @@
 			)
 		)
 		(property "Description" "RES 12K OHM 1% 1/16W 0402"
-			(at 85.725 74.93 0)
+			(at 100.965 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6941,7 +7185,7 @@
 			)
 		)
 		(property "MFT" "YAGEO"
-			(at 85.725 74.93 0)
+			(at 100.965 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6953,7 +7197,7 @@
 			)
 		)
 		(property "MNP" "RC0402FR-0712KL"
-			(at 85.725 74.93 0)
+			(at 100.965 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6973,7 +7217,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R105")
 					(unit 1)
 				)
 			)
@@ -6981,7 +7225,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 250.825 26.035 0)
+		(at 230.505 35.56 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6990,8 +7234,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "08d7b568-4dfc-4f4b-bd00-a3b022f49431")
-		(property "Reference" "#PWR0128"
-			(at 250.825 32.385 0)
+		(property "Reference" "#PWR0144"
+			(at 230.505 41.91 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7004,7 +7248,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 250.825 29.845 0)
+			(at 231.775 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7015,7 +7259,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 250.825 26.035 0)
+			(at 230.505 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7027,7 +7271,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 250.825 26.035 0)
+			(at 230.505 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7039,7 +7283,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 250.825 26.035 0)
+			(at 230.505 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7056,7 +7300,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0128")
+					(reference "#PWR0144")
 					(unit 1)
 				)
 			)
@@ -7073,7 +7317,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "0de432a8-ccef-46eb-bfa4-d2da75ee975a")
-		(property "Reference" "#PWR0140"
+		(property "Reference" "#PWR0127"
 			(at 146.05 96.52 0)
 			(hide yes)
 			(show_name no)
@@ -7139,7 +7383,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0140")
+					(reference "#PWR0127")
 					(unit 1)
 				)
 			)
@@ -7156,7 +7400,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "100a470d-0292-4659-b9a5-b2473d831677")
-		(property "Reference" "#PWR0123"
+		(property "Reference" "#PWR0118"
 			(at 128.27 182.88 0)
 			(hide yes)
 			(show_name no)
@@ -7222,7 +7466,115 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0123")
+					(reference "#PWR0118")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:FET_N-CH")
+		(at 90.805 80.01 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "15373543-4d0b-4183-a510-17c74359adff")
+		(property "Reference" "Q103"
+			(at 97.79 83.82 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5 1.5)
+					(bold yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MFET N"
+			(at 98.425 85.09 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:SOT-723"
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "20V 750MA 250MW 300M@4.5V,500MA"
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MNP" "SLMT720V1CN"
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFT" "  Shenzhen"
+			(at 90.805 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "71ff1789-cd77-4063-b923-fbe49ba7f208")
+		)
+		(pin "2"
+			(uuid "a864b3a3-c09e-4518-88d7-96e3cdf2456a")
+		)
+		(pin "3"
+			(uuid "a899bc6b-71a1-4367-9c1a-08a1684472c3")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "Q103")
 					(unit 1)
 				)
 			)
@@ -7240,7 +7592,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "16488436-7fcc-4246-b9a8-8a6f9b429cb6")
-		(property "Reference" "C?"
+		(property "Reference" "C113"
 			(at 191.135 41.91 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7265,7 +7617,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 191.77 44.45 0)
 			(hide yes)
 			(show_name no)
@@ -7334,7 +7686,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C113")
 					(unit 1)
 				)
 			)
@@ -7351,7 +7703,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "167a8618-3698-4989-a240-e7c29397a583")
-		(property "Reference" "#PWR0110"
+		(property "Reference" "#PWR0114"
 			(at 107.95 57.15 0)
 			(hide yes)
 			(show_name no)
@@ -7417,7 +7769,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0110")
+					(reference "#PWR0114")
 					(unit 1)
 				)
 			)
@@ -7435,7 +7787,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "17f00481-d451-4c19-a43f-355d5ef8166b")
-		(property "Reference" "#PWR0106"
+		(property "Reference" "#PWR0103"
 			(at 53.34 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -7501,7 +7853,84 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0106")
+					(reference "#PWR0103")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:SCREWHOLDER")
+		(at 215.9 57.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "184e3c86-04fd-479a-9a22-784cc2fa77b4")
+		(property "Reference" "SH101"
+			(at 215.9 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.016 1.016)
+					(thickness 0.2032)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "SCREW HOLDER"
+			(at 218.44 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:HOLDER-1.5MM"
+			(at 215.9 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 215.9 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 215.9 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "SH101")
 					(unit 1)
 				)
 			)
@@ -7519,7 +7948,7 @@
 		(in_pos_files yes)
 		(dnp yes)
 		(uuid "185a45cb-4e34-459d-a9dd-61638239ccd1")
-		(property "Reference" "R?"
+		(property "Reference" "R107"
 			(at 127 43.18 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7544,7 +7973,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 128.27 45.72 0)
 			(hide yes)
 			(show_name no)
@@ -7613,7 +8042,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R107")
 					(unit 1)
 				)
 			)
@@ -7631,7 +8060,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "1a52f5e5-8de4-47b9-9908-828e537ee1fd")
-		(property "Reference" "#PWR0102"
+		(property "Reference" "#PWR0116"
 			(at 116.84 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -7697,7 +8126,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0102")
+					(reference "#PWR0116")
 					(unit 1)
 				)
 			)
@@ -7714,7 +8143,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "224a8e7f-5d68-4647-9558-8fd050146db3")
-		(property "Reference" "#PWR0141"
+		(property "Reference" "#PWR0120"
 			(at 125.73 88.9 0)
 			(hide yes)
 			(show_name no)
@@ -7780,7 +8209,167 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0141")
+					(reference "#PWR0120")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:SCREWHOLDER")
+		(at 228.6 57.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2333ec17-a825-489d-8c91-ba3d6591c380")
+		(property "Reference" "SH103"
+			(at 228.6 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.016 1.016)
+					(thickness 0.2032)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "SCREW HOLDER"
+			(at 231.14 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:HOLDER-1.5MM"
+			(at 228.6 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 228.6 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 228.6 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "SH103")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 80.01 100.33 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "2a89a993-82c7-445a-9ab0-b37213c3b953")
+		(property "Reference" "#PWR0151"
+			(at 80.01 106.68 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 80.01 104.14 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 80.01 100.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 80.01 100.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 80.01 100.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "eb368504-2e01-4439-8705-bc1fde356dbc")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "#PWR0151")
 					(unit 1)
 				)
 			)
@@ -7798,7 +8387,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "2c936cff-ed68-4081-85f1-f093c0074b57")
-		(property "Reference" "R?"
+		(property "Reference" "R106"
 			(at 127 29.21 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7823,7 +8412,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 128.27 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -7892,123 +8481,91 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R106")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "SAMPI:DMN2041")
-		(at 80.391 81.915 0)
-		(unit 2)
+		(lib_id "power:GND")
+		(at 87.63 140.335 0)
+		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "3158e0bf-46e3-44a0-ae11-509a179dc4c3")
-		(property "Reference" "Q?"
-			(at 75.311 80.264 0)
+		(uuid "32fda51b-08a2-4988-935c-e48308eabba5")
+		(property "Reference" "#PWR0152"
+			(at 87.63 146.685 0)
+			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
 					(bold yes)
 				)
 			)
 		)
-		(property "Value" "2N-CH"
-			(at 86.106 83.185 90)
-			(hide yes)
+		(property "Value" "GND"
+			(at 87.63 144.145 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" "Liem:TSOT26"
-			(at 84.836 82.55 0)
+		(property "Footprint" ""
+			(at 87.63 140.335 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "Datasheet" ""
-			(at 79.375 70.485 0)
+			(at 87.63 140.335 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Description" "MOSFET 2N-CH 20V 5.8A TSOT26"
-			(at 84.836 84.455 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 87.63 140.335 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
-		)
-		(property "MNP" "DMN2041UVT-7"
-			(at 84.836 84.455 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFT" "DIODE"
-			(at 84.836 84.455 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "6"
-			(uuid "5226ce91-11ac-4823-88cd-093859f2d69c")
-		)
-		(pin "2"
-			(uuid "cbad98f9-6499-47d4-8bb8-7fc10df5892f")
-		)
-		(pin "5"
-			(uuid "49ee45e6-8ae2-4a42-8cef-33a4865d481e")
-		)
-		(pin "4"
-			(uuid "f1535a7c-8cc8-4e9f-b4cd-4e6fb867153f")
 		)
 		(pin "1"
-			(uuid "d53734ec-2509-496e-a107-d0ee3a43c9ad")
-		)
-		(pin "3"
-			(uuid "63775b77-4b71-4aad-914c-2e15ac369ae2")
+			(uuid "982a4769-c825-4fa0-9d67-3bde51ca92b8")
 		)
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "Q?")
-					(unit 2)
+					(reference "#PWR0152")
+					(unit 1)
 				)
 			)
 		)
@@ -8024,7 +8581,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "39462596-7ec9-40f9-8858-a169be08505d")
-		(property "Reference" "#PWR0132"
+		(property "Reference" "#PWR0147"
 			(at 243.205 43.18 0)
 			(hide yes)
 			(show_name no)
@@ -8090,7 +8647,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0132")
+					(reference "#PWR0147")
 					(unit 1)
 				)
 			)
@@ -8098,7 +8655,7 @@
 	)
 	(symbol
 		(lib_id "SAMPI:VIO")
-		(at 79.375 68.58 0)
+		(at 94.615 69.85 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8107,58 +8664,64 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "3bfe5524-918e-45f1-8ee0-013fa0c4ddb6")
-		(property "Reference" "#PWR0136"
-			(at 79.375 72.39 0)
+		(property "Reference" "#PWR0110"
+			(at 94.615 73.66 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
 		(property "Value" "VIO"
-			(at 79.375 64.77 0)
+			(at 94.615 66.04 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.1588)
 				)
 			)
 		)
 		(property "Footprint" ""
-			(at 79.375 68.58 0)
+			(at 94.615 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "Datasheet" ""
-			(at 79.375 68.58 0)
+			(at 94.615 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"VIO\""
-			(at 79.375 68.58 0)
+			(at 94.615 69.85 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8168,7 +8731,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0136")
+					(reference "#PWR0110")
 					(unit 1)
 				)
 			)
@@ -8186,7 +8749,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "3ec7d2a5-7cf7-4365-9d37-c0d76b1f8147")
-		(property "Reference" "#PWR0138"
+		(property "Reference" "#PWR0131"
 			(at 146.05 190.5 0)
 			(hide yes)
 			(show_name no)
@@ -8252,7 +8815,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0138")
+					(reference "#PWR0131")
 					(unit 1)
 				)
 			)
@@ -8270,7 +8833,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "40a50e67-1bbc-4d8f-9504-92e2926365e2")
-		(property "Reference" "R?"
+		(property "Reference" "R109"
 			(at 146.05 31.115 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8296,7 +8859,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 148.59 38.1 0)
 			(hide yes)
 			(show_name no)
@@ -8337,20 +8900,6 @@
 				(justify bottom)
 			)
 		)
-		(property "Package" "0402"
-			(at 148.59 38.1 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-				(justify bottom)
-			)
-		)
 		(property "MFT" "YAGE"
 			(at 148.59 35.56 0)
 			(hide yes)
@@ -8377,17 +8926,6 @@
 				)
 			)
 		)
-		(property "MPN" ""
-			(at 148.59 35.56 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
 		(pin "1"
 			(uuid "d81a03c4-8eca-4b1a-a862-991fbf545fb5")
 		)
@@ -8397,7 +8935,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R109")
 					(unit 1)
 				)
 			)
@@ -8414,13 +8952,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "422de3f6-d658-4ef7-8b39-0195270541b7")
-		(property "Reference" "FT?"
+		(property "Reference" "FT101"
 			(at 50.8 22.86 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.5 1.5)
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -8431,18 +8971,20 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" "Liem:FB0402"
+		(property "Footprint" "SAMPI:FB0402"
 			(at 50.165 21.59 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8453,7 +8995,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8464,7 +9007,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8477,7 +9021,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "FT?")
+					(reference "FT101")
 					(unit 1)
 				)
 			)
@@ -8494,7 +9038,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4298e3a1-0913-4f41-af53-bda09242217c")
-		(property "Reference" "#PWR0131"
+		(property "Reference" "#PWR0146"
 			(at 243.205 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -8560,7 +9104,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0131")
+					(reference "#PWR0146")
 					(unit 1)
 				)
 			)
@@ -8577,14 +9121,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "476afc64-f66e-4ce6-bb2f-07b93c3595ce")
-		(property "Reference" "#PWR0145"
+		(property "Reference" "#PWR0133"
 			(at 143.51 106.68 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -8594,6 +9140,7 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.1588)
 				)
@@ -8606,7 +9153,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8617,7 +9165,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8628,7 +9177,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8638,7 +9188,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0145")
+					(reference "#PWR0133")
 					(unit 1)
 				)
 			)
@@ -8656,13 +9206,15 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "49ee1906-5ba5-4791-9470-9af621a26240")
-		(property "Reference" "C?"
+		(property "Reference" "C101"
 			(at 71.755 29.21 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.5 1.5)
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 				(justify left)
@@ -8674,19 +9226,21 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SAMPI:CAP1411"
 			(at 72.39 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8697,7 +9251,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8708,7 +9263,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8721,7 +9277,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C101")
 					(unit 1)
 				)
 			)
@@ -8739,7 +9295,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4a632af2-3f6e-4794-b3b5-3d306eb07349")
-		(property "Reference" "R?"
+		(property "Reference" "R101"
 			(at 45.72 59.69 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8764,7 +9320,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 46.99 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -8833,7 +9389,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R101")
 					(unit 1)
 				)
 			)
@@ -8851,13 +9407,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4ad52c44-cd11-4950-b3c2-518363c0d4e5")
-		(property "Reference" "U?"
+		(property "Reference" "U106"
 			(at 141.605 174.625 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -8868,18 +9426,20 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" "Liem:SOT353"
+		(property "Footprint" "SAMPI:SOT353"
 			(at 135.89 174.625 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8890,7 +9450,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8901,7 +9462,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8912,7 +9474,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8923,7 +9486,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -8945,7 +9509,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "U?")
+					(reference "U106")
 					(unit 1)
 				)
 			)
@@ -8962,14 +9526,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "4f3f4ccf-cbc3-4a4b-96e7-30948f05db5b")
-		(property "Reference" "#PWR0126"
+		(property "Reference" "#PWR0125"
 			(at 142.24 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -8979,6 +9545,7 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.127)
 				)
@@ -8991,7 +9558,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -9002,7 +9570,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -9013,7 +9582,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -9023,7 +9593,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0126")
+					(reference "#PWR0125")
 					(unit 1)
 				)
 			)
@@ -9040,7 +9610,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "50937f16-3ed2-4c36-9a78-709415e636de")
-		(property "Reference" "C?"
+		(property "Reference" "C110"
 			(at 147.955 161.925 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9065,7 +9635,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 143.51 163.83 0)
 			(hide yes)
 			(show_name no)
@@ -9134,7 +9704,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C110")
 					(unit 1)
 				)
 			)
@@ -9142,7 +9712,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 241.3 22.225 90)
+		(at 227.965 35.56 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9151,8 +9721,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "543521a4-dee9-4ae1-a2ea-b4f5af101ecd")
-		(property "Reference" "#PWR0130"
-			(at 245.11 22.225 0)
+		(property "Reference" "#PWR0143"
+			(at 227.965 31.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9165,7 +9735,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 236.855 22.225 90)
+			(at 227.965 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9176,7 +9746,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 241.3 22.225 0)
+			(at 227.965 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9188,7 +9758,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 241.3 22.225 0)
+			(at 227.965 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9200,7 +9770,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 241.3 22.225 0)
+			(at 227.965 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9217,7 +9787,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0130")
+					(reference "#PWR0143")
 					(unit 1)
 				)
 			)
@@ -9226,7 +9796,7 @@
 	(symbol
 		(lib_name "RES_3")
 		(lib_id "SAMPI:RES")
-		(at 81.915 71.12 270)
+		(at 97.155 72.39 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9235,8 +9805,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "55904e2c-3354-4a04-849c-8c27b8a11652")
-		(property "Reference" "R?"
-			(at 76.835 71.755 90)
+		(property "Reference" "R104"
+			(at 91.44 73.025 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9249,7 +9819,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 76.835 73.66 90)
+			(at 92.075 74.93 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9260,8 +9830,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
-			(at 81.915 71.374 0)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 97.155 72.644 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9274,7 +9844,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 81.915 71.374 0)
+			(at 97.155 72.644 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9287,20 +9857,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 81.915 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Note" ""
-			(at 81.915 71.12 0)
+			(at 97.155 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9313,7 +9870,7 @@
 			)
 		)
 		(property "MFT" "YAGE"
-			(at 81.915 71.12 0)
+			(at 97.155 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9326,7 +9883,7 @@
 			)
 		)
 		(property "MNP" ""
-			(at 81.915 71.12 0)
+			(at 97.155 72.39 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9335,17 +9892,6 @@
 					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.127)
-				)
-			)
-		)
-		(property "MPN" ""
-			(at 81.915 71.12 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
 				)
 			)
 		)
@@ -9358,7 +9904,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R104")
 					(unit 1)
 				)
 			)
@@ -9376,7 +9922,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "57bd6f92-f0e1-44d4-ad1f-eb414f0e85ee")
-		(property "Reference" "#PWR0105"
+		(property "Reference" "#PWR0104"
 			(at 53.34 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -9442,7 +9988,312 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0105")
+					(reference "#PWR0104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:RES")
+		(at 77.47 97.79 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "5f1be7d5-52e7-4e00-af8d-8ff27ac210e7")
+		(property "Reference" "R119"
+			(at 78.105 95.885 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1M"
+			(at 78.105 97.79 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 77.47 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 77.47 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "RES 12K OHM 1% 1/16W 0402"
+			(at 77.47 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MFT" "YAGEO"
+			(at 77.47 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MNP" "RC0402FR-0712KL"
+			(at 77.47 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "192996f0-12eb-48d1-97ba-035d8d5f6a77")
+		)
+		(pin "1"
+			(uuid "cfd72b75-40e1-428a-a3b4-677cd6ff7cf3")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "R119")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:SCREWHOLDER")
+		(at 222.25 57.15 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "604dd1c1-763b-48b6-8cf3-23177908facf")
+		(property "Reference" "SH102"
+			(at 222.25 57.15 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.016 1.016)
+					(thickness 0.2032)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "SCREW HOLDER"
+			(at 224.79 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:HOLDER-1.5MM"
+			(at 222.25 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 222.25 57.15 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "SH102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "RES_3")
+		(lib_id "SAMPI:RES")
+		(at 95.25 118.745 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "6095fab3-2901-436e-b323-50ccdd9a2645")
+		(property "Reference" "R116"
+			(at 95.885 119.38 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.254)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "10K"
+			(at 95.25 121.285 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 95.25 118.999 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 95.25 118.999 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 95.25 118.745 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(property "MFT" "YAGE"
+			(at 95.25 118.745 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(property "MNP" ""
+			(at 95.25 118.745 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "05668ff9-5c05-4ae9-9b04-6e959d63839e")
+		)
+		(pin "2"
+			(uuid "0c1d65a9-5d46-40b8-9544-f3dd219ba717")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "R116")
 					(unit 1)
 				)
 			)
@@ -9460,7 +10311,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6204f7ab-79c9-46a5-8b38-f7f3b3265415")
-		(property "Reference" "R?"
+		(property "Reference" "R111"
 			(at 160.02 150.495 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9485,7 +10336,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 162.56 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -9554,7 +10405,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R111")
 					(unit 1)
 				)
 			)
@@ -9571,7 +10422,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "631944b9-bed3-4718-a820-c1631d061e80")
-		(property "Reference" "#PWR0103"
+		(property "Reference" "#PWR0109"
 			(at 78.74 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -9637,7 +10488,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0103")
+					(reference "#PWR0109")
 					(unit 1)
 				)
 			)
@@ -9654,7 +10505,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "63ca2d89-8fa5-46ec-8f3b-b0d724aa4706")
-		(property "Reference" "#PWR0122"
+		(property "Reference" "#PWR0126"
 			(at 142.24 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -9720,7 +10571,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0122")
+					(reference "#PWR0126")
 					(unit 1)
 				)
 			)
@@ -9728,7 +10579,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 245.745 26.035 0)
+		(at 225.425 35.56 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9737,8 +10588,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6a5c0801-cc9b-45d4-8430-83bcc17bbe20")
-		(property "Reference" "#PWR0129"
-			(at 245.745 32.385 0)
+		(property "Reference" "#PWR0142"
+			(at 225.425 41.91 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9751,7 +10602,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 245.745 29.845 0)
+			(at 224.155 39.37 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9762,7 +10613,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 245.745 26.035 0)
+			(at 225.425 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9774,7 +10625,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 245.745 26.035 0)
+			(at 225.425 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9786,7 +10637,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 245.745 26.035 0)
+			(at 225.425 35.56 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9803,7 +10654,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0129")
+					(reference "#PWR0142")
 					(unit 1)
 				)
 			)
@@ -9821,7 +10672,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "6fcf1ad9-1b73-4972-a5f1-33fea64b66fc")
-		(property "Reference" "R?"
+		(property "Reference" "R110"
 			(at 160.02 74.295 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9846,7 +10697,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 162.56 73.66 0)
 			(hide yes)
 			(show_name no)
@@ -9915,7 +10766,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R110")
 					(unit 1)
 				)
 			)
@@ -9924,7 +10775,7 @@
 	(symbol
 		(lib_name "RES_3")
 		(lib_id "SAMPI:RES")
-		(at 72.39 78.105 270)
+		(at 87.63 78.74 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9933,8 +10784,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "71045e8a-2db9-45c3-9a24-f9c687a122dc")
-		(property "Reference" "R?"
-			(at 67.31 78.74 90)
+		(property "Reference" "R103"
+			(at 81.915 79.375 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9947,7 +10798,7 @@
 			)
 		)
 		(property "Value" "10K"
-			(at 67.31 80.645 90)
+			(at 82.55 81.28 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9958,8 +10809,8 @@
 				)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
-			(at 72.39 78.359 0)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 87.63 78.994 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9972,7 +10823,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 72.39 78.359 0)
+			(at 87.63 78.994 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9985,20 +10836,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 72.39 78.105 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Note" ""
-			(at 72.39 78.105 0)
+			(at 87.63 78.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10011,7 +10849,7 @@
 			)
 		)
 		(property "MFT" "YAGE"
-			(at 72.39 78.105 0)
+			(at 87.63 78.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10024,7 +10862,7 @@
 			)
 		)
 		(property "MNP" ""
-			(at 72.39 78.105 0)
+			(at 87.63 78.74 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10033,17 +10871,6 @@
 					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.127)
-				)
-			)
-		)
-		(property "MPN" ""
-			(at 72.39 78.105 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
 				)
 			)
 		)
@@ -10056,7 +10883,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R103")
 					(unit 1)
 				)
 			)
@@ -10073,7 +10900,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "726269f2-e2b7-4a3d-bd13-f641b3cd9128")
-		(property "Reference" "#PWR0133"
+		(property "Reference" "#PWR0148"
 			(at 243.205 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -10139,7 +10966,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0133")
+					(reference "#PWR0148")
 					(unit 1)
 				)
 			)
@@ -10156,7 +10983,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7452e40a-2386-4376-a7d2-1280805f7bc8")
-		(property "Reference" "#PWR0149"
+		(property "Reference" "#PWR0117"
 			(at 128.27 132.08 0)
 			(hide yes)
 			(show_name no)
@@ -10222,7 +11049,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0149")
+					(reference "#PWR0117")
 					(unit 1)
 				)
 			)
@@ -10239,7 +11066,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "75c5fb86-1e27-4e33-ac15-3675891d7817")
-		(property "Reference" "#PWR0144"
+		(property "Reference" "#PWR0128"
 			(at 146.05 121.92 0)
 			(hide yes)
 			(show_name no)
@@ -10305,7 +11132,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0144")
+					(reference "#PWR0128")
 					(unit 1)
 				)
 			)
@@ -10322,7 +11149,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "77cbe9fa-657f-4282-a8ea-2187e6b6ef57")
-		(property "Reference" "#PWR0119"
+		(property "Reference" "#PWR0135"
 			(at 152.4 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -10388,7 +11215,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0119")
+					(reference "#PWR0135")
 					(unit 1)
 				)
 			)
@@ -10406,13 +11233,15 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "786e58a2-409d-4a96-b5e5-3f48ba975594")
-		(property "Reference" "J?"
+		(property "Reference" "J101"
 			(at 31.75 18.415 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.3 1.3)
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -10423,7 +11252,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10434,7 +11264,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10445,7 +11276,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10456,7 +11288,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10467,7 +11300,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10478,7 +11312,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10533,7 +11368,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "J?")
+					(reference "J101")
 					(unit 1)
 				)
 			)
@@ -10550,14 +11385,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "78baf467-948a-4b41-b162-20fe50ba817e")
-		(property "Reference" "#PWR0114"
+		(property "Reference" "#PWR0139"
 			(at 189.23 40.64 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -10567,6 +11404,7 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.1588)
 				)
@@ -10579,7 +11417,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10590,7 +11429,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10601,7 +11441,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10611,7 +11452,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0114")
+					(reference "#PWR0139")
 					(unit 1)
 				)
 			)
@@ -10629,7 +11470,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7a96a71a-bffb-4e68-abfc-0dd423844edd")
-		(property "Reference" "#PWR0146"
+		(property "Reference" "#PWR0129"
 			(at 146.05 139.7 0)
 			(hide yes)
 			(show_name no)
@@ -10695,7 +11536,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0146")
+					(reference "#PWR0129")
 					(unit 1)
 				)
 			)
@@ -10703,7 +11544,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 79.375 86.995 0)
+		(at 94.615 87.63 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10712,8 +11553,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7ac9b11d-27ab-46a6-bbd2-425db2110fb4")
-		(property "Reference" "#PWR0135"
-			(at 79.375 93.345 0)
+		(property "Reference" "#PWR0111"
+			(at 94.615 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10726,7 +11567,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 79.375 90.805 0)
+			(at 94.615 91.44 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10737,7 +11578,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 79.375 86.995 0)
+			(at 94.615 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10749,7 +11590,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 79.375 86.995 0)
+			(at 94.615 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10761,7 +11602,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 79.375 86.995 0)
+			(at 94.615 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10778,7 +11619,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0135")
+					(reference "#PWR0111")
 					(unit 1)
 				)
 			)
@@ -10795,14 +11636,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7f6f8138-dbed-432f-ad69-fb1209970be9")
-		(property "Reference" "#PWR0117"
+		(property "Reference" "#PWR0134"
 			(at 143.51 157.48 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -10812,6 +11655,7 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.1588)
 				)
@@ -10824,7 +11668,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10835,7 +11680,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10846,7 +11692,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -10856,7 +11703,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0117")
+					(reference "#PWR0134")
 					(unit 1)
 				)
 			)
@@ -10873,7 +11720,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "7fef7a81-244b-4ff7-bc8d-1724c50c5ef9")
-		(property "Reference" "#PWR0113"
+		(property "Reference" "#PWR0140"
 			(at 189.23 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -10939,7 +11786,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0113")
+					(reference "#PWR0140")
 					(unit 1)
 				)
 			)
@@ -10957,7 +11804,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "83b5f770-666c-4136-8914-3a97f5ebd58b")
-		(property "Reference" "#PWR0104"
+		(property "Reference" "#PWR0102"
 			(at 44.45 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -11023,7 +11870,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0104")
+					(reference "#PWR0102")
 					(unit 1)
 				)
 			)
@@ -11041,7 +11888,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "83dce6af-4592-480b-aa94-fa9e3b8e0345")
-		(property "Reference" "#PWR0147"
+		(property "Reference" "#PWR0122"
 			(at 125.73 147.32 0)
 			(hide yes)
 			(show_name no)
@@ -11107,7 +11954,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0147")
+					(reference "#PWR0122")
 					(unit 1)
 				)
 			)
@@ -11125,7 +11972,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "852b9330-3ead-4be6-aeeb-27461c8a8266")
-		(property "Reference" "C?"
+		(property "Reference" "C102"
 			(at 80.645 29.21 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11150,7 +11997,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 81.28 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -11219,7 +12066,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C102")
 					(unit 1)
 				)
 			)
@@ -11237,7 +12084,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8778e400-2712-4dfb-9020-44360a956fc2")
-		(property "Reference" "R?"
+		(property "Reference" "R102"
 			(at 54.61 59.69 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11262,7 +12109,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 55.88 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -11331,7 +12178,127 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_name "RES_8")
+		(lib_id "SAMPI:RES")
+		(at 218.44 34.29 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "87b99ded-10d1-4478-bf83-14405f177f96")
+		(property "Reference" "R115"
+			(at 215.9 29.845 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "1K"
+			(at 215.9 33.655 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 218.44 36.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+				(justify bottom)
+			)
+		)
+		(property "Datasheet" ""
+			(at 218.44 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 218.44 38.1 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+				(justify bottom)
+			)
+		)
+		(property "MFT" "YAGE"
+			(at 218.44 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(property "MNP" ""
+			(at 218.44 34.29 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.127)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7a29ec7b-63bb-4a3a-9baa-e6817b45c6f1")
+		)
+		(pin "2"
+			(uuid "80b80037-00b5-4549-82ba-2aef884b0cc3")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "R115")
 					(unit 1)
 				)
 			)
@@ -11348,7 +12315,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "88e5342a-c5b2-4916-b287-4acaf5dffc69")
-		(property "Reference" "#PWR0120"
+		(property "Reference" "#PWR0137"
 			(at 168.91 52.07 0)
 			(hide yes)
 			(show_name no)
@@ -11414,7 +12381,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0120")
+					(reference "#PWR0137")
 					(unit 1)
 				)
 			)
@@ -11431,14 +12398,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8ee46a26-1de0-4eab-b623-64faea3d54d0")
-		(property "Reference" "#PWR0125"
+		(property "Reference" "#PWR0136"
 			(at 168.91 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -11448,7 +12417,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11459,7 +12429,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11470,7 +12441,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11481,7 +12453,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11491,7 +12464,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0125")
+					(reference "#PWR0136")
 					(unit 1)
 				)
 			)
@@ -11509,7 +12482,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9259f349-f3fe-413d-8ea4-cea3b9a386a7")
-		(property "Reference" "R?"
+		(property "Reference" "R114"
 			(at 182.88 36.195 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11534,7 +12507,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 185.42 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -11603,7 +12576,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R114")
 					(unit 1)
 				)
 			)
@@ -11620,7 +12593,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "94e0eae3-a1a8-4eb6-a4d5-29fa974620b3")
-		(property "Reference" "#PWR0143"
+		(property "Reference" "#PWR0121"
 			(at 125.73 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -11686,7 +12659,118 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0143")
+					(reference "#PWR0121")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:RES")
+		(at 67.31 110.49 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "95c4bbed-68a9-48ef-8b47-a2bd6cc36df4")
+		(property "Reference" "R118"
+			(at 68.58 108.585 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1M"
+			(at 67.945 110.49 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 67.31 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 67.31 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "RES 12K OHM 1% 1/16W 0402"
+			(at 67.31 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MFT" "YAGEO"
+			(at 67.31 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MNP" "RC0402FR-0712KL"
+			(at 67.31 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "9bbd1a40-9b45-4efa-aeca-22073e638cf3")
+		)
+		(pin "1"
+			(uuid "75a01561-a91d-4ac5-880d-87da263c9dcf")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "R118")
 					(unit 1)
 				)
 			)
@@ -11703,7 +12787,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9903f456-7820-463f-9378-afbdea127762")
-		(property "Reference" "C?"
+		(property "Reference" "C105"
 			(at 119.38 29.21 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11728,7 +12812,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 114.3 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -11797,7 +12881,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C105")
 					(unit 1)
 				)
 			)
@@ -11814,13 +12898,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "9c70a580-8829-4054-b90c-c37b6d678eb3")
-		(property "Reference" "D?"
+		(property "Reference" "D101"
 			(at 57.785 42.545 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.3 1.3)
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 				(justify left)
@@ -11833,7 +12919,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -11845,7 +12932,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11856,7 +12944,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11867,7 +12956,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11878,7 +12968,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11889,7 +12980,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -11908,7 +13000,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "D?")
+					(reference "D101")
 					(unit 1)
 				)
 			)
@@ -11916,7 +13008,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 69.85 75.565 0)
+		(at 85.09 76.2 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -11925,8 +13017,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a4e389f2-886f-40b1-b397-d4538eab960f")
-		(property "Reference" "#PWR0118"
-			(at 69.85 79.375 0)
+		(property "Reference" "#PWR0107"
+			(at 85.09 80.01 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11939,7 +13031,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 69.85 71.755 0)
+			(at 85.09 72.39 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -11950,7 +13042,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 69.85 75.565 0)
+			(at 85.09 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11962,7 +13054,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 69.85 75.565 0)
+			(at 85.09 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11974,7 +13066,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 69.85 75.565 0)
+			(at 85.09 76.2 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11991,7 +13083,90 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0118")
+					(reference "#PWR0107")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 204.47 33.02 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "a84f8860-ffa3-4fca-8ed4-0e4ddea71a03")
+		(property "Reference" "#PWR0141"
+			(at 204.47 39.37 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 204.47 36.83 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 204.47 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 204.47 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 204.47 33.02 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8b4cbd89-c469-432b-8870-dd4ba8b8e768")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "#PWR0141")
 					(unit 1)
 				)
 			)
@@ -12008,14 +13183,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a96ba43c-2790-4c68-a3e7-387f2cc45c09")
-		(property "Reference" "#PWR0142"
+		(property "Reference" "#PWR0132"
 			(at 143.51 81.28 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -12025,6 +13202,7 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.1588)
 				)
@@ -12037,7 +13215,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -12048,7 +13227,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -12059,7 +13239,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -12069,7 +13250,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0142")
+					(reference "#PWR0132")
 					(unit 1)
 				)
 			)
@@ -12086,7 +13267,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "a99d2f2b-7185-436e-b87e-11c47915b058")
-		(property "Reference" "#PWR0115"
+		(property "Reference" "#PWR0123"
 			(at 125.73 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -12152,7 +13333,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0115")
+					(reference "#PWR0123")
 					(unit 1)
 				)
 			)
@@ -12169,7 +13350,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "abd5fdb6-df44-4112-a8ab-0dfb679f9dd3")
-		(property "Reference" "#PWR0101"
+		(property "Reference" "#PWR0119"
 			(at 125.73 54.61 0)
 			(hide yes)
 			(show_name no)
@@ -12235,7 +13416,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0101")
+					(reference "#PWR0119")
 					(unit 1)
 				)
 			)
@@ -12252,14 +13433,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b2c8cd4f-bdc8-439a-b9dd-cee7544a6b3c")
-		(property "Reference" "#PWR0127"
+		(property "Reference" "#PWR0145"
 			(at 250.825 38.1 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -12269,6 +13452,7 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 					(thickness 0.127)
 				)
@@ -12281,7 +13465,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -12292,7 +13477,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -12303,7 +13489,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -12313,7 +13500,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0127")
+					(reference "#PWR0145")
 					(unit 1)
 				)
 			)
@@ -12331,7 +13518,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b496d5a8-2e01-469a-8d0d-f244d8c50a08")
-		(property "Reference" "R?"
+		(property "Reference" "R113"
 			(at 161.29 99.695 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12356,7 +13543,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 163.83 99.06 0)
 			(hide yes)
 			(show_name no)
@@ -12425,7 +13612,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R113")
 					(unit 1)
 				)
 			)
@@ -12443,7 +13630,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b99a9062-3a30-4ce2-9676-a778762fe47a")
-		(property "Reference" "C?"
+		(property "Reference" "C111"
 			(at 149.86 36.83 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12468,7 +13655,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 154.94 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -12537,7 +13724,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C111")
 					(unit 1)
 				)
 			)
@@ -12545,7 +13732,7 @@
 	)
 	(symbol
 		(lib_id "Liem:SW-SLIDE")
-		(at 248.285 22.225 0)
+		(at 227.965 31.75 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12553,80 +13740,87 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "bc2c7398-6807-46de-9bfc-9ffe6b2de72d")
-		(property "Reference" "SW?"
-			(at 248.285 14.605 0)
+		(property "Reference" "SW101"
+			(at 227.965 25.4 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
 		(property "Value" "PWR SEL"
-			(at 248.285 17.145 0)
+			(at 227.965 27.305 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "Footprint" "SAMPI:CUS-12B"
-			(at 248.285 15.875 0)
+			(at 227.965 25.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "Datasheet" ""
-			(at 248.285 15.875 0)
+			(at 227.965 25.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "Description" "SWITCH SLIDE SMD R/A SPDT ON-ON NON-SHORTING 300mA 4V 10KCYCLES GULLWING GOLD"
-			(at 248.285 17.78 0)
+			(at 227.965 27.305 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "MNP" "CUS-12TB"
-			(at 248.285 17.78 0)
+			(at 227.965 27.305 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
 		(property "MFT" "NID"
-			(at 248.285 17.78 0)
+			(at 227.965 27.305 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -12648,7 +13842,309 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "SW?")
+					(reference "SW101")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:FET_N-CH")
+		(at 81.28 86.36 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bd3d6058-b8f2-430e-8d5e-0eecb2e2b71a")
+		(property "Reference" "Q101"
+			(at 88.265 90.17 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5 1.5)
+					(bold yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MFET N"
+			(at 88.9 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:SOT-723"
+			(at 81.28 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 81.28 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "20V 750MA 250MW 300M@4.5V,500MA"
+			(at 81.28 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MNP" "SLMT720V1CN"
+			(at 81.28 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFT" "  Shenzhen"
+			(at 81.28 86.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a76e157f-c402-462e-a799-43ccd2724aec")
+		)
+		(pin "2"
+			(uuid "d246520c-21a1-4ca2-b427-ae352789c530")
+		)
+		(pin "3"
+			(uuid "c64f3a94-1dbd-4c91-8cef-ca6ca7a4389f")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "Q101")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:FET_N-CH")
+		(at 88.9 126.365 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bf46bfae-0362-40ef-a94e-5b88c859d56b")
+		(property "Reference" "Q102"
+			(at 95.885 130.175 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.5 1.5)
+					(bold yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MFET N"
+			(at 96.52 131.445 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:SOT-723"
+			(at 88.9 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 88.9 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "20V 750MA 250MW 300M@4.5V,500MA"
+			(at 88.9 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MNP" "SLMT720V1CN"
+			(at 88.9 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MFT" "  Shenzhen"
+			(at 88.9 126.365 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "d75ea334-faac-41a1-9233-8a8b8995e15a")
+		)
+		(pin "2"
+			(uuid "13e18909-67bc-431c-8a07-3ec66178a905")
+		)
+		(pin "3"
+			(uuid "1b35b651-bcb5-40d0-987a-16737deb251c")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "Q102")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Liem:RLED")
+		(at 210.82 36.195 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "bf55357f-1a67-4edd-9f60-c094feca7acd")
+		(property "Reference" "D102"
+			(at 209.55 28.575 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.127)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "EXT PWR"
+			(at 209.55 34.29 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Footprint" "SAMPI:LED0603"
+			(at 210.82 36.195 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 210.82 36.195 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" ""
+			(at 210.82 36.195 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "K"
+			(uuid "301a4ec9-c705-4784-a58d-d5026a196b37")
+		)
+		(pin "A"
+			(uuid "3adb3aea-dc0a-40a4-888d-c68b4e1e35fc")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "D102")
 					(unit 1)
 				)
 			)
@@ -12656,7 +14152,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 69.85 93.98 0)
+		(at 85.09 93.98 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -12665,8 +14161,8 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c6dc95c9-9b39-441d-8334-f2f014de1641")
-		(property "Reference" "#PWR0134"
-			(at 69.85 100.33 0)
+		(property "Reference" "#PWR0108"
+			(at 85.09 100.33 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12679,7 +14175,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 69.85 97.79 0)
+			(at 85.09 97.79 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -12690,7 +14186,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 69.85 93.98 0)
+			(at 85.09 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12702,7 +14198,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 69.85 93.98 0)
+			(at 85.09 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12714,7 +14210,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 69.85 93.98 0)
+			(at 85.09 93.98 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12731,7 +14227,118 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0134")
+					(reference "#PWR0108")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:RES")
+		(at 60.96 110.49 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "c7422718-e03a-4994-bdf7-2b19ffcff947")
+		(property "Reference" "R117"
+			(at 62.23 108.585 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1M"
+			(at 61.595 110.49 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 60.96 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 60.96 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "RES 12K OHM 1% 1/16W 0402"
+			(at 60.96 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MFT" "YAGEO"
+			(at 60.96 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MNP" "RC0402FR-0712KL"
+			(at 60.96 110.49 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "22f5f3fd-eb77-4f70-a93b-4183bbf81ec6")
+		)
+		(pin "1"
+			(uuid "52a68bdc-c4e6-4999-a964-bd29d25edafb")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "R117")
 					(unit 1)
 				)
 			)
@@ -12748,7 +14355,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c981dbc2-8002-4cbd-bba6-799461c096ab")
-		(property "Reference" "#PWR0108"
+		(property "Reference" "#PWR0106"
 			(at 69.85 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -12814,7 +14421,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0108")
+					(reference "#PWR0106")
 					(unit 1)
 				)
 			)
@@ -12831,7 +14438,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cab82c89-e725-4b59-97c7-4942582d9302")
-		(property "Reference" "C?"
+		(property "Reference" "C109"
 			(at 147.955 111.125 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12856,7 +14463,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 143.51 113.03 0)
 			(hide yes)
 			(show_name no)
@@ -12925,7 +14532,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C109")
 					(unit 1)
 				)
 			)
@@ -12943,7 +14550,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cad137ed-a409-47b9-86f7-d4f0efbdf4e7")
-		(property "Reference" "C?"
+		(property "Reference" "C106"
 			(at 123.825 136.525 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12968,7 +14575,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 128.27 138.43 0)
 			(hide yes)
 			(show_name no)
@@ -13037,7 +14644,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C106")
 					(unit 1)
 				)
 			)
@@ -13054,13 +14661,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cc23aca9-9878-4149-b8b2-4888626e3057")
-		(property "Reference" "U?"
+		(property "Reference" "U101"
 			(at 92.71 22.225 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.5 1.5)
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -13071,6 +14680,7 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.016 1.016)
 				)
 			)
@@ -13082,7 +14692,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13093,7 +14704,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13104,7 +14716,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13115,7 +14728,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13126,7 +14740,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13160,7 +14775,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "U?")
+					(reference "U101")
 					(unit 1)
 				)
 			)
@@ -13177,7 +14792,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cc62c84a-1df6-4e50-bd17-3e7cab7c97f7")
-		(property "Reference" "R?"
+		(property "Reference" "R108"
 			(at 140.335 37.465 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13202,7 +14817,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 139.7 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -13271,7 +14886,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R108")
 					(unit 1)
 				)
 			)
@@ -13288,13 +14903,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "cdc698b9-cd1c-43da-aa59-dadff1b73fb2")
-		(property "Reference" "H?"
+		(property "Reference" "H101"
 			(at 253.365 34.925 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -13305,7 +14922,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13316,7 +14934,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13327,7 +14946,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13338,7 +14958,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13349,7 +14970,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13360,7 +14982,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13397,7 +15020,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "H?")
+					(reference "H101")
 					(unit 1)
 				)
 			)
@@ -13415,7 +15038,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ce6c9620-1c78-41ff-9eee-d70f78ce073c")
-		(property "Reference" "R?"
+		(property "Reference" "R112"
 			(at 160.02 175.895 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13440,7 +15063,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:RES0402"
+		(property "Footprint" "SAMPI:RES0402"
 			(at 162.56 175.26 0)
 			(hide yes)
 			(show_name no)
@@ -13509,7 +15132,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R?")
+					(reference "R112")
 					(unit 1)
 				)
 			)
@@ -13527,7 +15150,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "d2b2f956-5c36-4cc4-ab6b-c69ffd0e122a")
-		(property "Reference" "#PWR0137"
+		(property "Reference" "#PWR0124"
 			(at 125.73 198.12 0)
 			(hide yes)
 			(show_name no)
@@ -13593,36 +15216,37 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0137")
+					(reference "#PWR0124")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "SAMPI:DMN2041")
-		(at 70.866 88.9 0)
+		(lib_id "SAMPI:SCREWHOLDER")
+		(at 234.95 57.15 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "dba4bd4f-e3ba-4cdc-8473-4873163db8df")
-		(property "Reference" "Q?"
-			(at 66.04 87.63 0)
+		(uuid "d46cf411-4a99-415d-add6-ae9ee3a0fc87")
+		(property "Reference" "SH104"
+			(at 234.95 57.15 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(size 1.016 1.016)
+					(thickness 0.2032)
 					(bold yes)
 				)
 			)
 		)
-		(property "Value" "2N-CH"
-			(at 76.581 90.17 90)
+		(property "Value" "SCREW HOLDER"
+			(at 237.49 62.23 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13630,10 +15254,11 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:TSOT26"
-			(at 75.311 89.535 0)
+		(property "Footprint" "SAMPI:HOLDER-1.5MM"
+			(at 234.95 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13644,7 +15269,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 69.85 77.47 0)
+			(at 234.95 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13654,8 +15279,8 @@
 				)
 			)
 		)
-		(property "Description" "MOSFET 2N-CH 20V 5.8A TSOT26"
-			(at 75.311 91.44 0)
+		(property "Description" ""
+			(at 234.95 57.15 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13664,51 +15289,95 @@
 					(size 1.27 1.27)
 				)
 			)
-		)
-		(property "MNP" "DMN2041UVT-7"
-			(at 75.311 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFT" "DIODE"
-			(at 75.311 91.44 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "6"
-			(uuid "5226ce91-11ac-4823-88cd-093859f2d69d")
-		)
-		(pin "2"
-			(uuid "cbad98f9-6499-47d4-8bb8-7fc10df58930")
-		)
-		(pin "5"
-			(uuid "49ee45e6-8ae2-4a42-8cef-33a4865d481f")
-		)
-		(pin "4"
-			(uuid "f1535a7c-8cc8-4e9f-b4cd-4e6fb8671540")
-		)
-		(pin "1"
-			(uuid "d53734ec-2509-496e-a107-d0ee3a43c9ae")
-		)
-		(pin "3"
-			(uuid "63775b77-4b71-4aad-914c-2e15ac369ae3")
 		)
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "Q?")
+					(reference "SH104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:VIO")
+		(at 92.71 116.205 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "d626c80b-167e-4451-b275-c90e0ba75512")
+		(property "Reference" "#PWR0149"
+			(at 92.71 120.015 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "VIO"
+			(at 92.71 112.395 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+					(thickness 0.1588)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 92.71 116.205 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 116.205 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VIO\""
+			(at 92.71 116.205 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "67e29d5b-c278-4c59-9122-1ddfee62a623")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "#PWR0149")
 					(unit 1)
 				)
 			)
@@ -13725,7 +15394,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e109456d-dfc0-40f8-96dd-d250cd2cb5ac")
-		(property "Reference" "#PWR0109"
+		(property "Reference" "#PWR0112"
 			(at 87.63 49.53 0)
 			(hide yes)
 			(show_name no)
@@ -13791,7 +15460,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0109")
+					(reference "#PWR0112")
 					(unit 1)
 				)
 			)
@@ -13809,7 +15478,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e12830f0-b842-4382-a255-6fa2a6460771")
-		(property "Reference" "C?"
+		(property "Reference" "C107"
 			(at 123.825 187.325 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13834,7 +15503,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 128.27 189.23 0)
 			(hide yes)
 			(show_name no)
@@ -13903,7 +15572,118 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C107")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "SAMPI:RES")
+		(at 85.09 137.795 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e2ea6da5-0eca-493b-9b6d-a402461a153c")
+		(property "Reference" "R120"
+			(at 85.725 135.89 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1M"
+			(at 85.725 137.795 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "SAMPI:RES0402"
+			(at 85.09 137.795 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 85.09 137.795 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "RES 12K OHM 1% 1/16W 0402"
+			(at 85.09 137.795 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MFT" "YAGEO"
+			(at 85.09 137.795 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MNP" "RC0402FR-0712KL"
+			(at 85.09 137.795 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "7b16e3e2-5cfc-4346-a388-aa57bcb63555")
+		)
+		(pin "1"
+			(uuid "53140fa4-59b2-49fe-9099-f7ffab1ce460")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "R120")
 					(unit 1)
 				)
 			)
@@ -13920,35 +15700,39 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e30ee1d6-b870-421a-9680-2a891a124057")
-		(property "Reference" "U?"
+		(property "Reference" "U107"
 			(at 173.355 31.75 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.5 1.5)
+					(face "Consolas")
+					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
 		)
-		(property "Value" "MCP6001"
+		(property "Value" "MCP601"
 			(at 174.625 34.29 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "SAMPI:SOT-23-5_MCHP"
 			(at 162.56 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13959,18 +15743,44 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "IC OP AMP 1CH SOT-23-5"
 			(at 162.56 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MNP" "MCP601T-I/OT"
+			(at 162.56 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "MFT" "Mchp"
+			(at 162.56 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -13992,7 +15802,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "U?")
+					(reference "U107")
 					(unit 1)
 				)
 			)
@@ -14010,7 +15820,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e390b225-9237-4f7d-a08c-8fa413a3c16c")
-		(property "Reference" "C?"
+		(property "Reference" "C112"
 			(at 174.625 22.86 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14035,7 +15845,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 175.26 22.86 0)
 			(hide yes)
 			(show_name no)
@@ -14104,7 +15914,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C112")
 					(unit 1)
 				)
 			)
@@ -14122,13 +15932,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "e5c4ef7b-563b-42f6-b9e2-cbb74f031e4e")
-		(property "Reference" "U?"
+		(property "Reference" "U104"
 			(at 141.605 123.825 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -14139,18 +15951,20 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" "Liem:SOT353"
+		(property "Footprint" "SAMPI:SOT353"
 			(at 135.89 123.825 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14161,7 +15975,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14172,7 +15987,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14183,7 +15999,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14194,7 +16011,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14216,7 +16034,90 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "U?")
+					(reference "U104")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 69.85 113.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "e89643b0-6dab-4b3e-b2f2-09b9f11f7989")
+		(property "Reference" "#PWR0154"
+			(at 69.85 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 69.85 116.84 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 69.85 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 69.85 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 69.85 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7a98894f-978c-4698-a692-93379e30c6d0")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "#PWR0154")
 					(unit 1)
 				)
 			)
@@ -14233,7 +16134,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ea33f95c-534e-4dd2-9c6a-624c388fcb30")
-		(property "Reference" "#PWR0111"
+		(property "Reference" "#PWR0113"
 			(at 107.95 40.64 0)
 			(hide yes)
 			(show_name no)
@@ -14299,7 +16200,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0111")
+					(reference "#PWR0113")
 					(unit 1)
 				)
 			)
@@ -14316,13 +16217,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "eb8cc468-5836-4d27-9d15-60924c1de583")
-		(property "Reference" "U?"
+		(property "Reference" "U105"
 			(at 130.175 149.225 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -14333,18 +16236,20 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" "Liem:SOT353"
+		(property "Footprint" "SAMPI:SOT353"
 			(at 135.89 149.225 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14355,7 +16260,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14366,7 +16272,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14377,7 +16284,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14388,7 +16296,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14410,7 +16319,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "U?")
+					(reference "U105")
 					(unit 1)
 				)
 			)
@@ -14428,7 +16337,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "eb8e5017-4c65-47f6-a76e-a2dbe958fd0f")
-		(property "Reference" "C?"
+		(property "Reference" "C104"
 			(at 109.855 45.72 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14453,7 +16362,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 110.49 48.26 0)
 			(hide yes)
 			(show_name no)
@@ -14522,7 +16431,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C104")
 					(unit 1)
 				)
 			)
@@ -14540,7 +16449,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ee21fee5-bc28-4020-a71f-6ce408ae12d9")
-		(property "Reference" "C?"
+		(property "Reference" "C103"
 			(at 109.855 29.21 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14565,7 +16474,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 110.49 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -14634,7 +16543,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C103")
 					(unit 1)
 				)
 			)
@@ -14651,13 +16560,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "efc9817f-b8d7-40a0-8576-dfd8e949c360")
-		(property "Reference" "U?"
+		(property "Reference" "U103"
 			(at 130.175 98.425 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -14668,18 +16579,20 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" "Liem:SOT353"
+		(property "Footprint" "SAMPI:SOT353"
 			(at 135.89 98.425 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14690,7 +16603,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14701,7 +16615,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14712,7 +16627,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14723,7 +16639,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14745,7 +16662,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "U?")
+					(reference "U103")
 					(unit 1)
 				)
 			)
@@ -14762,14 +16679,16 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "f106c454-11df-4cf6-9b8b-656807fdaeee")
-		(property "Reference" "#PWR0124"
+		(property "Reference" "#PWR0105"
 			(at 69.85 27.94 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 			)
 		)
@@ -14779,7 +16698,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14790,7 +16710,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14801,7 +16722,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14812,7 +16734,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14822,7 +16745,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0124")
+					(reference "#PWR0105")
 					(unit 1)
 				)
 			)
@@ -14839,13 +16762,15 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "f124d941-ca6f-43b5-8916-9c931cb6f431")
-		(property "Reference" "U?"
+		(property "Reference" "U102"
 			(at 130.175 73.025 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(thickness 0.127)
 					(bold yes)
 				)
 			)
@@ -14856,18 +16781,20 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
-		(property "Footprint" "Liem:SOT353"
+		(property "Footprint" "SAMPI:SOT353"
 			(at 135.89 73.025 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14878,7 +16805,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14889,7 +16817,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14900,7 +16829,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14911,7 +16841,8 @@
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 			)
 		)
@@ -14933,7 +16864,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "U?")
+					(reference "U102")
 					(unit 1)
 				)
 			)
@@ -14950,7 +16881,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "f2055be3-bd5b-4ea2-95eb-2ec1399d4b5b")
-		(property "Reference" "#PWR0116"
+		(property "Reference" "#PWR0130"
 			(at 146.05 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -15016,7 +16947,90 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0116")
+					(reference "#PWR0130")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 92.71 133.985 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f5e17c62-5158-4eea-ab25-0b56a6086ef1")
+		(property "Reference" "#PWR0150"
+			(at 92.71 140.335 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 137.795 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 92.71 133.985 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 133.985 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 92.71 133.985 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e1d02b7f-a1c4-4925-a2a2-a67260e47bc1")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "#PWR0150")
 					(unit 1)
 				)
 			)
@@ -15034,7 +17048,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "f644f727-d07a-435e-8da4-2ff3a9d2c528")
-		(property "Reference" "#PWR0107"
+		(property "Reference" "#PWR0101"
 			(at 37.465 79.375 0)
 			(hide yes)
 			(show_name no)
@@ -15100,7 +17114,90 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0107")
+					(reference "#PWR0101")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 63.5 113.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(uuid "f96ebea9-0474-470c-8152-bf0c2fbef7ee")
+		(property "Reference" "#PWR0153"
+			(at 63.5 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.27 1.27)
+					(bold yes)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 63.5 116.84 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 63.5 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 63.5 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 63.5 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "397bfa5d-00f1-4c33-9f70-34fd613a73ad")
+		)
+		(instances
+			(project "SAMM-FTDISWD"
+				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
+					(reference "#PWR0153")
 					(unit 1)
 				)
 			)
@@ -15117,7 +17214,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "fd4ba9dc-63b6-4228-9045-707c6b624a13")
-		(property "Reference" "C?"
+		(property "Reference" "C108"
 			(at 147.955 85.725 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15142,7 +17239,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Liem:CAP0402"
+		(property "Footprint" "SAMPI:CAP0402"
 			(at 143.51 87.63 0)
 			(hide yes)
 			(show_name no)
@@ -15211,7 +17308,7 @@
 		(instances
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "C?")
+					(reference "C108")
 					(unit 1)
 				)
 			)
@@ -15219,7 +17316,7 @@
 	)
 	(sheet
 		(at 25.4 88.9)
-		(size 31.75 31.75)
+		(size 31.75 44.45)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -15239,88 +17336,98 @@
 			(do_not_autoplace no)
 			(effects
 				(font
+					(face "Consolas")
 					(size 1.27 1.27)
+					(bold yes)
 				)
 				(justify left bottom)
 			)
 		)
 		(property "Sheetfile" "FT4232.kicad_sch"
-			(at 25.4 121.2346 0)
+			(at 25.4 133.833 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left top)
 			)
 		)
 		(pin "RXD1" input
-			(at 57.15 113.03 0)
+			(at 57.15 126.365 0)
 			(uuid "1d07757f-5047-4a25-8db3-d8a7518c282d")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
 		)
 		(pin "SWDIO_DIR" output
-			(at 57.15 105.41 0)
+			(at 57.15 101.6 0)
 			(uuid "5786dd15-0619-4a4c-beef-3a6d4b5a3bac")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
 		)
 		(pin "SWD_EN" output
-			(at 57.15 107.95 0)
+			(at 57.15 104.14 0)
 			(uuid "7261289c-1363-443b-bb7a-fea91589d703")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
 		)
 		(pin "TCK" output
-			(at 57.15 97.79 0)
+			(at 57.15 93.98 0)
 			(uuid "4f6ca48c-bc87-4043-ae00-3b6eca26cf9d")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
 		)
 		(pin "TDI" output
-			(at 57.15 100.33 0)
+			(at 57.15 96.52 0)
 			(uuid "ef291601-ff8f-42fc-b477-b794404e3021")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
 		)
 		(pin "TDO" input
-			(at 57.15 102.87 0)
+			(at 57.15 99.06 0)
 			(uuid "0486f60d-bb52-4067-be74-db1036fabb5d")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
 		)
 		(pin "TXD1" output
-			(at 57.15 118.11 0)
+			(at 57.15 128.905 0)
 			(uuid "4b8ecffd-ed81-4672-9774-b28dda18ec65")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
@@ -15330,7 +17437,8 @@
 			(uuid "c392b225-cd75-4742-bd34-b3d69ba31e32")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -15340,7 +17448,8 @@
 			(uuid "963d2e90-019d-4b16-9c3e-571af68f2ad8")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -15350,7 +17459,8 @@
 			(uuid "f4f96f41-17f8-4ca9-af1c-4a4495f17ed3")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
 				)
 				(justify left)
 			)
@@ -15360,7 +17470,18 @@
 			(uuid "1d0cb6ce-c9f8-4f39-9a0b-cb1f7b3f8477")
 			(effects
 				(font
-					(size 1.27 1.27)
+					(face "Consolas")
+					(size 1.016 1.016)
+				)
+				(justify right)
+			)
+		)
+		(pin "~{DTR1}" output
+			(at 57.15 131.445 0)
+			(uuid "8a24e69d-74f0-4e10-9af2-0e23388a97de")
+			(effects
+				(font
+					(size 1.016 1.016)
 				)
 				(justify right)
 			)
