@@ -4506,34 +4506,16 @@
 		(uuid "b176a2a3-7618-4127-b77e-f169c114ea96")
 	)
 	(junction
-		(at 94.615 78.74)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b9325b1f-3c1f-4933-8bd5-977d58851470")
-	)
-	(junction
 		(at 45.72 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bb9e0ddd-ef68-4cc9-82a1-68896cd1d275")
 	)
 	(junction
-		(at 80.01 91.44)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "bddaeed5-96f5-4f5f-88ce-fc6e69457ff0")
-	)
-	(junction
 		(at 248.285 38.1)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bfd2a1a7-70a7-4514-9f4c-6d22391f0ccd")
-	)
-	(junction
-		(at 125.73 39.37)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "cae8e566-f726-4d34-9746-90fc1c2a589e")
 	)
 	(junction
 		(at 87.63 131.445)
@@ -4570,12 +4552,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f5b31114-f8d7-45c7-a620-35ebdf3aa83e")
-	)
-	(junction
-		(at 85.09 85.09)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f99deee7-9713-4f8e-96a3-f92b4115a784")
 	)
 	(junction
 		(at 125.73 182.88)
@@ -4991,16 +4967,6 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 85.09) (xy 85.09 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "41ca3464-b66e-42fb-b9bf-ee817752fa0a")
-	)
-	(wire
-		(pts
 			(xy 69.85 104.14) (xy 69.85 105.41)
 		)
 		(stroke
@@ -5031,16 +4997,6 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 83.82) (xy 85.09 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "485a1283-aaa6-4f40-9396-d917179fb4d1")
-	)
-	(wire
-		(pts
 			(xy 116.84 24.13) (xy 116.84 25.4)
 		)
 		(stroke
@@ -5058,16 +5014,6 @@
 			(type default)
 		)
 		(uuid "4e516bc6-bc0d-42f5-884c-be117e10ef9c")
-	)
-	(wire
-		(pts
-			(xy 80.01 91.44) (xy 81.28 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5185c8f3-a9c3-4a75-bbc3-3908ceecf369")
 	)
 	(wire
 		(pts
@@ -5241,16 +5187,6 @@
 	)
 	(wire
 		(pts
-			(xy 95.885 78.74) (xy 94.615 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6aad0e06-e1c9-4fb0-b7ec-31415bc88bbb")
-	)
-	(wire
-		(pts
 			(xy 125.73 107.95) (xy 125.73 106.68)
 		)
 		(stroke
@@ -5318,16 +5254,6 @@
 			(type default)
 		)
 		(uuid "726cac86-fa91-4794-ae72-bba85c852d73")
-	)
-	(wire
-		(pts
-			(xy 94.615 77.47) (xy 94.615 78.74)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7417d399-d5b8-40dd-8a0b-466bbe135651")
 	)
 	(wire
 		(pts
@@ -5491,23 +5417,13 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 91.44) (xy 80.01 91.44)
+			(xy 57.15 91.44) (xy 78.74 91.44)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "982c524e-9428-4b41-a49f-16e1ae04c676")
-	)
-	(wire
-		(pts
-			(xy 94.615 78.74) (xy 94.615 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "99b6cfc7-8c88-412b-82cf-c50d75349310")
 	)
 	(wire
 		(pts
@@ -5551,16 +5467,6 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 39.37) (xy 125.73 34.29)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a4303f6b-a031-4448-a60a-f62b12d659f7")
-	)
-	(wire
-		(pts
 			(xy 146.05 158.75) (xy 146.05 157.48)
 		)
 		(stroke
@@ -5578,16 +5484,6 @@
 			(type default)
 		)
 		(uuid "a841ff0e-81e0-4310-b7df-cb293ca86abe")
-	)
-	(wire
-		(pts
-			(xy 125.73 39.37) (xy 125.73 40.64)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a90ff921-9e5c-4fb9-b23a-f1b45f58bf2c")
 	)
 	(wire
 		(pts
@@ -5651,16 +5547,6 @@
 	)
 	(wire
 		(pts
-			(xy 80.01 91.44) (xy 80.01 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bb3e81cf-9ba0-4cc1-8d18-40f91c1e07cf")
-	)
-	(wire
-		(pts
 			(xy 53.34 35.56) (xy 43.18 35.56)
 		)
 		(stroke
@@ -5708,16 +5594,6 @@
 			(type default)
 		)
 		(uuid "c59b4a6c-0955-4225-9d55-fd16bb0ee2e2")
-	)
-	(wire
-		(pts
-			(xy 90.805 85.09) (xy 85.09 85.09)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c91073b0-2e13-4eb1-ab93-dbcae266da08")
 	)
 	(wire
 		(pts
@@ -5881,7 +5757,7 @@
 	)
 	(wire
 		(pts
-			(xy 125.73 26.67) (xy 125.73 25.4)
+			(xy 125.73 25.4) (xy 125.73 39.37)
 		)
 		(stroke
 			(width 0)
@@ -6661,7 +6537,7 @@
 	)
 	(global_label "~{TG_RST}"
 		(shape output)
-		(at 103.505 78.74 0)
+		(at 93.98 91.44 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -6672,7 +6548,7 @@
 		)
 		(uuid "84ac66d7-9e8c-4276-8fc2-d18e0892ac2d")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 110.4021 78.74 0)
+			(at 100.8771 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7113,7 +6989,7 @@
 	)
 	(symbol
 		(lib_id "SAMPI:RES")
-		(at 100.965 76.2 0)
+		(at 91.44 88.9 0)
 		(mirror y)
 		(unit 1)
 		(body_style 1)
@@ -7124,7 +7000,7 @@
 		(dnp no)
 		(uuid "0862f20f-b3fe-411b-a120-971f489664cf")
 		(property "Reference" "R105"
-			(at 97.79 76.835 0)
+			(at 88.265 89.535 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7137,7 +7013,7 @@
 			)
 		)
 		(property "Value" "33R"
-			(at 98.425 80.645 0)
+			(at 88.9 93.345 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7149,7 +7025,7 @@
 			)
 		)
 		(property "Footprint" "SAMPI:RES0402"
-			(at 100.965 76.2 0)
+			(at 91.44 88.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7161,7 +7037,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 100.965 76.2 0)
+			(at 91.44 88.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7173,7 +7049,7 @@
 			)
 		)
 		(property "Description" "RES 12K OHM 1% 1/16W 0402"
-			(at 100.965 76.2 0)
+			(at 91.44 88.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7185,7 +7061,7 @@
 			)
 		)
 		(property "MFT" "YAGEO"
-			(at 100.965 76.2 0)
+			(at 91.44 88.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7197,7 +7073,7 @@
 			)
 		)
 		(property "MNP" "RC0402FR-0712KL"
-			(at 100.965 76.2 0)
+			(at 91.44 88.9 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7467,114 +7343,6 @@
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
 					(reference "#PWR0118")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SAMPI:FET_N-CH")
-		(at 90.805 80.01 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "15373543-4d0b-4183-a510-17c74359adff")
-		(property "Reference" "Q103"
-			(at 97.79 83.82 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.5 1.5)
-					(bold yes)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MFET N"
-			(at 98.425 85.09 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SAMPI:SOT-723"
-			(at 90.805 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 90.805 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "20V 750MA 250MW 300M@4.5V,500MA"
-			(at 90.805 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MNP" "SLMT720V1CN"
-			(at 90.805 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "MFT" "  Shenzhen"
-			(at 90.805 80.01 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "71ff1789-cd77-4063-b923-fbe49ba7f208")
-		)
-		(pin "2"
-			(uuid "a864b3a3-c09e-4518-88d7-96e3cdf2456a")
-		)
-		(pin "3"
-			(uuid "a899bc6b-71a1-4367-9c1a-08a1684472c3")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "Q103")
 					(unit 1)
 				)
 			)
@@ -7937,118 +7705,6 @@
 		)
 	)
 	(symbol
-		(lib_id "SAMPI:RES")
-		(at 128.27 45.72 270)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp yes)
-		(uuid "185a45cb-4e34-459d-a9dd-61638239ccd1")
-		(property "Reference" "R107"
-			(at 127 43.18 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Rt"
-			(at 127 45.72 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SAMPI:RES0402"
-			(at 128.27 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 128.27 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "RES 12K OHM 1% 1/16W 0402"
-			(at 128.27 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "MFT" "YAGEO"
-			(at 128.27 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "MNP" "RC0402FR-0712KL"
-			(at 128.27 45.72 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "f75ae0e2-6ef3-4a87-b84b-39058792a2bf")
-		)
-		(pin "1"
-			(uuid "0d69f169-77a1-42ca-bf4a-91a6c5040d58")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R107")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 116.84 34.29 0)
 		(mirror y)
@@ -8294,201 +7950,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 80.01 100.33 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2a89a993-82c7-445a-9ab0-b37213c3b953")
-		(property "Reference" "#PWR0151"
-			(at 80.01 106.68 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 80.01 104.14 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 80.01 100.33 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 80.01 100.33 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 80.01 100.33 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "eb368504-2e01-4439-8705-bc1fde356dbc")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0151")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SAMPI:RES")
-		(at 128.27 31.75 270)
-		(mirror x)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "2c936cff-ed68-4081-85f1-f093c0074b57")
-		(property "Reference" "R106"
-			(at 127 29.21 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "0R"
-			(at 127 31.75 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SAMPI:RES0402"
-			(at 128.27 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 128.27 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "RES 12K OHM 1% 1/16W 0402"
-			(at 128.27 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "MFT" "YAGEO"
-			(at 128.27 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "MNP" "RC0402FR-0712KL"
-			(at 128.27 31.75 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "c5a584c5-6a96-4e55-bdf4-9e16947493f3")
-		)
-		(pin "1"
-			(uuid "4f271788-c036-446a-b687-5e443e5a7c58")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R106")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 87.63 140.335 0)
 		(unit 1)
 		(body_style 1)
@@ -8648,90 +8109,6 @@
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
 					(reference "#PWR0147")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SAMPI:VIO")
-		(at 94.615 69.85 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "3bfe5524-918e-45f1-8ee0-013fa0c4ddb6")
-		(property "Reference" "#PWR0110"
-			(at 94.615 73.66 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-			)
-		)
-		(property "Value" "VIO"
-			(at 94.615 66.04 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.1588)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 94.615 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 94.615 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"VIO\""
-			(at 94.615 69.85 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1e6068e9-b0de-4be8-b303-f71fb187e9b7")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0110")
 					(unit 1)
 				)
 			)
@@ -9794,123 +9171,6 @@
 		)
 	)
 	(symbol
-		(lib_name "RES_3")
-		(lib_id "SAMPI:RES")
-		(at 97.155 72.39 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "55904e2c-3354-4a04-849c-8c27b8a11652")
-		(property "Reference" "R104"
-			(at 91.44 73.025 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(thickness 0.254)
-					(bold yes)
-				)
-			)
-		)
-		(property "Value" "10K"
-			(at 92.075 74.93 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Footprint" "SAMPI:RES0402"
-			(at 97.155 72.644 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 97.155 72.644 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 97.155 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "MFT" "YAGE"
-			(at 97.155 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "MNP" ""
-			(at 97.155 72.39 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "8c574283-ed4f-460c-9efb-afa1fed05b98")
-		)
-		(pin "2"
-			(uuid "031b4580-7323-4d24-9352-9aa09a67dc18")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R104")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 53.34 64.77 0)
 		(mirror y)
@@ -9989,117 +9249,6 @@
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
 					(reference "#PWR0104")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "SAMPI:RES")
-		(at 77.47 97.79 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "5f1be7d5-52e7-4e00-af8d-8ff27ac210e7")
-		(property "Reference" "R119"
-			(at 78.105 95.885 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1M"
-			(at 78.105 97.79 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "SAMPI:RES0402"
-			(at 77.47 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 77.47 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "RES 12K OHM 1% 1/16W 0402"
-			(at 77.47 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "MFT" "YAGEO"
-			(at 77.47 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "MNP" "RC0402FR-0712KL"
-			(at 77.47 97.79 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "2"
-			(uuid "192996f0-12eb-48d1-97ba-035d8d5f6a77")
-		)
-		(pin "1"
-			(uuid "cfd72b75-40e1-428a-a3b4-677cd6ff7cf3")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R119")
 					(unit 1)
 				)
 			)
@@ -10773,123 +9922,6 @@
 		)
 	)
 	(symbol
-		(lib_name "RES_3")
-		(lib_id "SAMPI:RES")
-		(at 87.63 78.74 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "71045e8a-2db9-45c3-9a24-f9c687a122dc")
-		(property "Reference" "R103"
-			(at 81.915 79.375 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(thickness 0.254)
-					(bold yes)
-				)
-			)
-		)
-		(property "Value" "10K"
-			(at 82.55 81.28 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Footprint" "SAMPI:RES0402"
-			(at 87.63 78.994 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 87.63 78.994 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "Description" ""
-			(at 87.63 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "MFT" "YAGE"
-			(at 87.63 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(property "MNP" ""
-			(at 87.63 78.74 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-					(thickness 0.127)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1b3e0e01-4b1d-46f5-b837-a059fde00d85")
-		)
-		(pin "2"
-			(uuid "f8dd32ca-a8de-4a24-b179-db29a161f0aa")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "R103")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 249.555 48.26 270)
 		(unit 1)
@@ -11537,89 +10569,6 @@
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
 					(reference "#PWR0129")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 94.615 87.63 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "7ac9b11d-27ab-46a6-bbd2-425db2110fb4")
-		(property "Reference" "#PWR0111"
-			(at 94.615 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 94.615 91.44 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 94.615 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 94.615 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 94.615 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "2f90a699-ee10-4988-9a89-9b2cf9d71749")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0111")
 					(unit 1)
 				)
 			)
@@ -13008,7 +11957,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 85.09 76.2 0)
+		(at 81.28 87.63 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13018,7 +11967,7 @@
 		(dnp no)
 		(uuid "a4e389f2-886f-40b1-b397-d4538eab960f")
 		(property "Reference" "#PWR0107"
-			(at 85.09 80.01 0)
+			(at 81.28 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13031,7 +11980,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 85.09 72.39 0)
+			(at 81.28 83.82 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13042,7 +11991,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 85.09 76.2 0)
+			(at 81.28 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13054,7 +12003,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 85.09 76.2 0)
+			(at 81.28 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13066,7 +12015,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3V3\""
-			(at 85.09 76.2 0)
+			(at 81.28 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13334,89 +12283,6 @@
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
 					(reference "#PWR0123")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 125.73 48.26 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "abd5fdb6-df44-4112-a8ab-0dfb679f9dd3")
-		(property "Reference" "#PWR0119"
-			(at 125.73 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 125.73 52.07 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 125.73 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 125.73 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 125.73 48.26 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "1fea9fb3-2ac0-4c93-b389-9c1cec42da0d")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0119")
 					(unit 1)
 				)
 			)
@@ -13733,6 +12599,7 @@
 	(symbol
 		(lib_id "Liem:SW-SLIDE")
 		(at 227.965 31.75 0)
+		(mirror y)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13850,7 +12717,7 @@
 	)
 	(symbol
 		(lib_id "SAMPI:FET_N-CH")
-		(at 81.28 86.36 0)
+		(at 86.36 87.63 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13860,7 +12727,7 @@
 		(dnp no)
 		(uuid "bd3d6058-b8f2-430e-8d5e-0eecb2e2b71a")
 		(property "Reference" "Q101"
-			(at 88.265 90.17 0)
+			(at 80.01 95.25 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13872,7 +12739,7 @@
 			)
 		)
 		(property "Value" "MFET N"
-			(at 88.9 91.44 0)
+			(at 81.28 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13884,7 +12751,7 @@
 			)
 		)
 		(property "Footprint" "SAMPI:SOT-723"
-			(at 81.28 86.36 0)
+			(at 86.36 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13895,7 +12762,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 81.28 86.36 0)
+			(at 86.36 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13906,7 +12773,7 @@
 			)
 		)
 		(property "Description" "20V 750MA 250MW 300M@4.5V,500MA"
-			(at 81.28 86.36 0)
+			(at 86.36 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13917,7 +12784,7 @@
 			)
 		)
 		(property "MNP" "SLMT720V1CN"
-			(at 81.28 86.36 0)
+			(at 86.36 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13928,7 +12795,7 @@
 			)
 		)
 		(property "MFT" "  Shenzhen"
-			(at 81.28 86.36 0)
+			(at 86.36 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14145,89 +13012,6 @@
 			(project "SAMM-FTDISWD"
 				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
 					(reference "D102")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 85.09 93.98 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "c6dc95c9-9b39-441d-8334-f2f014de1641")
-		(property "Reference" "#PWR0108"
-			(at 85.09 100.33 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.27 1.27)
-					(bold yes)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 85.09 97.79 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 85.09 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 85.09 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 85.09 93.98 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(face "Consolas")
-					(size 1.016 1.016)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "511e45c4-c1b9-4784-a105-7844be42a1c5")
-		)
-		(instances
-			(project "SAMM-FTDISWD"
-				(path "/9e1d6451-cc08-43b3-a925-dcb45d36928b"
-					(reference "#PWR0108")
 					(unit 1)
 				)
 			)
