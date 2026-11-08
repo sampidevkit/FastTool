@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.0,
-          "height": 6.0,
-          "width": 6.0
+          "drill": 0.5,
+          "height": 2.5,
+          "width": 1.4
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -763,7 +763,7 @@
     ],
     [
       "1c44a1c7-d5a0-430a-a2f3-20fc3555805c",
-      "FT4232"
+      "FT2232"
     ]
   ],
   "text_variables": {},

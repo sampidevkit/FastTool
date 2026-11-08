@@ -8805,7 +8805,7 @@
 				)
 			)
 		)
-		(property "Value" "TRX1"
+		(property "Value" "VCP"
 			(at 160.02 78.105 0)
 			(show_name no)
 			(do_not_autoplace no)

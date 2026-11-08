@@ -12473,8 +12473,8 @@
 				)
 			)
 		)
-		(property "Value" "EXT PWR"
-			(at 222.885 29.845 90)
+		(property "Value" "VTG"
+			(at 221.615 29.845 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -15366,7 +15366,7 @@
 			(color 255 255 194 1)
 		)
 		(uuid "1c44a1c7-d5a0-430a-a2f3-20fc3555805c")
-		(property "Sheetname" "FT4232"
+		(property "Sheetname" "FT2232"
 			(at 25.4 88.1884 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15379,7 +15379,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "FT4232.kicad_sch"
+		(property "Sheetfile" "FT2232.kicad_sch"
 			(at 25.4 133.833 0)
 			(show_name no)
 			(do_not_autoplace no)
